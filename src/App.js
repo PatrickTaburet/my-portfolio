@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import P5Sketch from './components/p5-sketch';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+      <P5Sketch />
+        <p>lines</p>
+        <input type="range" min="1" max="40" defaultValue="5" step="1" className="slider" id="lineSlider" />
+      </div>
+      {/* <header className="App-header">
+        <h1>Taburet Patrick</h1>
+        <h2>Web developpement</h2>
+      </header> */}
+      <main>
+       
+      </main>
+
     </div>
   );
 }
