@@ -1,6 +1,7 @@
-import './App.css';
+import './css/App.css';
 import P5Sketch from './components/p5-sketch';
-import './global.css';
+import './css/global.css';
+import AnimatedTitle from './components/animatedTitle/animatedTitle';
 
 function App() {
   return (
@@ -8,14 +9,20 @@ function App() {
       <header className="header">
         <a href="">My Projects</a> / <a href="">About me</a> / <a href="">Contact</a>
       </header>
-
-
-
       <main className='container'>
         <section>
           <div className='section1Content'>
-            <h1>Taburet Patrick</h1>
-            <h2>Web developpement</h2>
+            <AnimatedTitle timeout={"100"}>
+              <h1 style={{ paddingLeft: "15vw" }}>
+                <span>Taburet</span>
+                <span style={{ paddingLeft: "7vw" }}>Patrick</span>
+              </h1>
+            </AnimatedTitle>
+            <AnimatedTitle timeout={"300"}>
+              <h2 style={{ paddingLeft: "35vw" }}>Web developpement</h2>
+            </AnimatedTitle>
+           
+         
           </div>
           <P5Sketch />
           <div className='sliderContainer'>

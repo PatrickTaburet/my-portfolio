@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  
 }
 
 /* .container {
@@ -17,6 +17,9 @@
   right: 2vw;
   color: var(--color-light);
 }
+
+/* Section 1  */
+
 .sketch {
   position: absolute;
   left: 50%;
@@ -31,11 +34,17 @@
 }
 .section1Content{
   position: absolute;
-  color: var(--color-light);
+  color: var(--color-text-transp);
+  padding-top: 7vw;
 }
 .section1Content h1{
-  font-size: 95px;
+  font-size: 135px;
+  display: flex;
+  flex-direction: column;
+  margin:0;
 }
 .section1Content h2{
-  font-size: 65px;
+  font-size: 75px;
+  margin: 0;
 }
+
