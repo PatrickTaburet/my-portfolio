@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pontano+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Oxanium:wght@200..800&family=Wix+Madefor+Display:wght@400..800&display=swap');
+:root {
+    /* Colors */
+    --color-primary: #2BD7F9;
+    --color-secondary: #5A07A0;
+    --color-background: #0D1520;
+    --color-text: #B6ECF7;
+    --color-light: #e0f2f8;
+    
+    /* Fonts */
+    --font-main: 'Pontano Sans', sans-serif;
+    --font-title:  "Wix Madefor Display", sans-serif;
+    --text-size-main: 16px;
+    --text-size-title: 24px;
+}
+a {
+    text-decoration: none;
+    color: var(--color-primary); 
+}
+body {
+    font-family:  var(--font-main);
+    font-size: var(--text-size-main);
+}
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    font-size: var(--text-size-title);
+}
