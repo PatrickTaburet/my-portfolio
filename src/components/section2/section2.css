@@ -1,0 +1,12 @@
+/* Section 2  */
+
+.section2{
+    height: 100vh;
+    /* background-color: var(--color-secondary); */
+}
+.sketch {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

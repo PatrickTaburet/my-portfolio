@@ -7,7 +7,7 @@
 :root {
     /* Colors */
     --color-primary: #2BD7F9;
-    --color-secondary: #5A07A0;
+    --color-secondary: #5c07a2;
     --color-background: #0D1520;
     --color-text: #B6ECF7;
     --color-light: #e0f2f8;
@@ -16,14 +16,14 @@
     /* Fonts */
     --font-main: "Georama", sans-serif;
     --font-title:  "Poppins", sans-serif;
-    --text-size-main: 16px;
-    --text-size-title: 24px;
+    --text-size-main: 24px;
+    --text-size-title: 54px;
 }
 a {
     text-decoration: none;
     color: var(--color-primary); 
 }
-body {
+main {
     font-family:  var(--font-main);
     font-size: var(--text-size-main);
 }

@@ -1,0 +1,46 @@
+/* Animation title section 1 */
+
+.titleAnime {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.titleAnime.visible {
+  opacity: 1;
+}
+
+/* Animation vers le bas */
+.titleAnime.down {
+  transform: translateY(-60px);
+}
+
+.titleAnime.down.visible {
+  transform: translateY(0);
+}
+
+/* Animation vers le haut */
+.titleAnime.up {
+  transform: translateY(60px);
+}
+
+.titleAnime.up.visible {
+  transform: translateY(0);
+}
+
+/* Animation vers la droite */
+.titleAnime.right {
+    transform: translateX(60px);
+}
+
+.titleAnime.right.visible {
+    transform: translateX(0);
+}
+
+/* Animation vers la gauche */
+.titleAnime.left {
+    transform: translateX(-60px);
+}
+
+.titleAnime.left.visible {
+    transform: translateX(0);
+}

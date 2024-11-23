@@ -1,50 +1,13 @@
 .App {
   
 }
-
-/* .container {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 50%);
-  background-color: black;
-  width: 50vw;
-  height: 50vh;
-} */
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .header{
-  position: absolute;
-  top: 2vw;
+  position: fixed;
+  top: 1vw;
   right: 2vw;
   color: var(--color-light);
 }
-
-/* Section 1  */
-
-.sketch {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-.sliderContainer{
-  color: white;
-  position: absolute;
-  top: 4vw;
-  right: 2vw;
-}
-.section1Content{
-  position: absolute;
-  color: var(--color-text-transp);
-  padding-top: 7vw;
-}
-.section1Content h1{
-  font-size: 135px;
-  display: flex;
-  flex-direction: column;
-  margin:0;
-}
-.section1Content h2{
-  font-size: 75px;
-  margin: 0;
-}
-

@@ -7,16 +7,16 @@ let lines = [];
 let lineSlider;
 let noiseOffsets = [];
 
-const P5Sketch = (props) => {
+const Sketch1 = (props) => {
   const sketchRef = useRef(null);
 
   useEffect(() => {
-    // Créer une nouvelle instance de p5 seulement si elle n'existe pas déjà
+    // Create a new instance of p5 only if it doesn't already exist
     if (!sketchRef.current) {
       sketchRef.current = new p5(sketch);
     }
 
-    // Nettoyer l'instance p5 lors du démontage du composant
+    // Clean up the p5 instance when the component unmounts
     return () => {
       if (sketchRef.current) {
         sketchRef.current.remove();
@@ -29,7 +29,7 @@ const P5Sketch = (props) => {
 
     p5.setup = () => {
       const canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
-      canvas.parent('sketch-container'); // Assurez-vous d'avoir un div avec cet id dans votre JSX
+      canvas.parent('sketch-container');
       p5.colorMode(p5.HSB, 360, 100, 100, 1);
       p5.frameRate(50);
       p5.background(196, 58, 5);
@@ -128,4 +128,4 @@ const P5Sketch = (props) => {
   return <div id="sketch-container"></div>;
 };
 
-export default P5Sketch;
+export default Sketch1;
