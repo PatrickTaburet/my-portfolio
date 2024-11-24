@@ -3,7 +3,7 @@ import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 
-function Section1() {
+const Section1 = () => {
   return (
     <section className='section1'>
       <div className='section1Content'>
@@ -20,7 +20,7 @@ function Section1() {
           <p>Welcome to my portfolio, scroll down to learn more about my work</p>
         </AnimatedTitle>
       </div>
-      <Sketch1 />
+      <Sketch1/>
       <div className='sliderContainer'>
         <AnimatedTitle timeout={"100"} direction="down">
           <p>lines</p>

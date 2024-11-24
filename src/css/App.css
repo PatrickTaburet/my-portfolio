@@ -2,12 +2,30 @@
   
 }
 .container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
+  gap: 50px; */
 }
 .header{
   position: fixed;
   top: 1vw;
   right: 2vw;
   color: var(--color-light);
+  z-index: 10;
+}
+.section1 {
+  position: relative;
+  z-index: 1; 
+  height:100vh;
+}
+
+.section2 {
+  position: relative;
+  z-index: 2; 
+  height:100vh;
+  transition: transform 0.5s; 
+}
+
+.scrolled .section2 {
+  transform: translateY(-100px); 
 }

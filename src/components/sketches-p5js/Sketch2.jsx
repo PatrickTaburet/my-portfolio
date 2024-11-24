@@ -1,48 +1,43 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 
-
 const Sketch2 = (props) => {
   const sketchRef = useRef(null);
 
   useEffect(() => {
-    if (!sketchRef.current) {
-      sketchRef.current = new p5(sketch);
-    }
+    const sketchInstance = new p5(sketch, document.getElementById('sketch-container'));
     return () => {
-      if (sketchRef.current) {
-        sketchRef.current.remove();
-      }
+      sketchInstance.remove();
     };
   }, []);
 
-  const sketch = (p5) => {
+  const sketch = (p) => {
   
-    p5.setup = () => {
-      const canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
-      canvas.parent('sketch-container');
-      p5.colorMode(p5.HSB, 360, 100, 100, 1);
-      p5.frameRate(50);
-      p5.background(273, 92, 33);
+    p.setup = () => {
+      const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+      canvas.parent('sketch-container2');
+      p.colorMode(p.HSB, 360, 100, 100, 1);
+      p.frameRate(50);
+      p.background(273, 92, 33);
     };
 
-    p5.draw = () => {
-      p5.clear();
-      p5.background(273, 92, 33); 
+    p.draw = () => {
+      p.clear();
+      p.background(273, 92, 33); 
       const radius = 50;
-      p5.noFill();
-      p5.stroke(255); 
-      p5.strokeWeight(2);
-      p5.ellipse(p5.mouseX, p5.mouseY, radius * 2, radius * 2); 
+      p.noFill();
+      p.stroke(255); 
+      p.strokeWeight(2);
+      p.ellipse(p.mouseX, p.mouseY, radius * 2, radius * 2); 
     };
 
-    p5.windowResized = () => {
-      p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
-      p5.background(273, 92, 33);
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+      p.background(273, 92, 33);
     };
   };
 
-  return <div id="sketch-container"></div>;
+  return <div id="sketch-container2" className={props.className}></div>;
 };
 
 export default Sketch2;

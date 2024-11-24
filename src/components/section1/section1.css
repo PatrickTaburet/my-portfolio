@@ -2,37 +2,37 @@
 /* Section 1  */
 
 .section1{
-    height: 100vh;
-  }
-  .sketch {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .sliderContainer{
-    color: white;
-    position: absolute;
-    top: 3vw;
-    right: 2vw;
-  }
-  .section1Content{
-    position: absolute;
-    color: var(--color-text-transp);
-    padding-top: 7vw;
-  }
-  .section1Content h1{
-    font-size: 135px;
-    display: flex;
-    flex-direction: column;
-    margin:0;
-  }
-  .section1Content h2{
-    font-size: 75px;
-    margin: 0;
-  }
-  .section1 p {
-    color: var(--color-primary);
-    margin: 10vw 0 0 3vw;
-  }
-  
+}
+
+.sketch-container {
+  /* position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  margin-top: 100px;
+}
+.sliderContainer{
+  color: white;
+  position: absolute;
+  top: 3vw;
+  right: 2vw;
+}
+.section1Content{
+  position: absolute;
+  color: var(--color-text-transp);
+  padding-top: 7vw;
+}
+.section1Content h1{
+  font-size: 135px;
+  display: flex;
+  flex-direction: column;
+  margin:0;
+}
+.section1Content h2{
+  font-size: 75px;
+  margin: 0;
+}
+.section1 p {
+  color: var(--color-primary);
+  margin: 10vw 0 0 3vw;
+}

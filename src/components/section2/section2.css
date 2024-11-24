@@ -1,12 +1,22 @@
 /* Section 2  */
 
 .section2{
-    height: 100vh;
-    /* background-color: var(--color-secondary); */
+    /* height: 100vh;
+    background-color: var(--color-secondary); */
 }
 .sketch {
-    position: absolute;
-    left: 50%;
+    /* position: absolute;
+    top: 50px; */
+    /* left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
+.section2Content{
+    color: var(--color-light);
+}
+/* #sketch-container2 {
+    margin-top: 100px;
+}
+.sketch {
+    margin-top: 100px;
+} */
