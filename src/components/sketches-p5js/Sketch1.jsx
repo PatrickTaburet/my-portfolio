@@ -2,23 +2,36 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 // import "../section1/section1.css"
 
-let mainColor;
-let colors = [];
-let lines = [];
-let lineSlider;
-let noiseOffsets = [];
-
 const Sketch1 = (props) => {
-  const sketchRef = useRef(null);
+  const p5InstanceRef = useRef(null);
+
 
   useEffect(() => {
-    const sketchInstance = new p5(sketch, document.getElementById('sketch-container'));
+    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container'));
+    
+    const handleResize = () => {
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
+        p5InstanceRef.current.background(196, 58, 10);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      sketchInstance.remove();
+      window.removeEventListener('resize', handleResize);
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
     };
   }, []);
 
   const sketch = (p) => {
+    let mainColor;
+    let colors = [];
+    let lines = [];
+    let lineSlider;
+    let noiseOffsets = [];
     let prevX, prevY;
 
     p.setup = () => {
@@ -92,12 +105,12 @@ const Sketch1 = (props) => {
       p.rect(0, 0, p.width, p.height);
     };
 
-    p.windowResized = () => {
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
-      p.background(196, 58, 10);
-      prevX = p.mouseX;
-      prevY = p.mouseY;
-    };
+    // p.windowResized = () => {
+    //   p.resizeCanvas(p.windowWidth, p.windowHeight);
+    //   p.background(196, 58, 10);
+    //   prevX = p.mouseX;
+    //   prevY = p.mouseY;
+    // };
 
     p.mouseMoved = () => {
       for (let line of lines) {

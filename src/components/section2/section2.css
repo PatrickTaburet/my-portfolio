@@ -4,19 +4,10 @@
     /* height: 100vh;
     background-color: var(--color-secondary); */
 }
-.sketch {
-    /* position: absolute;
-    top: 50px; */
-    /* left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-}
+
 .section2Content{
     color: var(--color-light);
+    position: absolute;
+    text-align: center;
+    width: 100%;
 }
-/* #sketch-container2 {
-    margin-top: 100px;
-}
-.sketch {
-    margin-top: 100px;
-} */

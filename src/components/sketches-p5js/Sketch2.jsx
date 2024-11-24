@@ -2,12 +2,25 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 
 const Sketch2 = (props) => {
-  const sketchRef = useRef(null);
+  const p5InstanceRef = useRef(null);
 
   useEffect(() => {
-    const sketchInstance = new p5(sketch, document.getElementById('sketch-container'));
+    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container'));
+    
+    const handleResize = () => {
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
+        p5InstanceRef.current.background(273, 92, 33);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      sketchInstance.remove();
+      window.removeEventListener('resize', handleResize);
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
     };
   }, []);
 
@@ -30,14 +43,9 @@ const Sketch2 = (props) => {
       p.strokeWeight(2);
       p.ellipse(p.mouseX, p.mouseY, radius * 2, radius * 2); 
     };
-
-    p.windowResized = () => {
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
-      p.background(273, 92, 33);
-    };
   };
 
-  return <div id="sketch-container2" className={props.className}></div>;
+  return <div id="sketch-container2"></div>;
 };
 
 export default Sketch2;

@@ -3,18 +3,15 @@ import './css/global.css';
 import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import Section1 from './components/section1/Section1'
 import Section2 from './components/section2/Section2';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
+ useEffect(() => {
     const handleScroll = () => {
-      const appElement = document.querySelector('.App');
-      if (window.scrollY > 100) { 
-        appElement.classList.add('scrolled');
-      } else {
-        appElement.classList.remove('scrolled');
-      }
+      setScrollY(window.scrollY);
+      console.log(window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -32,7 +29,10 @@ function App() {
       </header>
       <main className='container'>
         <Section1 className="section1"/>
-        <Section2 className="section2"/>
+        <Section2 
+          className="section2" 
+          style={{ transform: `translateY(${Math.max(-scrollY, -window.innerHeight)}px)`}} 
+        />
       </main>
 
     </div>
