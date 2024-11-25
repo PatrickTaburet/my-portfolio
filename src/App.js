@@ -20,6 +20,8 @@ function App() {
     };
   }, []);
 
+  const transformStyle = { transform: `translateY(${(Math.max(-scrollY, -window.innerHeight)/3)}px)` };
+
   return (
     <div className="App">
       <header className="header">
@@ -31,7 +33,7 @@ function App() {
         <Section1 className="section1"/>
         <Section2 
           className="section2" 
-          style={{ transform: `translateY(${Math.max(-scrollY, -window.innerHeight)}px)`}} 
+          styleProps={transformStyle} 
         />
       </main>
 

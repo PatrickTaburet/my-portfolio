@@ -22,14 +22,8 @@
 
 .section2 {
   position: relative;
-  /* top: 100vh; */
-  left: 0;
-  right: 0;
   z-index: 2;
   height: 100vh;
+  will-change: transform;
   transition: transform 0.1s ease-out;
 }
-
-/* .scrolled .section2 {
-  transform: translateY(-100px); 
-} */
