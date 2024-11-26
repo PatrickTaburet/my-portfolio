@@ -6,8 +6,55 @@
 }
 
 .section2Content{
-    color: var(--color-light);
     position: absolute;
-    text-align: center;
+
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    color: var(--color-text-transp);
+    height: 100%;
+}
+.topSection2{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.section2Content h3{
+    width: 100%;
+    color: var(--color-primary);
+    font-size: 75px;
+    margin: 2vw 0 0 5vw;
+}
+.profilePicture{
+    position: absolute;
+    right: -2vw;
+    top: -5vw;
+    border-radius: 50%;
+    scale: 0.6;
+}
+.bio{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 1vw;
+    margin: 2vw 0 0 5vw;
+    font-size: 23px;
+}
+.bottomSection2{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 10vw;
+}
+
+/* Logos techno : */
+
+.logoSymfo{
+    position: relative;
+
+}
+.logoReact{
+    width: 7vw;
+    position: relative;
+
 }

@@ -8,7 +8,7 @@ const Section1 = () => {
     <section className='section1'>
       <div className='section1Content'>
         <AnimatedTitle timeout={"700"} direction="up">
-          <h1 style={{ paddingLeft: "15vw" }}>
+          <h1>
             <span>Taburet</span>
             <span style={{ paddingLeft: "7vw" }}>Patrick</span>
           </h1>

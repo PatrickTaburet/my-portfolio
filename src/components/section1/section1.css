@@ -20,19 +20,20 @@
 .section1Content{
   position: absolute;
   color: var(--color-text-transp);
-  padding-top: 7vw;
+  padding-top: 10vw;
 }
 .section1Content h1{
   font-size: 135px;
   display: flex;
   flex-direction: column;
-  margin:0;
+  margin: 0;
+  padding-left: 15vw;
 }
 .section1Content h2{
   font-size: 75px;
   margin: 0;
 }
-.section1 p {
+.section1Content p {
   color: var(--color-primary);
-  margin: 10vw 0 0 3vw;
+  margin: 6.5vw 0 0 3vw;
 }
