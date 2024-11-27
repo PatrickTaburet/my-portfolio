@@ -11,7 +11,7 @@ function App() {
  useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      console.log(window.scrollY);
+      // console.log(window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,7 +20,6 @@ function App() {
     };
   }, []);
 
-  const transformStyle = { transform: `translateY(${(Math.max(-scrollY, -window.innerHeight)/3)}px)` };
 
   return (
     <div className="App">
@@ -30,10 +29,13 @@ function App() {
         </AnimatedTitle>
       </header>
       <main className='container'>
-        <Section1 className="section1"/>
+        <Section1 
+          className="section1"
+          scrollValue = {scrollY}
+        />
         <Section2 
           className="section2" 
-          styleProps={transformStyle} 
+          scrollValue = {scrollY} 
         />
       </main>
 
