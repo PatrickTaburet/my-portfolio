@@ -7,11 +7,10 @@
 
 .section2Content{
     position: absolute;
-
     display: flex;
     flex-direction: column;
     width: 100%;
-    color: var(--color-text-transp);
+    color: var(--color-background);
     height: 100%;
 }
 .topSection2{

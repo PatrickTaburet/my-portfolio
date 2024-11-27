@@ -7,9 +7,10 @@ import React, { useEffect, useState } from 'react';
 
 
 const Section1 = ({scrollValue}) => {
-  // console.log(scrollValue);
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
+  const textSlowDownFactor = 3;
+  // console.log(scrollValue);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,25 +47,31 @@ const Section1 = ({scrollValue}) => {
           transform: `scale(${1 + scrollValue / 1000})`,
         }}
       />
-      <div className='section1Content'>
-        <AnimatedTitle timeout={"700"} direction="up">
+      <div 
+        className='section1Content' 
+        style={{ 
+          transform: `translateY(${scrollValue / textSlowDownFactor}px)`, // parallax effect
+          opacity: `${scrollValue > 200 ? (1- scrollValue/700) : 1}` // Text disapear when scroll down
+        }}
+      >
+        <AnimatedTitle timeout={"200"} direction="up">
           <h1>
             <span>Taburet</span>
             <span style={{ paddingLeft: "7vw" }}>Patrick</span>
           </h1>
         </AnimatedTitle>
-        <AnimatedTitle timeout={"900"} direction="up">
+        <AnimatedTitle timeout={"600"} direction="up">
           <h2 style={{ paddingLeft: "35vw" }}>Web developpement</h2>
         </AnimatedTitle>
-        <AnimatedTitle timeout={"400"} direction="down">
+        <AnimatedTitle timeout={"1200"} direction="down">
           <p>Welcome to my portfolio, scroll down to learn more about my work</p>
         </AnimatedTitle>
       </div>
       <Sketch1/>
       <div className='sliderContainer'>
-        <AnimatedTitle timeout={"100"} direction="down">
+        <AnimatedTitle timeout={"900"} direction="down">
           <p>lines</p>
-          <input type="range" min="1" max="60" defaultValue="5" step="1" id="lineSlider" />
+          <input type="range" min="1" max="60" defaultValue="13" step="1" id="lineSlider" />
         </AnimatedTitle>
       </div>
     </section>

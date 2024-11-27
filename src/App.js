@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <AnimatedTitle timeout={"100"} direction="down">
+        <AnimatedTitle timeout={"900"} direction="down">
           <a href="">My Projects</a> / <a href="">About me</a> / <a href="">Contact</a>
         </AnimatedTitle>
       </header>

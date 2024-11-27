@@ -10,7 +10,7 @@ const Sketch2 = (props) => {
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight + 100);
-        p5InstanceRef.current.background(273, 92, 33);
+        p5InstanceRef.current.background(197, 15, 72);
       }
     };
 
@@ -31,12 +31,12 @@ const Sketch2 = (props) => {
       canvas.parent('sketch-container2');
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
-      p.background(273, 92, 33);
+      p.background(197, 15, 72);
     };
 
     p.draw = () => {
       p.clear();
-      p.background(273, 92, 33); 
+      p.background(197, 15, 72); 
       const radius = 50;
       p.noFill();
       p.stroke(255); 
