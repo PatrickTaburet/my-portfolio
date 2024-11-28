@@ -1,9 +1,16 @@
 .App {
   
 }
+body {
+  background: linear-gradient(white, red); /* Pour voir où finit la page */
+}
 .container {
   position: relative;
-  /* display: flex;
+  display: flex;
+  flex-direction: column;
+  height: 280vh;
+  overflow: visible; 
+    /* display: flex;
   flex-direction: column;
   gap: 50px; */
 }
@@ -20,17 +27,20 @@
 .header a{
   margin: 0 5px 0 5px;
 }
-
-.section1 {
+.section1, .section2, .section3 {
   position: relative;
+  height: 100vh;
+  flex-shrink: 0; /* Empêche le rétrécissement avec flexbox */
+}
+.section1 {
   z-index: 1; 
-  height:100vh;
 }
 
 .section2 {
-  position: relative;
   z-index: 2;
-  height: 100vh;
   will-change: transform;
   transition: transform 0.1s ease-out;
+}
+.section3 {
+  z-index: 2;
 }

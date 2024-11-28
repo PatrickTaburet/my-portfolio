@@ -3,6 +3,7 @@ import './css/global.css';
 import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import Section1 from './components/section1/Section1'
 import Section2 from './components/section2/Section2';
+import Section3 from './components/section3/Section3';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
         />
         <Section2 
           className="section2" 
+          scrollValue = {scrollY} 
+        />
+        <Section3 
+          className="section3" 
           scrollValue = {scrollY} 
         />
       </main>

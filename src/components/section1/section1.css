@@ -15,8 +15,14 @@
 .sliderContainer{
   color: white;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 3vw;
   right: 2vw;
+}
+.sliderContainer p{
+  margin-bottom: 7px;
 }
 .section1Content{
   position: absolute;

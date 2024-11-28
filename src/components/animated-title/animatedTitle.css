@@ -5,6 +5,8 @@
   transition: opacity 0.5s ease, transform 0.5s ease;
   display: flex;
   justify-content: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
 }
 
 .titleAnime.visible {

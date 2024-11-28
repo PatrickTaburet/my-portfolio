@@ -59,7 +59,7 @@
 .cardsContainer h3{
     color: var(--color-primary);
     font-size: 75px;
-    margin: 2vw 0 0 0;
+    margin: 0;
 }
 .cardsContainer h4{
     color: var(--color-background);
