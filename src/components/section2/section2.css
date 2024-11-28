@@ -9,45 +9,63 @@
 .section2Content{
     position: absolute;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     color: var(--color-background);
     height: 100%;
 }
 .topSection2{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
-    width: 100%;
+    width: 40%;
 }
-.section2Content h3{
-
+.topSection2 h3{
     color: var(--color-primary);
     font-size: 75px;
     margin: 2vw 0 0 5vw;
 }
 .profilePicture{
-    position: absolute;
-    right: -2vw;
-    top: -5vw;
+    position: relative;
+    /* right: -2vw;
+    top: -5vw; */
     border-radius: 50%;
-    scale: 0.6;
+    scale: 0.5;
 }
 .bio{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    /* width: 50%; */
     gap: 1vw;
     margin: 2vw 0 0 5vw;
     font-size: 23px;
 }
-.bottomSection2{
+
+
+/* ----- SkillsCards ----- */
+
+.cardsContainer{
     display: flex;
     position: relative;
-    justify-content: space-around;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    /* width: 100%; */
     /* height: 10vw; */
 }
-
+.cardsContainer h3{
+    color: var(--color-primary);
+    font-size: 75px;
+    margin: 2vw 0 0 0;
+}
+.cardsContainer h4{
+    color: var(--color-background);
+    font-size: 35px;
+    margin: 0;
+}
 /* Logos techno : */
 
 .logoSymfo{
@@ -107,8 +125,10 @@
     opacity: 0.9;
 }
 .card1{
-    width: 27%;
+    width: 55%;
+    height: 100%;
 }
 .card2{
-    width: 19%;
+    width: 60%;
+    height: 100%;
 }

@@ -35,7 +35,7 @@ function AnimatedTitle({ children, timeout = 0, direction, initiallyVisible = fa
               observer.unobserve(titleRef.current);
             }
           },
-          { threshold: 0.1 }
+          { threshold: 0.2 }
         );
     
         if (titleRef.current) {

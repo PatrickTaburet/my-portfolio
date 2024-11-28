@@ -17,6 +17,9 @@
   color: var(--color-light);
   z-index: 10;
 }
+.header a{
+  margin: 0 5px 0 5px;
+}
 
 .section1 {
   position: relative;
