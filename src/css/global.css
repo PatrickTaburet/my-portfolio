@@ -23,6 +23,7 @@
     /* Fonts */
     --font-main: "Georama", sans-serif;
     --font-title:  "Poppins", sans-serif;
+    --text-size-small: 18px;
     --text-size-main: 24px;
     --text-size-title: 54px;
 }
@@ -37,6 +38,10 @@
 a {
     text-decoration: none;
     color: var(--color-primary); 
+    font-size: var(--text-size-small);
+}
+a:hover{
+    color: var(--color-light);
 }
 main {
     font-family:  var(--font-main);

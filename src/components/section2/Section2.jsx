@@ -1,7 +1,8 @@
 import React from 'react';
-import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
+import AnimatedTitle from './../animated-title/AnimatedTitle';
+
 import Avatar from '../../assets/images/avatar.png';
 import LogoSymfo from '../../assets/images/logos/symfony_black_03.svg';
 import LogoReact from '../../assets/images/logos/react.svg'
@@ -25,9 +26,11 @@ const Section2 = ({scrollValue}) => {
       <div className='section2Content'>
         <div className='topSection2'>
           <div>
-            <h3>About me</h3>
+            <AnimatedTitle timeout={"200"} direction="up">
+              <h3>About me</h3>
+            </AnimatedTitle>
             <div className='bio'>
-              <span>Hi, i'm Patrick, I am an Application Designer and Developer with a deep passion for web technologies, algorithmic problem-solving, and creative coding.</span>
+              <span>Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding.</span>
               <span>I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions.</span> 
               <span>Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code.</span>
             </div>

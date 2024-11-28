@@ -2,6 +2,7 @@
 /* Section 1  */
 
 .section1{
+  overflow: hidden;
 }
 
 .sketch-container {
@@ -19,25 +20,36 @@
 }
 .section1Content{
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   color: var(--color-text-transp);
-  padding-top: 10vw;
+  padding-top: 13vw;
+  width: 100%;
 }
 .section1Content h1{
-  font-size: 135px;
+  font-size: 115px;
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-left: 15vw;
+  padding-right: 16vw;
 }
 .section1Content h2{
-  font-size: 75px;
+  font-size: 55px;
   margin: 0;
+  padding-left: 23vw
 }
-.section1Content p {
+.bottomLine {
   color: var(--color-primary);
-  margin: 6.5vw 0 0 3vw;
+  margin: 8vw 0 0 0;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 7vw;
 }
 .backgroundInitial{
+
   position: absolute;
   top: -2vw;
   left: -3vw;

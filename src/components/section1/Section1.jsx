@@ -1,7 +1,6 @@
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
-// import BackgroundCyber from '../../assets/images/cyber.png';
 import BackgroundCyber from '../../assets/images/blue-background.png';
 import React, { useEffect, useState } from 'react';
 
@@ -61,11 +60,13 @@ const Section1 = ({scrollValue}) => {
           </h1>
         </AnimatedTitle>
         <AnimatedTitle timeout={"600"} direction="up">
-          <h2 style={{ paddingLeft: "35vw" }}>Web developpement</h2>
+          <h2>Web developpement</h2>
         </AnimatedTitle>
-        <AnimatedTitle timeout={"1200"} direction="down">
-          <p>Welcome to my portfolio, scroll down to learn more about my work</p>
-        </AnimatedTitle>
+        <div className='bottomLine'>
+          <AnimatedTitle timeout={"1200"} direction="down">
+            <p>Welcome to my portfolio, scroll down to learn more about my work</p>
+          </AnimatedTitle>
+        </div>
       </div>
       <Sketch1/>
       <div className='sliderContainer'>
