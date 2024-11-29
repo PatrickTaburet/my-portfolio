@@ -1,5 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
+import NexusLabMedia from './../../assets/images/avatar.png';
+import CreativeCodingMedia from './../../assets/images/cyber.png';
+
+
 
 const Sketch2 = (props) => {
   const p5InstanceRef = useRef(null);
@@ -26,6 +30,14 @@ const Sketch2 = (props) => {
 
   const sketch = (p) => {
     let circles = [];
+    let mediaProject1, mediaProject2;
+    let maskGraphics; 
+    let fade;
+
+    p.preload = () => {
+      mediaProject1 = p.loadImage(NexusLabMedia);
+      mediaProject2 = p.loadImage(CreativeCodingMedia);
+    };
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -33,9 +45,11 @@ const Sketch2 = (props) => {
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
       p.background(196, 58, 5);
+      maskGraphics = p.createGraphics(p.windowWidth, p.windowHeight);
+      fade = 0
 
-      circles.push(new Circle(150, 0, "NexusLab"));
-      circles.push(new Circle(170, p.PI, "Creative\nCoding")); // Start the second circle at the opposite
+      circles.push(new Circle(150, 0, "NexusLab", mediaProject1));
+      circles.push(new Circle(170, p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
       // Add new circles for new projects
     };
 
@@ -50,12 +64,9 @@ const Sketch2 = (props) => {
           isHovering = true;
         }
       });
-
-      if (isHovering) {
-        p.cursor(p.HAND);
-      } else {
-        p.cursor(p.ARROW);
-      }
+      // console.log(isHovering );
+      
+      p.cursor(isHovering ? p.HAND : p.ARROW);
     };
 
     p.mouseMoved = () => {
@@ -71,13 +82,15 @@ const Sketch2 = (props) => {
     };
     
     class Circle {
-      constructor(baseSize, initialAngle, text) {
+      constructor(baseSize, initialAngle, text, media) {
         this.baseSize = baseSize;
         this.size = baseSize;
         this.angle = initialAngle;
         this.speed = 0.01;
-        this.hovered = false;
+        this.media = media;
         this.text = text;
+        this.hovered = false;
+        this.opacity = 0;
       }
 
       update() {
@@ -88,21 +101,63 @@ const Sketch2 = (props) => {
         this.size = this.baseSize * perspective;
 
         if (this.hovered) {
-          this.size *= 1.2;
+          this.size *= 1.2; // Slight enlargement on hover
+          this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
+        } else {
+          this.opacity = p.lerp(this.opacity, 0, 0.1); // Opacity decreases smoothly when not hovered
         }
         
-        // Make circles staying in the canvas
+        // Constrain to canvas bounds
         this.x = p.constrain(this.x, this.size/2, p.width - this.size/2);
         this.y = p.constrain(this.y, this.size/2, p.height - this.size/2);
+
+
+        // // Smoothly transition opacity
+        // const targetOpacity = this.hovered ? 255 : 0;
+        // this.opacity = p.lerp(this.opacity, targetOpacity, 0.15);
       }
 
       display() {
+        // Draw circles
         p.fill(163, 93, 100);
         p.ellipse(this.x, this.y, this.size);
+
+        // Display project preview with fade effect
+        if (this.media && this.opacity > 0) {
+          let maskedImage = this.createMaskedImage(this.media, this.size);
+          p.push();
+          p.tint(255, this.opacity); // Apply fade transition to image opacity
+          p.image(maskedImage, this.x - this.size / 2, this.y - this.size / 2);
+          p.pop();
+        }
+        
+        // Draw outline
+        // p.noFill();
+        // p.stroke(0);
+        // p.strokeWeight(2);
+        // p.ellipse(this.x, this.y, this.size);
+        
+        // Display project title
         p.textAlign(p.CENTER, p.CENTER);
         p.fill(0);
         p.textSize(this.size / 7);
         p.text(this.text, this.x, this.y);
+      }
+
+      createMaskedImage(img, size) {
+        // Create a p5.Image for the mask
+        const mask = p.createGraphics(size, size);
+        mask.ellipseMode(p.CENTER);
+        mask.fill(255);
+        mask.noStroke();
+        mask.ellipse(size / 2, size / 2, size, size);
+    
+        // Create a new p5.Image with the media and apply the mask
+        const maskedImage = img.get(); // Clone the image to avoid mutating the original
+        maskedImage.resize(size, size); // Resize to match the circle size
+        maskedImage.mask(mask); // Apply the mask
+    
+        return maskedImage;
       }
 
       checkHover(mx, my) {
