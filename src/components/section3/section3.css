@@ -1,17 +1,9 @@
 
-/* Section 1  */
+/* Section 3  */
 
 .section3{
   overflow: hidden;
   /* transform: translateY(-315px); */
-}
-
-.sketch-container {
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
-  /* margin-top: 100px; */
 }
 
 .section3Content{
@@ -21,27 +13,10 @@
   align-items: center;
   flex-direction: column;
   color: var(--color-text-transp);
-  padding-top: 13vw;
+  padding-top: 3vw;
   width: 100%;
 }
-.section1Content h1{
-  font-size: 115px;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding-right: 16vw;
-}
-.section1Content h2{
-  font-size: 55px;
-  margin: 0;
-  padding-left: 23vw
-}
-.bottomLine {
+.section3Content h3{
   color: var(--color-primary);
-  margin: 8vw 0 0 0;
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  margin-left: 7vw;
+  font-size: 75px;
 }
-

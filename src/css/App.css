@@ -2,14 +2,14 @@
   
 }
 body {
-  background: linear-gradient(white, red); /* Pour voir où finit la page */
+  background: linear-gradient(white, red);
 }
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
   height: 280vh;
-  overflow: visible; 
+  overflow: hidden; 
     /* display: flex;
   flex-direction: column;
   gap: 50px; */
@@ -30,7 +30,7 @@ body {
 .section1, .section2, .section3 {
   position: relative;
   height: 100vh;
-  flex-shrink: 0; /* Empêche le rétrécissement avec flexbox */
+  flex-shrink: 0; /* Prevent shrinking sections with flexbox */
 }
 .section1 {
   z-index: 1; 
