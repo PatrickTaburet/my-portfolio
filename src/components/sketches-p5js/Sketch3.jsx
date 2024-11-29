@@ -76,7 +76,9 @@ const Sketch2 = (props) => {
     p.mouseClicked = () => {
       circles.forEach(circle => {
         if (circle.clicked(p.mouseX, p.mouseY)) {
+          circle.size = Math.max(p.width, p.height); // Set target size to the larger dimension of the canvas
           // Open project page
+
         }
       });
     };
@@ -91,17 +93,31 @@ const Sketch2 = (props) => {
         this.text = text;
         this.hovered = false;
         this.opacity = 0;
+        this.isExpanded = false; 
       }
 
       update() {
         this.angle += this.speed;
         let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
+        
+        // Calculate the position of the circle
         this.x = p.width / 2 + p.cos(this.angle) * 300 * perspective;
         this.y = p.height / 2 + p.sin(this.angle) * 130;
-        this.size = this.baseSize * perspective;
 
+        let targetSize;
+        if (this.isExpanded) {
+          targetSize = Math.max(p.width, p.height) * 2; // Cover the full screen
+        } else {
+          // Define the target size based on the hover state
+          targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
+        }
+
+      
+        // let targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
+        // Interpolate the current size towards the target size to increase smoothly
+        this.size = p.lerp(this.size, targetSize * perspective, 0.1);
+        
         if (this.hovered) {
-          this.size *= 1.2; // Slight enlargement on hover
           this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
         } else {
           this.opacity = p.lerp(this.opacity, 0, 0.1); // Opacity decreases smoothly when not hovered
@@ -110,11 +126,6 @@ const Sketch2 = (props) => {
         // Constrain to canvas bounds
         this.x = p.constrain(this.x, this.size/2, p.width - this.size/2);
         this.y = p.constrain(this.y, this.size/2, p.height - this.size/2);
-
-
-        // // Smoothly transition opacity
-        // const targetOpacity = this.hovered ? 255 : 0;
-        // this.opacity = p.lerp(this.opacity, targetOpacity, 0.15);
       }
 
       display() {
@@ -130,13 +141,7 @@ const Sketch2 = (props) => {
           p.image(maskedImage, this.x - this.size / 2, this.y - this.size / 2);
           p.pop();
         }
-        
-        // Draw outline
-        // p.noFill();
-        // p.stroke(0);
-        // p.strokeWeight(2);
-        // p.ellipse(this.x, this.y, this.size);
-        
+                
         // Display project title
         p.textAlign(p.CENTER, p.CENTER);
         p.fill(0);
@@ -168,10 +173,13 @@ const Sketch2 = (props) => {
 
       clicked(mx, my) {
         let d = p.dist(mx, my, this.x, this.y);
-        return d < this.size / 2;
+        if (d < this.size / 2) {
+          this.isExpanded = !this.isExpanded;
+          return true;
+        }
+        return false;
       }
     }
-  
   };
 
   return <div id="sketch-container3"></div>;
