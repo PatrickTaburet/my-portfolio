@@ -3,8 +3,6 @@ import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/avatar.png';
 import CreativeCodingMedia from './../../assets/images/cyber.png';
 
-
-
 const Sketch2 = (props) => {
   const p5InstanceRef = useRef(null);
 
@@ -30,6 +28,7 @@ const Sketch2 = (props) => {
 
   const sketch = (p) => {
     let circles = [];
+    let storedCircles = [];
     let mediaProject1, mediaProject2;
     let maskGraphics; 
     let fade;
@@ -55,30 +54,47 @@ const Sketch2 = (props) => {
 
     p.draw = () => {
       p.background(196, 58, 5);
-      let isHovering = false;
 
       circles.forEach(circle => {
         circle.update();
         circle.display();
-        if (circle.checkHover(p.mouseX, p.mouseY)) {
-          isHovering = true;
-        }
       });
-      // console.log(isHovering );
-      
-      p.cursor(isHovering ? p.HAND : p.ARROW);
     };
 
     p.mouseMoved = () => {
-      circles.forEach(circle => circle.checkHover(p.mouseX, p.mouseY));
+      if (!p._renderer || !p._renderer.elt) {
+        return; 
+      }
+      let isHovering = false;
+    
+      circles.forEach(circle => {
+        const isHovered = circle.checkHover(p.mouseX, p.mouseY);
+        if (circle.hovered !== isHovered) {
+          circle.hovered = isHovered; 
+        }
+        if (isHovered) {
+          isHovering = true;
+        }
+      });
+    
+      p.cursor(isHovering ? p.HAND : p.ARROW);
     };
 
     p.mouseClicked = () => {
-      circles.forEach(circle => {
-        if (circle.clicked(p.mouseX, p.mouseY)) {
-          circle.size = Math.max(p.width, p.height); // Set target size to the larger dimension of the canvas
+      circles.forEach((circle, index) => {
+        if (circle.checkHover(p.mouseX, p.mouseY)) {
+          circle.isExpanded = !circle.isExpanded;
           // Open project page
 
+          if (circle.isExpanded) {
+            // If the circle is expanded, remove the other circles from the array and place them in storedCircles
+            storedCircles = circles.filter((_, i) => i !== index); 
+            circles = [circle];  // Keep only the expanded circle
+          } else {
+            // If the circle is collapsed, re-add all the circles stored in storedCircles
+            circles = [circle, ...storedCircles];
+            storedCircles = []; // Empty the temporary list
+          }
         }
       });
     };
@@ -96,43 +112,44 @@ const Sketch2 = (props) => {
         this.isExpanded = false; 
       }
 
-      update() {
-        this.angle += this.speed;
-        let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
-        
-        // Calculate the position of the circle
-        this.x = p.width / 2 + p.cos(this.angle) * 300 * perspective;
-        this.y = p.height / 2 + p.sin(this.angle) * 130;
-
-        let targetSize;
+      update() {        
         if (this.isExpanded) {
-          targetSize = Math.max(p.width, p.height) * 2; // Cover the full screen
-        } else {
-          // Define the target size based on the hover state
-          targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
-        }
+          // If the circle is enlarged, set its position progressively to the center of the canvas
+          this.opacity = p.lerp(this.opacity, -0.5, 0.05); 
 
-      
-        // let targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
-        // Interpolate the current size towards the target size to increase smoothly
-        this.size = p.lerp(this.size, targetSize * perspective, 0.1);
-        
-        if (this.hovered) {
-          this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
+          this.x = p.lerp(this.x, p.width / 2, 0.1);
+          this.y = p.lerp(this.y, p.height / 2, 0.1);
+          this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03);// Progressive enlargement
+          // this.opacity = 1; // Full opacity when enlarged
+
         } else {
-          this.opacity = p.lerp(this.opacity, 0, 0.1); // Opacity decreases smoothly when not hovered
-        }
-        
-        // Constrain to canvas bounds
-        this.x = p.constrain(this.x, this.size/2, p.width - this.size/2);
-        this.y = p.constrain(this.y, this.size/2, p.height - this.size/2);
+          // Orbital movment
+          this.angle += this.speed;
+          let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
+          
+          // Calculate the position of the circle
+          this.x = p.width / 2 + p.cos(this.angle) * 300 * perspective;
+          this.y = p.height / 2 + p.sin(this.angle) * 130;
+
+          let targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
+          this.size = p.lerp(this.size, targetSize * perspective, 0.1);
+          if (this.hovered) {
+            this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
+          } else {
+            this.opacity = p.lerp(this.opacity, 0, 0.1); // Opacity decreases smoothly when not hovered
+          }
+          
+          // Constrain to canvas bounds
+          // this.x = p.constrain(this.x, this.size/2, p.width - this.size/2);
+          // this.y = p.constrain(this.y, this.size/2, p.height - this.size/2);
+        }   
       }
 
       display() {
         // Draw circles
         p.fill(163, 93, 100);
         p.ellipse(this.x, this.y, this.size);
-
+        
         // Display project preview with fade effect
         if (this.media && this.opacity > 0) {
           let maskedImage = this.createMaskedImage(this.media, this.size);
@@ -140,13 +157,17 @@ const Sketch2 = (props) => {
           p.tint(255, this.opacity); // Apply fade transition to image opacity
           p.image(maskedImage, this.x - this.size / 2, this.y - this.size / 2);
           p.pop();
+  
         }
-                
-        // Display project title
-        p.textAlign(p.CENTER, p.CENTER);
-        p.fill(0);
-        p.textSize(this.size / 7);
-        p.text(this.text, this.x, this.y);
+        
+        if(!this.isExpanded){
+          // Display project title
+          p.textAlign(p.CENTER, p.CENTER);
+          p.fill(0);
+          p.textSize(this.size / 7);
+          p.text(this.text, this.x, this.y);
+        }       
+      
       }
 
       createMaskedImage(img, size) {
@@ -167,18 +188,17 @@ const Sketch2 = (props) => {
 
       checkHover(mx, my) {
         let d = p.dist(mx, my, this.x, this.y);
-        this.hovered = d < this.size / 2;
-        return this.hovered;
+        return d < this.size / 2;
       }
 
-      clicked(mx, my) {
-        let d = p.dist(mx, my, this.x, this.y);
-        if (d < this.size / 2) {
-          this.isExpanded = !this.isExpanded;
-          return true;
-        }
-        return false;
-      }
+      // clicked(mx, my) {
+      //   let d = p.dist(mx, my, this.x, this.y);
+      //   if (d < this.size / 2) {
+      //     this.isExpanded = !this.isExpanded;
+      //     return true;
+      //   }
+      //   return false;
+      // }
     }
   };
 
