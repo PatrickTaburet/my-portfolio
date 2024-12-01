@@ -8,6 +8,7 @@ import Avatar from '../../assets/images/avatar.png';
 
 
 
+
 const Section2 = ({scrollValue}) => {
   return (
     <section 

@@ -12,7 +12,6 @@ const Sketch2 = (props) => {
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
-        p5InstanceRef.current.background(196, 58, 5);
       }
     };
 
@@ -30,7 +29,6 @@ const Sketch2 = (props) => {
     let circles = [];
     let storedCircles = [];
     let mediaProject1, mediaProject2;
-    let maskGraphics; 
     let fade;
 
     p.preload = () => {
@@ -41,21 +39,27 @@ const Sketch2 = (props) => {
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
       canvas.parent('sketch-container3');
+      p.setAttributes({ alpha: true });
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
-      p.background(196, 58, 5);
-      maskGraphics = p.createGraphics(p.windowWidth, p.windowHeight);
       fade = 0
 
-      circles.push(new Circle(150, 0, "NexusLab", mediaProject1));
-      circles.push(new Circle(170, p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
-      // Add new circles for new projects
+      circles.push(new Circle(0, "NexusLab", mediaProject1));
+      circles.push(new Circle(p.PI/2, "test"));
+      circles.push(new Circle(p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
+      // ---> Add new circles for new projects
     };
 
     p.draw = () => {
-      p.background(196, 58, 5);
+      // p.background(196, 58, 5);
+      p.clear(); 
 
-      circles.forEach(circle => {
+      // Calculate the distance of the mouse from the center of the screen
+      const centerX = p.width / 2;
+      const mouseXDistance = p.mouseX - centerX;
+      const speedFactor = p.map(Math.abs(mouseXDistance), 0, centerX, 0.005, 0.1);
+      const adjustedSpeed = mouseXDistance < 0 ? -speedFactor : speedFactor; circles.forEach(circle => {
+        circle.speed = adjustedSpeed; 
         circle.update();
         circle.display();
       });
@@ -100,9 +104,8 @@ const Sketch2 = (props) => {
     };
     
     class Circle {
-      constructor(baseSize, initialAngle, text, media) {
-        this.baseSize = baseSize;
-        this.size = baseSize;
+      constructor(initialAngle, text, media) {
+        this.size = Math.min(p.width, p.height) * 0.1; 
         this.angle = initialAngle;
         this.speed = 0.01;
         this.media = media;
@@ -119,20 +122,26 @@ const Sketch2 = (props) => {
 
           this.x = p.lerp(this.x, p.width / 2, 0.1);
           this.y = p.lerp(this.y, p.height / 2, 0.1);
-          this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03);// Progressive enlargement
-          // this.opacity = 1; // Full opacity when enlarged
-
+          this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03); // Progressive enlargement to fullscreen
         } else {
+           // Proportional orbital distance
+           let maxDistanceX = p.map(p.width, 300, 1200, p.width * 0.3, p.width * 0.15, true);
+           let maxDistanceY = p.map(p.width, 300, 1200, p.height * 0.1, p.height * 0.2, true);
+   
+
           // Orbital movment
           this.angle += this.speed;
           let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
           
           // Calculate the position of the circle
-          this.x = p.width / 2 + p.cos(this.angle) * 300 * perspective;
-          this.y = p.height / 2 + p.sin(this.angle) * 130;
+          this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX  * perspective;
+          this.y = p.height / 2 + p.sin(this.angle) * maxDistanceY;
 
-          let targetSize = this.hovered ? this.baseSize * 2 : this.baseSize;
+          // Dynamic cicles size
+          let maxCircleSize = Math.min(p.width, p.height) * 0.2; 
+          let targetSize = this.hovered ? maxCircleSize * 2 : maxCircleSize;
           this.size = p.lerp(this.size, targetSize * perspective, 0.1);
+          
           if (this.hovered) {
             this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
           } else {
@@ -190,15 +199,6 @@ const Sketch2 = (props) => {
         let d = p.dist(mx, my, this.x, this.y);
         return d < this.size / 2;
       }
-
-      // clicked(mx, my) {
-      //   let d = p.dist(mx, my, this.x, this.y);
-      //   if (d < this.size / 2) {
-      //     this.isExpanded = !this.isExpanded;
-      //     return true;
-      //   }
-      //   return false;
-      // }
     }
   };
 
