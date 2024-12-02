@@ -3,7 +3,7 @@ import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/avatar.png';
 import CreativeCodingMedia from './../../assets/images/cyber.png';
 
-const Sketch2 = (props) => {
+const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
   const p5InstanceRef = useRef(null);
 
   useEffect(() => {
@@ -45,22 +45,32 @@ const Sketch2 = (props) => {
       fade = 0
 
       circles.push(new Circle(0, "NexusLab", mediaProject1));
-      circles.push(new Circle(p.PI/2, "test"));
       circles.push(new Circle(p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
+      // circles.push(new Circle(p.PI/2, "test"));
       // ---> Add new circles for new projects
+      if (!launchMode && closedCircle) {
+        const targetCircle = circles.find(circle => circle.text === closedCircle);
+        if (targetCircle) {
+          targetCircle.isClosing = true; 
+          targetCircle.size = Math.max(p.width, p.height) * 2; // Initialement en plein écran
+          targetCircle.x = p.width / 2;
+          targetCircle.y = p.height / 2;
+        }
+      }
     };
 
     p.draw = () => {
       // p.background(196, 58, 5);
       p.clear(); 
-
+      console.log(launchMode, closedCircle );
+      const isClosingCircle = circles.some(circle => circle.isClosing);
       // Calculate the distance of the mouse from the center of the screen
       const centerX = p.width / 2;
       const mouseXDistance = p.mouseX - centerX;
       const speedFactor = p.map(Math.abs(mouseXDistance), 0, centerX, 0.005, 0.1);
       const adjustedSpeed = mouseXDistance < 0 ? -speedFactor : speedFactor; circles.forEach(circle => {
         circle.speed = adjustedSpeed; 
-        circle.update();
+        circle.update(isClosingCircle);
         circle.display();
       });
     };
@@ -94,6 +104,12 @@ const Sketch2 = (props) => {
             // If the circle is expanded, remove the other circles from the array and place them in storedCircles
             storedCircles = circles.filter((_, i) => i !== index); 
             circles = [circle];  // Keep only the expanded circle
+            if (onCircleClick) {
+              setTimeout(() => {
+                onCircleClick(circle.text);
+              }, 800);
+            }
+            
           } else {
             // If the circle is collapsed, re-add all the circles stored in storedCircles
             circles = [circle, ...storedCircles];
@@ -105,7 +121,7 @@ const Sketch2 = (props) => {
     
     class Circle {
       constructor(initialAngle, text, media) {
-        this.size = Math.min(p.width, p.height) * 0.1; 
+        this.size = Math.min(p.width, p.height) * 0.2; 
         this.angle = initialAngle;
         this.speed = 0.01;
         this.media = media;
@@ -113,9 +129,13 @@ const Sketch2 = (props) => {
         this.hovered = false;
         this.opacity = 0;
         this.isExpanded = false; 
+        this.isClosing = false; 
+        this.initialAngle = initialAngle; 
+        this.x = 0;
+        this.y = 0;
       }
 
-      update() {        
+      update(isClosingCircle) {        
         if (this.isExpanded) {
           // If the circle is enlarged, set its position progressively to the center of the canvas
           this.opacity = p.lerp(this.opacity, -0.5, 0.05); 
@@ -123,24 +143,50 @@ const Sketch2 = (props) => {
           this.x = p.lerp(this.x, p.width / 2, 0.1);
           this.y = p.lerp(this.y, p.height / 2, 0.1);
           this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03); // Progressive enlargement to fullscreen
+        } else if (this.isClosing ){
+          console.log("iciiii");
+           // Calculer la position cible en fonction de l'angle initial
+          const maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
+          const maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
+          
+          // Position cible en utilisant l'angle initial
+          this.x = p.lerp(this.x, p.width / 2 + p.cos(this.initialAngle) * maxDistanceX, 0.1);
+          this.y = p.lerp(this.y, p.height / 2 + p.sin(this.initialAngle) * maxDistanceY, 0.1);
+
+          this.size = p.lerp(this.size, Math.min(p.width, p.height) * 0.2, 0.05);
+
+          if (Math.abs(this.size - Math.min(p.width, p.height) * 0.2) < 1) {
+            this.isClosing = false; // Terminé
+            console.log("OVERRRR");
+          }
+          
+          
+        } else if (isClosingCircle) {
+          // Immobilisation des cercles non sélectionnés pendant la fermeture d'un autre cercle
+          const maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
+          const maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
+      
+          this.x = p.width / 2 + p.cos(this.initialAngle) * maxDistanceX;
+          this.y = p.height / 2 + p.sin(this.initialAngle) * maxDistanceY;
+          
         } else {
+
            // Proportional orbital distance
-           let maxDistanceX = p.map(p.width, 300, 1200, p.width * 0.3, p.width * 0.15, true);
-           let maxDistanceY = p.map(p.width, 300, 1200, p.height * 0.1, p.height * 0.2, true);
-   
+           let maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
+           let maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
 
           // Orbital movment
           this.angle += this.speed;
           let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
           
           // Calculate the position of the circle
-          this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX  * perspective;
+          this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX;
           this.y = p.height / 2 + p.sin(this.angle) * maxDistanceY;
 
           // Dynamic cicles size
           let maxCircleSize = Math.min(p.width, p.height) * 0.2; 
           let targetSize = this.hovered ? maxCircleSize * 2 : maxCircleSize;
-          this.size = p.lerp(this.size, targetSize * perspective, 0.1);
+          this.size = p.lerp(this.size, targetSize * perspective, 0.3);
           
           if (this.hovered) {
             this.opacity = p.lerp(this.opacity, 1, 0.1); // Opacity increases smoothly on hover
@@ -205,4 +251,4 @@ const Sketch2 = (props) => {
   return <div id="sketch-container3"></div>;
 };
 
-export default Sketch2;
+export default Sketch3;
