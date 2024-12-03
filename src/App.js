@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
+  const [loading, setLoading] = useState(true);
 
  useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,22 @@ function App() {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000); // Affiche le message de chargement pendant au moins 1 seconde
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+  
+  // if (loading) {
+  //   console.log("Loading state is true, should show loading message");
+  //   return (
+  //     <div className="loading">
+  //       <h1>Loading...</h1>
+  //     </div>
+  //   ); 
+  // }
 
   return (
     <div className="App">

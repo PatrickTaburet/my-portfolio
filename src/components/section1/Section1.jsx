@@ -53,7 +53,7 @@ const Section1 = ({scrollValue}) => {
           opacity: `${scrollValue > 200 ? (1- scrollValue/700) : 1}` // Text disapear when scroll down
         }}
       >
-        <AnimatedTitle timeout={"200"} direction="up">
+        <AnimatedTitle timeout={"100"} direction="up">
           <h1>
             <span>Taburet</span>
             <span style={{ paddingLeft: "7vw" }}>Patrick</span>

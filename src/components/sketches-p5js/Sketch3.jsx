@@ -27,6 +27,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
     let circles = [];
     let storedCircles = [];
     let mediaProject1, mediaProject2;
+    let maxDistanceX, maxDistanceY;
     let circleSize;
     const LERP_SPEED = 0.1;
 
@@ -42,7 +43,12 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
 
+      // Proportional orbital distance and size
+      maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
+      maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
       circleSize = Math.min(p.width, p.height) * 0.2;
+
+      // Add circles projects
       circles.push(new Circle(0, "NexusLab", mediaProject1));
       circles.push(new Circle(p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
       // circles.push(new Circle(p.PI/2, "test"));
@@ -74,8 +80,10 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
     };
 
     p.windowResized = () => {
-      // Dynamix update of circleSize
+      // Dynamix update of circleSize and distance
       circleSize = Math.min(p.width, p.height) * 0.2;
+      maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
+      maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
     };
 
     p.mouseMoved = () => {
@@ -138,65 +146,72 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
         this.initialAngle = initialAngle; 
         this.x = 0;
         this.y = 0;
+        this.state = "orbiting"; // "expanded", "closing", "locked"
       }
 
-      update(isClosingCircle) {        
+      update (isClosingCircle){
+        // Determine the current state
         if (this.isExpanded) {
-          // If the circle is enlarged, set its position progressively to the center of the canvas
-          this.opacity = p.lerp(this.opacity, -0.5, 0.05); 
-
-          this.x = p.lerp(this.x, p.width / 2, LERP_SPEED);
-          this.y = p.lerp(this.y, p.height / 2, LERP_SPEED);
-          this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03); // Progressive enlargement to fullscreen
-        } else if (this.isClosing ){
-
-          // Calculate the target position based on the initial angle
-          const maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
-          const maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
-          
-          // Target position using the initial angle
-          this.x = p.lerp(this.x, p.width / 2 + p.cos(this.initialAngle) * maxDistanceX, LERP_SPEED);
-          this.y = p.lerp(this.y, p.height / 2 + p.sin(this.initialAngle) * maxDistanceY, LERP_SPEED);
-
-          this.size = p.lerp(this.size, circleSize, LERP_SPEED);
-
-          if (Math.abs(this.size - circleSize) < 1) {
-            this.isClosing = false;
-          }
-          
-          
+          this.state = "expanded";
+        } else if (this.isClosing) {
+          this.state = "closing";
         } else if (isClosingCircle) {
-          // Locking the unselected circles while closing another circle          
-          const maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
-          const maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
-      
-          this.x = p.width / 2 + p.cos(this.initialAngle) * maxDistanceX;
-          this.y = p.height / 2 + p.sin(this.initialAngle) * maxDistanceY;
+          this.state = "locked";
         } else {
+          this.state = "orbiting";
+        }
 
-          // Proportional orbital distance
-          let maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
-          let maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
-
-          // Orbital movment
-          this.angle += this.speed;
-          let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
-          
-          // Calculate the position of the circle
-          this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX;
-          this.y = p.height / 2 + p.sin(this.angle) * maxDistanceY;
-
-          // Dynamic cicles size
-          let targetSize = this.hovered ? circleSize * 2 : circleSize;
-          this.size = p.lerp(this.size, targetSize * perspective, 0.3);
-          
-          if (this.hovered) {
-            this.opacity = p.lerp(this.opacity, 1, LERP_SPEED); // Opacity increases smoothly on hover
-          } else {
-            this.opacity = p.lerp(this.opacity, 0, LERP_SPEED); // Opacity decreases smoothly when not hovered
-          }
-        }   
+        switch (this.state) {
+          case "expanded":
+           this.expendCircle();
+            break;
+          case "closing":
+            this.moveToInitialPosition();
+            break;
+          case "locked":
+            this.lockPosition();
+            break;
+          case "orbiting":
+          default:
+            this.orbitalMovement();
+            break;
+        }
       }
+
+      expendCircle() {
+        // If the circle is enlarged, set its position progressively to the center of the canvas
+        this.opacity = p.lerp(this.opacity, -0.5, 0.05); 
+        // Progressive enlargement to fullscreen
+        this.x = p.lerp(this.x, p.width / 2, LERP_SPEED);
+        this.y = p.lerp(this.y, p.height / 2, LERP_SPEED);
+        this.size = p.lerp(this.size, Math.max(p.width, p.height) * 2, 0.03);
+      }
+      moveToInitialPosition() {
+        // Target position using the initial angle
+        this.x = p.lerp(this.x, p.width / 2 + p.cos(this.initialAngle) * maxDistanceX, LERP_SPEED);
+        this.y = p.lerp(this.y, p.height / 2 + p.sin(this.initialAngle) * maxDistanceY, LERP_SPEED);
+        this.size = p.lerp(this.size, circleSize, LERP_SPEED);
+        if (Math.abs(this.size - circleSize) < 1) this.isClosing = false;
+      }
+      lockPosition() {
+        // Locking the unselected circles while closing another circle                
+        this.x = p.width / 2 + p.cos(this.initialAngle) * maxDistanceX;
+        this.y = p.height / 2 + p.sin(this.initialAngle) * maxDistanceY;
+      }
+      orbitalMovement() {
+        this.angle += this.speed;
+        let perspective = p.map(p.sin(this.angle), -1, 1, 0.5, 1.5);
+
+        // Calculate the position of the circle
+        this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX;
+        this.y = p.height / 2 + p.sin(this.angle) * maxDistanceY;
+        // Dynamic cicles size
+        const targetSize = this.hovered ? circleSize * 2 : circleSize;
+
+        this.size = p.lerp(this.size, targetSize * perspective, 0.3);
+        this.opacity = p.lerp(this.opacity, this.hovered ? 1 : 0, LERP_SPEED); // Opacity increases or decreases smoothly with hover
+      }
+ 
       display() {
         this.drawCircle();
         this.drawMedia();
