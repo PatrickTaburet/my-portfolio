@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import NexusLabMedia from './../../assets/images/avatar.png';
+import NexusLabMedia from './../../assets/images/avatar.jpg';
 import CreativeCodingMedia from './../../assets/images/cyber.png';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {

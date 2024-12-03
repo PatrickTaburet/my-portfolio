@@ -55,13 +55,13 @@
   margin-left: 7vw;
 }
 .backgroundInitial{
-
+  filter: blur(2px); 
   position: absolute;
   top: -2vw;
-  left: -3vw;
+  left: -11vw;
   width: 90%;
   height: 110%;
-  scale: 1.3;
+  scale: 1.6;
   opacity: 0; 
   animation: fadeInZoom 2s forwards; 
   
@@ -82,12 +82,10 @@
 .backgroundScrolled {
   position: absolute;
   top: -2vw;
-  left: -3vw;
+  left: -11vw;
   width: 90%;
   height: 110%;
-  scale: 1.3;
+  scale: 1.6;
   opacity: 1;
   transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease; /* Adoucir la transition */
-
-  /* transition: none; */
 }

@@ -4,7 +4,7 @@ import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
 
-import Avatar from '../../assets/images/avatar.png';
+import Avatar from '../../assets/images/avatar.jpg';
 
 
 

@@ -2,7 +2,6 @@
   
 }
 body {
-  background: linear-gradient(white, red);
 }
 .container {
   position: relative;
@@ -44,15 +43,6 @@ body {
 .section3 {
   z-index: 2;
 }
-.loading{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-}
-.loading h1{
-  color: black;
-  font-size: 60px;
+.loadingScreen{
+
 }

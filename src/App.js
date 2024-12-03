@@ -1,14 +1,14 @@
 import './css/App.css';
 import './css/global.css';
 import AnimatedTitle from './components/animated-title/AnimatedTitle';
-import Section1 from './components/section1/Section1'
-import Section2 from './components/section2/Section2';
-import Section3 from './components/section3/Section3';
-import { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+
+const Section1 = React.lazy(() => import('./components/section1/Section1'));
+const Section2 = React.lazy(() => import('./components/section2/Section2'));
+const Section3 = React.lazy(() => import('./components/section3/Section3'));
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
-  const [loading, setLoading] = useState(true);
 
  useEffect(() => {
     const handleScroll = () => {
@@ -22,23 +22,6 @@ function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000); // Affiche le message de chargement pendant au moins 1 seconde
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-  
-  // if (loading) {
-  //   console.log("Loading state is true, should show loading message");
-  //   return (
-  //     <div className="loading">
-  //       <h1>Loading...</h1>
-  //     </div>
-  //   ); 
-  // }
-
   return (
     <div className="App">
       <header className="header">
@@ -47,18 +30,20 @@ function App() {
         </AnimatedTitle>
       </header>
       <main className='container'>
-        <Section1 
-          className="section1"
-          scrollValue = {scrollY}
-        />
-        <Section2 
-          className="section2" 
-          scrollValue = {scrollY} 
-        />
-        <Section3 
-          className="section3" 
-          scrollValue = {scrollY} 
-        />
+        <Suspense>
+          <Section1 
+            className="section1"
+            scrollValue = {scrollY}
+          />
+          <Section2 
+            className="section2" 
+            scrollValue = {scrollY} 
+          />
+          <Section3 
+            className="section3" 
+            scrollValue = {scrollY} 
+          />
+        </Suspense>
       </main>
 
     </div>
