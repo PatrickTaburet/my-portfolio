@@ -2,6 +2,7 @@
   
 }
 body {
+  
 }
 .container {
   position: relative;
@@ -9,7 +10,7 @@ body {
   flex-direction: column;
   height: 290vh;
   overflow: hidden; 
-    /* display: flex;
+  /* display: flex;
   flex-direction: column;
   gap: 50px; */
 }
@@ -42,6 +43,7 @@ body {
 }
 .section3 {
   z-index: 2;
+  height: 110vh;
 }
 .loadingScreen{
 

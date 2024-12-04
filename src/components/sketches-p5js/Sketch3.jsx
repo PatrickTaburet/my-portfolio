@@ -8,7 +8,6 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container3'));
-    // isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
 
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -62,6 +61,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
       circles.push(new Circle(p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
       // circles.push(new Circle(p.PI/2, "test"));
       // ---> Add new circles for new projects
+      
       if (!launchMode && closedCircle) {
         const targetCircle = circles.find(circle => circle.text === closedCircle);
         if (targetCircle) {
@@ -156,6 +156,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         this.x = 0;
         this.y = 0;
         this.state = "orbiting"; // "expanded", "closing", "locked"
+        this.maskedImage = null; 
       }
 
       update (isClosingCircle){
@@ -234,10 +235,16 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
       drawMedia() {
         // Display project preview with fade effect
         if (this.media && this.opacity > 0) {
-          const maskedImage = this.createMaskedImage(this.media, this.size);
+          if (!this.maskedImage) this.maskedImage = this.createMaskedImage(this.media, this.size);
+
+          // Center the image and make it match the size of the circle
+          const imgX = this.x - this.size / 2;
+          const imgY = this.y - this.size / 2;
+          const imgSize = this.size;
+          
           p.push();
           p.tint(255, this.opacity); // Apply fade transition to image opacity
-          p.image(maskedImage, this.x - this.size / 2, this.y - this.size / 2);
+          p.image(this.maskedImage, imgX, imgY, imgSize, imgSize); 
           p.pop();
         }
       }
