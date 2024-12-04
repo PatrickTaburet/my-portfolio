@@ -8,7 +8,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container3'));
-    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+    // isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
 
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -20,8 +20,16 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      p5InstanceRef.current?.remove();
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
     };
+  }, []);
+
+  useEffect(() => {
+    if (p5InstanceRef.current) {
+      isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+    }
   }, [isRunning]);
 
   const sketch = (p) => {
@@ -132,7 +140,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         }
       });
     };
-    
+
     class Circle {
       constructor(initialAngle, text, media) {
         this.size = circleSize; 
