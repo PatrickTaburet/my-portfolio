@@ -3,15 +3,17 @@ import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
+import useVisibility from '../hooks/useVisibility';
 
 import Avatar from '../../assets/images/avatar.jpg';
 
 
-
-
 const Section2 = ({scrollValue}) => {
+  const [sectionRef, isVisible] = useVisibility();
+
   return (
     <section 
+      ref={sectionRef}
       className='section2' 
       style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight)/3)}px)` }}
     >
@@ -35,8 +37,9 @@ const Section2 = ({scrollValue}) => {
         </div>
         <SkillsCards/>
       </div>
-
-      <Sketch2 className="sketch"/>
+      
+      <Sketch2 className="sketch" isRunning={isVisible}/>
+     
     </section>
   );
 }

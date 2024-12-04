@@ -1,11 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 import BackgroundCyber from '../../assets/images/blue-background.png';
-import React, { useEffect, useState } from 'react';
+import useVisibility from '../hooks/useVisibility';
 
 
 const Section1 = ({scrollValue}) => {
+  const [sectionRef, isVisible] = useVisibility();
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
   const textSlowDownFactor = 3;
@@ -31,7 +33,7 @@ const Section1 = ({scrollValue}) => {
   }, [isScrollTriggered]);
 
   return (
-    <section className='section1'>
+    <section className='section1'  ref={sectionRef}>
       <img
         src={BackgroundCyber}
         alt="Background_cyber"
@@ -68,7 +70,9 @@ const Section1 = ({scrollValue}) => {
           </AnimatedTitle>
         </div>
       </div>
-      <Sketch1/>
+        
+      <Sketch1 isRunning={isVisible}/>
+
       <div className='sliderContainer'>
         <AnimatedTitle timeout={"900"} direction="down">
           <p>lines</p>

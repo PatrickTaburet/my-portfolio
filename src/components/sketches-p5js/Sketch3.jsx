@@ -3,12 +3,13 @@ import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/avatar.jpg';
 import CreativeCodingMedia from './../../assets/images/cyber.png';
 
-const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
+const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container3'));
-    
+    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
@@ -21,7 +22,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle }) => {
       window.removeEventListener('resize', handleResize);
       p5InstanceRef.current?.remove();
     };
-  }, []);
+  }, [isRunning]);
 
   const sketch = (p) => {
     let circles = [];

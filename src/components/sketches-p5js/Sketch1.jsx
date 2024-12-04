@@ -2,13 +2,13 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 // import "../section1/section1.css"
 
-const Sketch1 = (props) => {
+const Sketch1 = ({isRunning}) => {
   const p5InstanceRef = useRef(null);
-
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container'));
-    
+    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
@@ -24,7 +24,7 @@ const Sketch1 = (props) => {
         p5InstanceRef.current.remove();
       }
     };
-  }, []);
+  }, [isRunning]);
 
   const sketch = (p) => {
     let mainColor;

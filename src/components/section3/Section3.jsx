@@ -1,9 +1,11 @@
+  import React, { useState } from 'react';
   import AnimatedTitle from '../animated-title/AnimatedTitle';
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
-  import React, { useState } from 'react';
+  import useVisibility from '../hooks/useVisibility';
 
   const Section3 = ({scrollValue}) => {
+    const [sectionRef, isVisible] = useVisibility();
     const [activeProject, setActiveProject] = useState(null);
     const [launchMode, setLaunchMode] = useState(true); 
     const [closedCircle, setClosedCircle] = useState(null); // Store the last active circle
@@ -26,6 +28,7 @@
       <section 
         className='section3' 
         style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight)/3)}px)` }}
+        ref={sectionRef}
       >
         {/* Galaxy background */}
         <div className="bg"></div>
@@ -48,6 +51,7 @@
               onCircleClick={handleProjectClick}
               launchMode={launchMode}
               closedCircle={closedCircle}
+              isRunning={isVisible}
             />
           )}
         

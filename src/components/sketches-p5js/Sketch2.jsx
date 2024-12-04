@@ -1,11 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 
-const Sketch2 = (props) => {
+const Sketch2 = ({isRunning}) => {
   const p5InstanceRef = useRef(null);
 
   useEffect(() => {
+    
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container2'));
+    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
     
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -22,7 +24,7 @@ const Sketch2 = (props) => {
         p5InstanceRef.current.remove();
       }
     };
-  }, []);
+  }, [isRunning]);
 
   const sketch = (p) => {
   
