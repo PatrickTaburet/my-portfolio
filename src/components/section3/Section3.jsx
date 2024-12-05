@@ -9,19 +9,23 @@
     const [activeProject, setActiveProject] = useState(null);
     const [launchMode, setLaunchMode] = useState(true); 
     const [closedCircle, setClosedCircle] = useState(null); // Store the last active circle
-
+    const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
+    const [showSketch, setShowSketch] = useState(true);
 
     const handleProjectClick = (projectName) => {
       setActiveProject(projectName);
+      setIsProjectInfoVisible(true);
+      setShowSketch(false);
     };
     
     const handleCloseProject = () => {
       setClosedCircle(activeProject); // Track the last opened circle
       setLaunchMode(false);
+      setIsProjectInfoVisible(false);
+      setActiveProject(null);
       setTimeout(() => {
-        setActiveProject(null);
-        // setLaunchMode("default"); // Reset launch mode after animation
-      }, 800); // Match the animation duration
+        setShowSketch(true);
+      }, 200);
     };
 
     return (
@@ -46,6 +50,8 @@
           </AnimatedTitle>
         }
         </div>
+
+        <div className={`sketchContainer ${showSketch ? 'visible' : ''}`}>
           {!activeProject && (
             <Sketch3
               onCircleClick={handleProjectClick}
@@ -53,14 +59,16 @@
               closedCircle={closedCircle}
               isRunning={isVisible}
             />
-          )}
-        
-        {activeProject && 
-        <>
+          )} 
+        </div>
+        <div
+          className={`projectInfosContainer ${!isProjectInfoVisible ? 'hidden' : ''}`}
+          style={!isProjectInfoVisible ? {} : { transition: 'none' }}
+        >            
           <div className="projectInfos">{activeProject} is active</div>
           <span className="cross" onClick={handleCloseProject}>X</span>
-        </>
-        }
+        </div>
+  
       </section>
     );
   }

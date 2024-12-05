@@ -11,7 +11,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
     const handleResize = () => {
       if (p5InstanceRef.current) {
-        p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight);
+        p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight + 50);
       }
     };
 
@@ -45,7 +45,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     };
 
     p.setup = () => {
-      const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+      const canvas = p.createCanvas(p.windowWidth, p.windowHeight + 50);
       canvas.parent('sketch-container3');
       p.setAttributes({ alpha: true });
       p.colorMode(p.HSB, 360, 100, 100, 1);
