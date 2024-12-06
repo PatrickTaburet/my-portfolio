@@ -25,7 +25,7 @@
     --font-title:  "Poppins", sans-serif;
     --text-size-small: 18px;
     --text-size-main: 24px;
-    --text-size-title: 54px;
+    --text-size-title: 30px;
 
     /* For loading screen */
     background-color: var(--color-background);
@@ -53,7 +53,6 @@ main {
 }
 h1, h2, h3, h4 {
     font-family: var(--font-title);
-    font-size: var(--text-size-title);
     font-weight: 300;
 }
 

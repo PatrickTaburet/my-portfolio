@@ -61,7 +61,6 @@
 .contactCard{
     display: flex;
     flex-direction: column;
-    width: 30vw;
     /* height: 20vw; */
     background-color: var(--color-background);
     border-style: solid;
@@ -69,25 +68,43 @@
     border-radius: 23px;
     border-color: var(--color-primary);
     padding: 2vw;
-    gap: 1vw;
+    gap: 2vw;
+    white-space: nowrap; 
 }
 .contactCard span{
     color: var(--color-primary);
     text-align: center;
     width: 100%;
     padding: 1vw;
+    font-size: var(--text-size-title);
+    font-weight: 500;
 
 }
-.contactCard p{
+.contactCard p, .contactCard a{
     color: var(--color-text-transp);
     width: 100%;
+    cursor: pointer;
 }
+
 .contactLine{
     display: flex;
     align-items: center;
     gap: 1.5vw;
 }
 
+.contactCard p:hover, .contactCard a:hover{
+    color: var(--color-text)
+}
+.copyMessage{
+    font-size: var(--text-size-title);
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--color-primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    pointer-events: none;
+    z-index: 100;
+    
+}
 /* ----- SkillsCards ----- */
 
 .cardsContainer{

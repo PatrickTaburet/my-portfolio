@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
@@ -11,15 +11,39 @@ import { TbBrandLinkedin } from "react-icons/tb";
 
 import Avatar from '../../assets/images/avatar.jpg'; 
 
-
 const Section2 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
+  const [hovered, setHovered] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionTranslateY = Math.max(-scrollValue, -window.innerHeight) / 3;
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const handleCopy = (message) => {
+    navigator.clipboard.writeText(message);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Réinitialise après 2 secondes
+  };
+
+  const handleMouseMove = (event) => {
+    const rect = sectionRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top 
+    });
+  };
 
   return (
     <section 
       ref={sectionRef}
       className='section2' 
-      style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight)/3)}px)` }}
+      style={{ transform: `translateY(${sectionTranslateY}px)` }}
     >
       <div className='section2Content'>
         <div className='topSection2'>
@@ -39,22 +63,40 @@ const Section2 = ({scrollValue}) => {
             <div className='contactContainer'>
               <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
               <div className='contactCard'>
-                <span>Dont hesitate to contact me</span>
+                <span>Don't hesitate to contact me</span>
                 <div className='contactLine'>
                   <TbMail color='white' size={45}/>
-                  <p>taburet.patrick@gmail.com</p> 
+                  <p 
+                    onClick={() => handleCopy("taburet.patrick@gmail.com")}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                  >
+                    taburet.patrick@gmail.com
+                  </p> 
                 </div>
                 <div className='contactLine'>
                   <TbPhone color='white' size={45}/>
-                  <p>06 11 01 23 70</p>
+                  <p 
+                    onClick={() => handleCopy("06 11 01 23 70")}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                  >
+                    06 11 01 23 70
+                  </p>
                 </div>
                 <div className='contactLine'>
                   <TbBrandGithub color='white' size={45}/>
-                  <p>https://github.com/PatrickTaburet/</p>
+                  <a       
+                    href='https://github.com/PatrickTaburet/' 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    https://github.com/PatrickTaburet/
+                  </a>
                 </div>
                 <div className='contactLine'>
                   <TbBrandLinkedin color='white' size={45}/>
-                  <p>https://www.linkedin.com/in/patrick-taburet/</p>
+                  <a href='https://www.linkedin.com/in/patrick-taburet/' target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/patrick-taburet/</a>
                 </div>
               </div>
             </div>            
@@ -62,7 +104,32 @@ const Section2 = ({scrollValue}) => {
         </div>
         <SkillsCards/>
       </div>
-      
+
+      {hovered && !copied && (
+        <span 
+          className="copyMessage" 
+          style={{
+            position: 'absolute',
+            left: `${mousePosition.x + 15}px`,
+            top: `${mousePosition.y + 15}px`,
+          }}
+        >
+          Copy?
+        </span>
+      )}
+      {copied && (
+        <span 
+          className="copyMessage" 
+          style={{
+            position: 'absolute',
+            left: `${mousePosition.x + 15}px`,
+            top: `${mousePosition.y + 15}px`,
+          }}
+        >
+          Copied!
+        </span>
+      )}
+
       <Sketch2 className="sketch" isRunning={isVisible}/>
      
     </section>
