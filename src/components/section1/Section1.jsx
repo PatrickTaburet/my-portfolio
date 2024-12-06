@@ -43,7 +43,7 @@ const Section1 = ({scrollValue}) => {
             : 'backgroundScrolled'
         }
         style={{
-          filter: `blur(${Math.min(15, scrollValue / 30)}px)`,
+          filter: `blur(${Math.min(15, scrollValue / 50)}px)`,
           opacity: Math.max(0, 1 - scrollValue / 500),
           transform: `scale(${1 + scrollValue / 1000})`,
         }}

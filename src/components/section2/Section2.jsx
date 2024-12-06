@@ -4,8 +4,12 @@ import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
 import useVisibility from '../hooks/useVisibility';
+import { TbMail } from "react-icons/tb";
+import { TbPhone } from "react-icons/tb";
+import { TbBrandGithub } from "react-icons/tb";
+import { TbBrandLinkedin } from "react-icons/tb";
 
-import Avatar from '../../assets/images/avatar.jpg';
+import Avatar from '../../assets/images/avatar.jpg'; 
 
 
 const Section2 = ({scrollValue}) => {
@@ -32,7 +36,28 @@ const Section2 = ({scrollValue}) => {
             </AnimatedTitle>
           </div>
           <AnimatedTitle timeout={"300"} direction="up">
-            <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
+            <div className='contactContainer'>
+              <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
+              <div className='contactCard'>
+                <span>Dont hesitate to contact me</span>
+                <div className='contactLine'>
+                  <TbMail color='white' size={45}/>
+                  <p>taburet.patrick@gmail.com</p> 
+                </div>
+                <div className='contactLine'>
+                  <TbPhone color='white' size={45}/>
+                  <p>06 11 01 23 70</p>
+                </div>
+                <div className='contactLine'>
+                  <TbBrandGithub color='white' size={45}/>
+                  <p>https://github.com/PatrickTaburet/</p>
+                </div>
+                <div className='contactLine'>
+                  <TbBrandLinkedin color='white' size={45}/>
+                  <p>https://www.linkedin.com/in/patrick-taburet/</p>
+                </div>
+              </div>
+            </div>            
           </AnimatedTitle>
         </div>
         <SkillsCards/>

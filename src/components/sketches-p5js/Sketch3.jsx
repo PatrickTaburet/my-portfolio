@@ -66,7 +66,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         const targetCircle = circles.find(circle => circle.text === closedCircle);
         if (targetCircle) {
           targetCircle.isClosing = true; 
-          targetCircle.size = Math.max(p.width, p.height) * 2; // Initialement en plein écran
+          targetCircle.size = Math.max(p.width, p.height) * 2; // Initially in full-screen
           targetCircle.x = p.width / 2;
           targetCircle.y = p.height / 2;
         }
@@ -77,11 +77,16 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
       // p.background(196, 58, 5);      
       p.clear(); 
       const isClosingCircle = circles.some(circle => circle.isClosing);
+
+     // Sort circles by size to draw larger ones on top
+      circles.sort((a, b) => a.size - b.size);
+
       // Calculate the distance of the mouse from the center of the screen
       const centerX = p.width / 2;
       const mouseXDistance = p.mouseX - centerX;
       const speedFactor = p.map(Math.abs(mouseXDistance), 0, centerX, 0.005, 0.1);
-      const adjustedSpeed = mouseXDistance < 0 ? -speedFactor : speedFactor; circles.forEach(circle => {
+      const adjustedSpeed = mouseXDistance < 0 ? -speedFactor : speedFactor; 
+      circles.forEach(circle => {
         circle.speed = adjustedSpeed; 
         circle.update(isClosingCircle);
         circle.display();

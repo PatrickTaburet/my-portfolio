@@ -33,6 +33,7 @@
   color: var(--color-text-transp);
   padding-top: 13vw;
   width: 100%;
+  height: 100%;
 }
 .section1Content h1{
   font-size: 115px;
@@ -48,11 +49,16 @@
 }
 .bottomLine {
   color: var(--color-primary);
-  margin: 8vw 0 0 0;
+  margin: 0 0 0vw 2vw;
+  padding: 5vw;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 100%;
-  margin-left: 7vw;
+  height: 100%;
+}
+.bottomLine p{
+  color: var(--color-primary);
+
 }
 .backgroundInitial{
   filter: blur(2px); 
