@@ -16,7 +16,7 @@ const Section2 = ({scrollValue}) => {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const sectionTranslateY = Math.max(-scrollValue, -window.innerHeight) / 3;
+  const sectionTranslateY = Math.max(-scrollValue, -window.innerHeight) / 2.8;
 
   useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove);
@@ -41,6 +41,7 @@ const Section2 = ({scrollValue}) => {
 
   return (
     <section 
+      id="section2" 
       ref={sectionRef}
       className='section2' 
       style={{ transform: `translateY(${sectionTranslateY}px)` }}

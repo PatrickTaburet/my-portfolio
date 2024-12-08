@@ -30,6 +30,7 @@
 
     return (
       <section 
+        id="section3" 
         className='section3' 
         style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight)/3)}px)` }}
         ref={sectionRef}
@@ -46,7 +47,7 @@
         <div className='section3Content'>
         {!activeProject &&
           <AnimatedTitle timeout={"200"} direction="up">
-            <h3>My projects</h3>
+            <h3>Selected Projects</h3>
           </AnimatedTitle>
         }
         </div>
