@@ -23,7 +23,8 @@
     /* Fonts */
     --font-main: "Georama", sans-serif;
     --font-title:  "Poppins", sans-serif;
-    --text-size-small: 18px;
+    --text-size-mobile: 16px;
+    --text-size-small: 20px;
     --text-size-main: 24px;
     --text-size-title: 30px;
 
@@ -57,3 +58,17 @@ h1, h2, h3, h4 {
 }
 
 
+/* 
+========================
+Media queries
+========================
+*/
+
+/* ----------------------------- < 1000px ------------------------------ */
+
+@media screen and (max-width: 1000px)
+{
+    main {
+        font-size: var(--text-size-mobile);
+    }
+}

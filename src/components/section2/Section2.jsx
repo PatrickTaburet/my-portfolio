@@ -61,7 +61,6 @@ const Section2 = ({scrollValue}) => {
           </div>
           <AnimatedTitle timeout={"300"} direction="up">
             <div className='contactContainer'>
-              <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
               <div className='contactCard'>
                 <span>Don't hesitate to contact me</span>
                 <div className='contactLine'>
@@ -99,6 +98,7 @@ const Section2 = ({scrollValue}) => {
                   <a href='https://www.linkedin.com/in/patrick-taburet/' target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/patrick-taburet/</a>
                 </div>
               </div>
+              <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
             </div>            
           </AnimatedTitle>
         </div>

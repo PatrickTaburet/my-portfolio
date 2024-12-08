@@ -47,13 +47,13 @@
     width: 80%;
     gap: 1vw;
     margin: 3vw 0 0 0;
-    font-size: 23px;
+    font-size: var(--text-size-main);
 }
 .contactContainer{
     display: flex;
     align-items: center;
-    gap: 3vw;
-    margin: 5vw 0 0 5vw;
+    gap: 5vw;
+    margin: 5vw 0 0 8vw;
 }
 
 /* ----- ContactCard ----- */
@@ -96,15 +96,15 @@
     color: var(--color-text)
 }
 .copyMessage{
-    font-size: var(--text-size-title);
+    font-size: var(--text-size-small);
     background-color: rgba(255, 255, 255, 0);
     color: var(--color-primary);
     padding: 5px 10px;
     border-radius: 5px;
     pointer-events: none;
     z-index: 100;
-    
 }
+
 /* ----- SkillsCards ----- */
 
 .cardsContainer{
@@ -131,34 +131,48 @@
 /* Logos techno : */
 
 .logoSymfo{
-    width: 4.5vw;
+    width: 3.5vw;
+    min-width: 35px;
 }
 .logoReact{
-    width: 4.7vw;
+    width: 3.7vw;
+    min-width: 35px;
+    margin-bottom: 7px;
 }
 .LogoCSharp{
-    width: 4.3vw;
+    width: 3.3vw;
+    min-width: 35px;
+    margin-top: 3px;
 }
 .LogoP5js{
-    width: 4.5vw;
+    width: 3.5vw;
+    min-width: 35px;
 }
 .LogoMySql{
-    width: 3.7vw;
+    width: 2.7vw;
+    min-width: 35px;
+    margin-top: 5px;
 }
 .LogoPsd{
-    width: 4vw;
+    width: 3vw;
+    min-width: 35px;
+    margin-top: 2px;
 }
 .LogoFigma{
-    width: 2.7vw;
+    width: 1.7vw;
+    min-width: 35px;
 }
 .LogoGithub{
-    width: 4.7vw;
+    width: 3.7vw;
+    min-width: 35px;
 }
 .LogoDocker{
-    width: 6vw;
+    width: 5vw;
+    min-width: 35px;
 }
 .LogoNode{
-    width: 4.5vw;
+    width: 3.5vw;
+    min-width: 35px;
 }
 
 
@@ -172,13 +186,14 @@
     height: 7vw;
     gap: 15px;
 }
+
 .card1, .card2{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding: 50px 0 50px 0;
-    gap: 20px;
+    padding: 25px;
+    gap: 10px;
     border-style: solid;
     border-width: 3px;
     border-radius: 23px;
@@ -187,10 +202,76 @@
     opacity: 0.9;
 }
 .card1{
-    width: 55%;
+    max-width: 57%;
+    min-width: 180px;
+    min-height: 180px;
     height: 100%;
 }
 .card2{
-    width: 60%;
+    width: 57%;
     height: 100%;
+    min-width: 170px;
+    min-height: 170px;
+}
+
+/* 
+========================
+Media queries
+========================
+*/
+
+/* ----------------------------- < 800px ------------------------------ */
+
+@media screen and (max-width: 800px)
+{
+    .topSection2 h3{
+        font-size: 50px;
+    }
+    .bio{
+        width: 100%;
+        gap: 1vw;
+        margin: 5vw 0 0 0;
+        font-size: var(--text-size-mobile);
+    }
+    .cardsContainer h3{
+        font-size: 50px;
+        margin: 0;
+    }
+    .cardsContainer h4{
+        font-size: var( --text-size-main);
+        margin: 10px;
+    }
+
+    .card1, .card2{
+        padding: 35px;
+        gap: 40px;
+    }
+    .card1{
+        max-width: 62%;
+        min-width: 180px;
+        min-height: 180px;
+        /* max-height: 200px; */
+        height: 100%;
+    }
+    .section2Content{
+
+    }
+}
+/* ----------------------------- < 500px ------------------------------ */
+
+@media screen and (max-width: 500px)
+{
+    .section2Content{
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        color: var(--color-background);
+        height: 100%;
+        margin-top: 3vw;
+    }
+
+    
+    .card1, .card2{
+        padding: 0px;
+    }
 }
