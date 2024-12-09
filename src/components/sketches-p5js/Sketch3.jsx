@@ -8,7 +8,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container3'));
-
+    
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight + 50);

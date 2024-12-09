@@ -1,7 +1,7 @@
 /* Section 2  */
 
 .section2{
-    height: 120vh;
+    /* height: 100vh; */
      /*background-color: var(--color-secondary); */
     overflow: hidden;
 }
@@ -9,19 +9,19 @@
 .section2Content{
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     color: var(--color-background);
     height: 100%;
-    margin-top: 3vw;
+    margin-top: 1vw;
 }
 .topSection2{
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: end; */
     height: 100%;
-    width: 40%;
+    width: 50%;
     margin-left: 5vw;
 }
 .topSection2 h3{
@@ -40,35 +40,39 @@
     border-style: solid;
     border-width: 3px;
     border-color: var(--color-primary);
+    margin-left: 5vw;
 }
 .bio{
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
     gap: 1vw;
-    margin: 3vw 0 0 0;
+    margin: 2vw 0 0 0;
     font-size: var(--text-size-main);
-}
-.contactContainer{
-    display: flex;
-    align-items: center;
-    gap: 5vw;
-    margin: 5vw 0 0 8vw;
 }
 
 /* ----- ContactCard ----- */
+
+.contactContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* gap: 5vw; */
+    margin: 4vw 0 0 0vw;
+}
 
 .contactCard{
     display: flex;
     flex-direction: column;
     /* height: 20vw; */
     background-color: var(--color-background);
+    opacity: 0.9;
     border-style: solid;
     border-width: 3px;
     border-radius: 23px;
     border-color: var(--color-primary);
-    padding: 2vw;
-    gap: 2vw;
+    padding: 1vw;
+    gap: 1vw;
     white-space: nowrap; 
 }
 .contactCard span{

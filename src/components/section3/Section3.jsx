@@ -32,7 +32,7 @@
       <section 
         id="section3" 
         className='section3' 
-        style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight)/3)}px)` }}
+        style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight) / 2.8)}px)` }}
         ref={sectionRef}
       >
         {/* Galaxy background */}

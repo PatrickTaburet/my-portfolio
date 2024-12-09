@@ -16,9 +16,37 @@ const Section2 = ({scrollValue}) => {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const sectionTranslateY = Math.max(-scrollValue, -window.innerHeight) / 2.8;
+  const [sectionTranslateY, setSectionTranslateY] = useState(0);
 
   useEffect(() => {
+    const updateTranslateY = () => {
+      setSectionTranslateY( Math.max(-scrollValue, -window.innerHeight) / 2.8);
+    };
+
+    updateTranslateY();
+    window.addEventListener('resize', updateTranslateY);
+
+    return () => {
+      window.removeEventListener('resize', updateTranslateY);
+    };
+  }, [scrollValue]);
+
+  // useEffect(() => {
+  //   setSectionTranslateY(-scrollValue / 2.8);
+  //   const handleResize = () => {
+  //     setSectionTranslateY(-scrollValue / 2.8);
+  //   };
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
+
+  // useEffect(() => {
+  // console.log("scrollValue", scrollValue);
+  
+  // }, [scrollValue])
+  
+
+  useEffect(() => {    
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);

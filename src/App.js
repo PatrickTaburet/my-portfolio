@@ -11,23 +11,26 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const windowHeight = window.innerHeight - 300;
   const [sectionOffsets, setSectionOffsets] = useState({ section1Offset: 0, section2Offset: 0, section3Offset: 0 });
-
+  
  useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      // console.log(window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     const calculateOffsets = () => {
       const section1Offset = document.querySelector('.section1')?.offsetTop || 0;
-      const section2Offset = document.querySelector('.section2')?.offsetTop - 240 || 0;
+      const section2Offset = document.querySelector('.section2')?.offsetTop || 0;
       const section3Offset = document.querySelector('.section3')?.offsetTop || 0;
-
+      // console.log("offstet 2 : " + section2Offset);
+      // console.log("offstet 3 : " + section3Offset);
+      
       setSectionOffsets({ section1Offset, section2Offset, section3Offset });
     };
 
-    calculateOffsets();
+    setTimeout(() => {
+      calculateOffsets();
+    }, 500); 
 
     window.addEventListener('resize', calculateOffsets);
     return () => {
@@ -36,28 +39,30 @@ function App() {
     };
   }, []);
   
-  const scrollToSection = (offset) => { 
-    window.scrollTo({ top: offset, behavior: 'smooth' });
+  const scrollToSection = (offset) => {
+    const adjustment = -240; // Ajustez cette valeur en fonction de vos besoins
+    window.scrollTo({ top: offset + adjustment, behavior: 'smooth' });
   };
+  
 
   return (
     <div className="App">
       <header 
         className="header"
-        style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.8 ? "#2BF7BC" : ''}`}}
+        style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "#2BF7BC" : ''}`}}
 
       >
         <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
           <a 
             onClick={() => scrollToSection(sectionOffsets.section3Offset)}
-            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.8 ? "white" : ""}`}}
+            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "white" : ""}`}}
           >
             Projects
           </a> 
             / 
           <a 
             onClick={() => scrollToSection(sectionOffsets.section2Offset)}
-            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.8 ? "white" : ""}`}}
+            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "white" : ""}`}}
           >
             Contact
           </a>
