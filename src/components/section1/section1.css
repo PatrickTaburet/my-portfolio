@@ -50,7 +50,7 @@
 .bottomLine {
   color: var(--color-primary);
   margin: 0 0 0vw 2vw;
-  padding: 5vw;
+  padding: 100px;
   display: flex;
   align-items: flex-end;
   width: 100%;
@@ -94,4 +94,67 @@
   scale: 1.6;
   opacity: 1;
   transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease; /* Adoucir la transition */
+}
+
+
+/* 
+========================
+Media queries
+========================
+*/
+
+/* ----------------------------- Tablet < 1024px ------------------------------ */
+
+@media screen and (max-width: 1024px)
+{
+  .section1Content h1{
+    font-size: 105px;
+    margin-top: 12vw;
+  }
+  .section1Content h2{
+    font-size: 45px;
+  }
+  .bottomLine {
+    font-size: 18px;
+  }
+
+}
+
+/* ----------------------------- Tablet < 768px ------------------------------ */
+
+@media screen and (max-width: 768px)
+{
+  .section1Content h1{
+    font-size: 95px;
+    margin-top: 23vw;
+  }
+  .section1Content h2{
+    font-size: 35px;
+  }
+  .bottomLine {
+    text-align: center;
+    font-size: 18px;
+    padding: 100px 50px 100px 50px;
+  }
+
+}
+
+/* ----------------------------- Mobile < 560px ------------------------------ */
+
+@media screen and (max-width: 560px)
+{
+  .section1Content h1{
+    font-size: 75px;
+    margin-top: 43vw;
+    margin-left: 5vw;
+  }
+  .section1Content h2{
+    font-size: 30px;
+    margin-top: 5vw;
+  }
+  .bottomLine {
+    text-align: center;
+    font-size: 18px;
+    padding: 100px 30px 100px 30px;
+  }
 }

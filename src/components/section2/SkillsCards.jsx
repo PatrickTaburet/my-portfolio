@@ -58,7 +58,7 @@ const SkillsCards = () =>{
 
             <AnimatedTitle timeout={"100"} direction="up">
                 <div className='card2'>
-                <div className='logoContainer'>
+                    <div className='logoContainer'>
                         <img src={LogoGithub} alt="Logo_Github" className="LogoGithub"/>
                         <p>Github</p>
                     </div>

@@ -27,7 +27,7 @@
 .topSection2 h3{
     color: var(--color-primary);
     font-size: 75px;
-
+    margin-top: 1vw;
 }
 
 .profilePicture{
@@ -133,7 +133,7 @@
 .cardsContainer h3{
     color: var(--color-primary);
     font-size: 75px;
-    margin: 0;
+    margin-top: 1vw;
 }
 .cardsContainer h4{
     color: var(--color-background);
@@ -172,15 +172,13 @@
     min-width: 35px;
 }
 .LogoFigma{
-    width: 1.7vw;
+    width: 2.05vw;
     min-width: 23px;
-    margin-top: 6px;
-
 }
 .LogoGithub{
     width: 3.7vw;
     min-width: 35px;
-    margin-top: 0vw;
+    margin-top: 0.5vw;
 
 }
 .LogoDocker{
@@ -201,7 +199,7 @@
     text-align: center;
     width: 7vw;
     height: 7vw;
-    gap: 15px;
+    gap: 0.3vw;
     margin: 3px;
 }
 
@@ -210,8 +208,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 25px;
-    gap: 10px;
+    padding: 25px 15px 25px 15px;
+    gap: 15px;
     border-style: solid;
     border-width: 3px;
     border-radius: 23px;
@@ -220,8 +218,8 @@
     opacity: 0.9;
 }
 .card1{
-    max-width: 57%;
-    min-width: 240px;
+    max-width: 70%;
+    min-width: 350px;
     min-height: 250px;
     height: 100%;
 }
@@ -247,7 +245,7 @@ Media queries
     }
     .topSection2 h3{
         font-size: 4rem;
-        margin: 15px;
+        margin: 15px 10px 15px 10px;
     }
     .bio{
         font-size: var(--text-size-small);
@@ -261,6 +259,10 @@ Media queries
     .cardsContainer h4{
         font-size: 2rem;
         margin: 10px;
+    }
+    .card1{
+       min-width: 240px;
+
     }
 
 /*  Contact Card */
@@ -282,7 +284,9 @@ Media queries
 .linkedinLink{
     font-size: 1rem;
 }
-
+.logoContact{
+    width: 4vw;
+}
 }
 /* ----------------------------- Tablet < 768px ------------------------------ */
 
@@ -302,13 +306,14 @@ Media queries
     .bio{
         width: 100%;
         gap: 1vw;
-        margin: 5vw 0 0 0;
+        margin: 3vw 0 0 0;
         font-size: var(--text-size-mobile);
     }
     .cardsContainer{
         gap: 1vw;
         margin: 0 0 0 7vw;
         width: 40%;
+        height: 80%;
     }
     .cardsContainer h3{
         font-size: 2.5rem;
@@ -333,14 +338,14 @@ Media queries
     .contactContent{
         flex-wrap: wrap;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         gap: 2vw;
         width:  100%;
     }
     .contactCard{
         position: absolute;
         gap: 3vw;
-        top:18vw;
+        top: 23vw;
         width: 90vw;
     }
     .contactCard span{
@@ -354,6 +359,7 @@ Media queries
     }
     .githubLink,.linkedinLink{
         font-size: 0.8em;
+        z-index: 50;
     }
     .logoContact{
         width: 5vw;
@@ -366,10 +372,11 @@ Media queries
 
     .card1, .card2{
         padding: 30px;
-        gap: 35px;
+        gap: 25px;
     }
     .card2{
-        gap: 45px;
+        padding: 25px;
+        min-width: 230px;
     }
     .card1{
         /* max-width: 62%; */
@@ -414,9 +421,17 @@ Media queries
     .cardsContainer h4{
         font-size: 1rem;
         margin: 10px;
-
     }
+    
     .card1, .card2{
         padding: 0px;
+    }
+
+    .contactContent{
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        gap: 0;
+        width:  100%;
     }
 }
