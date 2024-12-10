@@ -58,6 +58,14 @@ const SkillsCards = () =>{
 
             <AnimatedTitle timeout={"100"} direction="up">
                 <div className='card2'>
+                <div className='logoContainer'>
+                        <img src={LogoGithub} alt="Logo_Github" className="LogoGithub"/>
+                        <p>Github</p>
+                    </div>
+                    <div className='logoContainer' style={{gap: "0"}}>
+                        <img src={LogoDocker} alt="Logo_Docker" className="LogoDocker"/>
+                        <p>Docker</p>
+                    </div>
                     <div className='logoContainer'>
                         <img src={LogoPsd} alt="Logo_Photoshop" className="LogoPsd"/>
                         <p>Photoshop</p>
@@ -66,14 +74,7 @@ const SkillsCards = () =>{
                         <img src={LogoFigma} alt="Logo_Figma" className="LogoFigma"/>
                         <p>Figma</p>
                     </div>
-                    <div className='logoContainer'>
-                        <img src={LogoGithub} alt="Logo_Github" className="LogoGithub"/>
-                        <p>Github</p>
-                    </div>
-                    <div className='logoContainer' style={{gap: "0"}}>
-                        <img src={LogoDocker} alt="Logo_Docker" className="LogoDocker"/>
-                        <p>Docker</p>
-                    </div>
+
                 </div>
             </AnimatedTitle>
         </div>

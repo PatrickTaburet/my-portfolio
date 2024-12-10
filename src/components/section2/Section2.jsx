@@ -92,39 +92,46 @@ const Section2 = ({scrollValue}) => {
             <div className='contactContainer'>
               <div className='contactCard'>
                 <span>Don't hesitate to contact me</span>
-                <div className='contactLine'>
-                  <TbMail color='white' size={45}/>
-                  <p 
-                    onClick={() => handleCopy("taburet.patrick@gmail.com")}
-                    onMouseEnter={() => setHovered(true)}
-                    onMouseLeave={() => setHovered(false)}
-                  >
-                    taburet.patrick@gmail.com
-                  </p> 
-                </div>
-                <div className='contactLine'>
-                  <TbPhone color='white' size={45}/>
-                  <p 
-                    onClick={() => handleCopy("06 11 01 23 70")}
-                    onMouseEnter={() => setHovered(true)}
-                    onMouseLeave={() => setHovered(false)}
-                  >
-                    06 11 01 23 70
-                  </p>
-                </div>
-                <div className='contactLine'>
-                  <TbBrandGithub color='white' size={45}/>
-                  <a       
-                    href='https://github.com/PatrickTaburet/' 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    https://github.com/PatrickTaburet/
-                  </a>
-                </div>
-                <div className='contactLine'>
-                  <TbBrandLinkedin color='white' size={45}/>
-                  <a href='https://www.linkedin.com/in/patrick-taburet/' target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/patrick-taburet/</a>
+                <div className='contactContent'>
+                  <div>
+                    <div className='contactLine'>
+                      <TbMail className='logoContact' color='white' size={45}/>
+                      <p 
+                        onClick={() => handleCopy("taburet.patrick@gmail.com")}
+                        onMouseEnter={() => setHovered(true)}
+                        onMouseLeave={() => setHovered(false)}
+                      >
+                        taburet.patrick@gmail.com
+                      </p> 
+                    </div>
+                    <div className='contactLine'>
+                      <TbPhone className='logoContact' color='white' size={45}/>
+                      <p 
+                        onClick={() => handleCopy("06 11 01 23 70")}
+                        onMouseEnter={() => setHovered(true)}
+                        onMouseLeave={() => setHovered(false)}
+                      >
+                        06 11 01 23 70
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className='contactLine'>
+                      <TbBrandGithub className='logoContact' color='white' size={45}/>
+                      <a       
+                        className="githubLink"
+                        href='https://github.com/PatrickTaburet/' 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        https://github.com/PatrickTaburet/
+                      </a>
+                    </div>
+                    <div className='contactLine'>
+                      <TbBrandLinkedin className='logoContact' color='white' size={45}/>
+                      <a className="linkedinLink" href='https://www.linkedin.com/in/patrick-taburet/' target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/patrick-taburet/</a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <img src={Avatar} alt="Profile_picture" className="profilePicture"/>

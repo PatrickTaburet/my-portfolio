@@ -71,7 +71,7 @@
     border-width: 3px;
     border-radius: 23px;
     border-color: var(--color-primary);
-    padding: 1vw;
+    padding: 2vw;
     gap: 1vw;
     white-space: nowrap; 
 }
@@ -82,14 +82,22 @@
     padding: 1vw;
     font-size: var(--text-size-title);
     font-weight: 500;
-
 }
 .contactCard p, .contactCard a{
     color: var(--color-text-transp);
     width: 100%;
     cursor: pointer;
-}
 
+}
+.contactCard p{
+    font-size: var(--text-size-small);
+}
+.githubLink{
+    font-size: var(--text-size-small);
+}
+.linkedinLink{
+    font-size: var(--text-size-small);
+}
 .contactLine{
     display: flex;
     align-items: center;
@@ -116,6 +124,7 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    margin-right: 4vw;
     /* justify-content: center; */
     gap: 1vw;
     /* width: 100%; */
@@ -130,6 +139,7 @@
     color: var(--color-background);
     font-size: 35px;
     margin: 0;
+    white-space: nowrap;
 }
 
 /* Logos techno : */
@@ -160,15 +170,18 @@
 .LogoPsd{
     width: 3vw;
     min-width: 35px;
-    margin-top: 2px;
 }
 .LogoFigma{
     width: 1.7vw;
-    min-width: 35px;
+    min-width: 23px;
+    margin-top: 6px;
+
 }
 .LogoGithub{
     width: 3.7vw;
     min-width: 35px;
+    margin-top: 0vw;
+
 }
 .LogoDocker{
     width: 5vw;
@@ -189,6 +202,7 @@
     width: 7vw;
     height: 7vw;
     gap: 15px;
+    margin: 3px;
 }
 
 .card1, .card2{
@@ -207,15 +221,15 @@
 }
 .card1{
     max-width: 57%;
-    min-width: 180px;
-    min-height: 180px;
+    min-width: 240px;
+    min-height: 250px;
     height: 100%;
 }
 .card2{
     width: 57%;
     height: 100%;
-    min-width: 170px;
-    min-height: 170px;
+    min-width: 236px;
+    min-height: 223px;
 }
 
 /* 
@@ -224,12 +238,66 @@ Media queries
 ========================
 */
 
-/* ----------------------------- < 800px ------------------------------ */
+/* ----------------------------- Tablet < 1024px ------------------------------ */
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 1024px)
 {
+    .topSection2{
+        width: 45%;
+    }
     .topSection2 h3{
-        font-size: 50px;
+        font-size: 4rem;
+        margin: 15px;
+    }
+    .bio{
+        font-size: var(--text-size-small);
+        width: 80%;
+    }
+        
+    .cardsContainer h3{
+        font-size: 4rem;
+        margin: 15px;
+    }
+    .cardsContainer h4{
+        font-size: 2rem;
+        margin: 10px;
+    }
+
+/*  Contact Card */
+
+.contactCard {
+    margin-top: 3vw;
+}
+.contactCard span{
+    width: 100%;
+    padding: 1vw;
+    font-size: 1.5rem;
+}
+.contactCard p{
+    font-size: var(--text-size-mobile);
+}
+.githubLink{
+    font-size: 1rem;
+}
+.linkedinLink{
+    font-size: 1rem;
+}
+
+}
+/* ----------------------------- Tablet < 768px ------------------------------ */
+
+@media screen and (max-width: 768px)
+{
+    .topSection2{
+        height: 100%;
+        width: 35%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+
+    .topSection2 h3{
+        font-size: 2.5rem;
+        min-width: 200px;
     }
     .bio{
         width: 100%;
@@ -237,33 +305,86 @@ Media queries
         margin: 5vw 0 0 0;
         font-size: var(--text-size-mobile);
     }
+    .cardsContainer{
+        gap: 1vw;
+        margin: 0 0 0 7vw;
+        width: 40%;
+    }
     .cardsContainer h3{
-        font-size: 50px;
-        margin: 0;
+        font-size: 2.5rem;
     }
     .cardsContainer h4{
-        font-size: var( --text-size-main);
+        font-size: 1.5rem;
         margin: 10px;
     }
+    .contactContainer{
+        margin: 6vw 0 0 0vw;
+    }
+
+
+    /*  Contact Card */
+    .contactContainer{
+        position: relative;
+        display: flex;
+        align-items: center;
+        /* gap: 5vw; */
+        margin: 20vw 0 0 0vw;
+    }
+    .contactContent{
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        gap: 2vw;
+        width:  100%;
+    }
+    .contactCard{
+        position: absolute;
+        gap: 3vw;
+        top:18vw;
+        width: 90vw;
+    }
+    .contactCard span{
+        width: 100%;
+        padding: 1vw;
+        font-size: 1.2rem;
+        margin-bottom: 0vw;
+    }
+    .contactCard p{
+        font-size: 0.8em;
+    }
+    .githubLink,.linkedinLink{
+        font-size: 0.8em;
+    }
+    .logoContact{
+        width: 5vw;
+    }
+
+    .copyMessage{
+        font-size: 1rem;
+    }
+    /* Skill Cards */
 
     .card1, .card2{
-        padding: 35px;
-        gap: 40px;
+        padding: 30px;
+        gap: 35px;
+    }
+    .card2{
+        gap: 45px;
     }
     .card1{
-        max-width: 62%;
-        min-width: 180px;
-        min-height: 180px;
+        /* max-width: 62%; */
+        /* min-width: 180px; */
+        /* min-height: 180px; */
         /* max-height: 200px; */
-        height: 100%;
     }
     .section2Content{
 
     }
+    
 }
-/* ----------------------------- < 500px ------------------------------ */
+/* ----------------------------- Mobile < 560px ------------------------------ */
 
-@media screen and (max-width: 500px)
+@media screen and (max-width: 560px)
 {
     .section2Content{
         flex-direction: column;
@@ -273,8 +394,28 @@ Media queries
         height: 100%;
         margin-top: 3vw;
     }
-
+    .topSection2{
+        height: 100%;
+        width: 90%;
+        margin: auto;
+    }
+    .bio{
+        width: 100%;
+    }
     
+    .topSection2 h3{
+        font-size: 3rem ;
+        min-width: none;
+        text-align: center;
+    }
+    .cardsContainer h3{
+        font-size: 3rem ;
+    }
+    .cardsContainer h4{
+        font-size: 1rem;
+        margin: 10px;
+
+    }
     .card1, .card2{
         padding: 0px;
     }
