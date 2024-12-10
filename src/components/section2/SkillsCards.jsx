@@ -30,7 +30,7 @@ const SkillsCards = () =>{
                         <img src={LogoSymfo} alt="Logo_Symfony" className="logoSymfo"/>
                         <p>Symfony</p>
                     </div>
-                    <div className='logoContainer' style={{gap: "0"}}>
+                    <div className='logoContainer' style={{gap: "0", marginBottom: "5px"}}>
                         <img src={LogoReact} alt="Logo_React" className="logoReact"/>
                         <p>React</p>
                     </div>

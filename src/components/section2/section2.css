@@ -146,16 +146,16 @@
 
 .logoSymfo{
     width: 3.5vw;
-    min-width: 35px;
+    min-width: 33px;
 }
 .logoReact{
-    width: 3.7vw;
+    width: 3.6vw;
     min-width: 35px;
-    margin-bottom: 7px;
+    margin-bottom: 0px;
 }
 .LogoCSharp{
     width: 3.3vw;
-    min-width: 35px;
+    min-width: 30px;
     margin-top: 3px;
 }
 .LogoP5js{
@@ -164,12 +164,13 @@
 }
 .LogoMySql{
     width: 2.7vw;
-    min-width: 35px;
-    margin-top: 5px;
+    min-width: 25px;
+    margin-top: 7px;
 }
 .LogoPsd{
     width: 3vw;
     min-width: 35px;
+    margin-top: 2px;
 }
 .LogoFigma{
     width: 2.05vw;
@@ -197,10 +198,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 7vw;
-    height: 7vw;
+    width: 6vw;
+    height: 6vw;
     gap: 0.3vw;
     margin: 3px;
+}
+.logoContainer p{
+    font-size: var(--text-size-text);
+    font-weight: 400;
 }
 
 .card1, .card2{
@@ -208,8 +213,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 25px 15px 25px 15px;
-    gap: 15px;
+    padding: 20px 15px 20px 15px;
+    /* gap: 15px; */
     border-style: solid;
     border-width: 3px;
     border-radius: 23px;
@@ -218,13 +223,13 @@
     opacity: 0.9;
 }
 .card1{
-    max-width: 70%;
-    min-width: 350px;
-    min-height: 250px;
-    height: 100%;
+    max-width: 60%;
+    min-width: 300px;
+    min-height: 150px;
+    /* height: 100%; */
 }
 .card2{
-    width: 57%;
+    width: 60%;
     height: 100%;
     min-width: 236px;
     min-height: 223px;
@@ -261,32 +266,35 @@ Media queries
         margin: 10px;
     }
     .card1{
-       min-width: 240px;
-
+       min-width: 243px;
+       min-height: 200px;
     }
+    .card2{
+        min-width: 180px;
+        min-height: 180px;
+    }
+    /*  Contact Card */
 
-/*  Contact Card */
-
-.contactCard {
-    margin-top: 3vw;
-}
-.contactCard span{
-    width: 100%;
-    padding: 1vw;
-    font-size: 1.5rem;
-}
-.contactCard p{
-    font-size: var(--text-size-mobile);
-}
-.githubLink{
-    font-size: 1rem;
-}
-.linkedinLink{
-    font-size: 1rem;
-}
-.logoContact{
-    width: 4vw;
-}
+    .contactCard {
+        margin-top: 3vw;
+    }
+    .contactCard span{
+        width: 100%;
+        padding: 1vw;
+        font-size: 1.5rem;
+    }
+    .contactCard p{
+        font-size: var(--text-size-mobile);
+    }
+    .githubLink{
+        font-size: 1rem;
+    }
+    .linkedinLink{
+        font-size: 1rem;
+    }
+    .logoContact{
+        width: 4vw;
+    }
 }
 /* ----------------------------- Tablet < 768px ------------------------------ */
 
@@ -372,11 +380,12 @@ Media queries
 
     .card1, .card2{
         padding: 30px;
-        gap: 25px;
+        gap: 10px;
     }
     .card2{
         padding: 25px;
-        min-width: 230px;
+        /* min-width: 10px;
+        min-height: 200px; */
     }
     .card1{
         /* max-width: 62%; */
