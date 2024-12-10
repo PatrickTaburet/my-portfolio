@@ -5,9 +5,14 @@ import CreativeCodingMedia from './../../assets/images/cyber.png';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container3'));
+    console.log("Init up P5 instance");
+
+    if (!p5InstanceRef.current) {
+      p5InstanceRef.current = new p5(sketch, containerRef.current);
+    }
     
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -18,20 +23,25 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      console.log("Cleaning up P5 instance");
       window.removeEventListener('resize', handleResize);
       if (p5InstanceRef.current) {
         p5InstanceRef.current.remove();
+        p5InstanceRef.current = null; 
       }
     };
   }, []);
 
   useEffect(() => {
     if (p5InstanceRef.current) {
+      console.log(isRunning);
+      
       isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
     }
   }, [isRunning]);
 
   const sketch = (p) => {
+    
     let circles = [];
     let storedCircles = [];
     let mediaProject1, mediaProject2;
@@ -286,7 +296,8 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     }
   };
 
-  return <div id="sketch-container3"></div>;
+  // return <div  id="sketch-container3"></div>;
+  return <div ref={containerRef} id="sketch-container3" key="sketch-container3"></div>;
 };
 
 export default Sketch3;

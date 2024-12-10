@@ -7,7 +7,6 @@ const Sketch1 = ({isRunning}) => {
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container'));
-    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
 
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -24,6 +23,12 @@ const Sketch1 = ({isRunning}) => {
         p5InstanceRef.current.remove();
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (p5InstanceRef.current) {
+      isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+    }
   }, [isRunning]);
 
   const sketch = (p) => {

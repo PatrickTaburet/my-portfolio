@@ -6,9 +6,7 @@ const Sketch2 = ({isRunning}) => {
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container2'));
-    
-    isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
-    
+        
     const handleResize = () => {
       if (p5InstanceRef.current) {
         p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight + 20);
@@ -24,6 +22,12 @@ const Sketch2 = ({isRunning}) => {
         p5InstanceRef.current.remove();
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (p5InstanceRef.current) {
+      isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
+    }
   }, [isRunning]);
 
   const sketch = (p) => {
