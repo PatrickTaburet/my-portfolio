@@ -25,6 +25,7 @@ const Sketch2 = ({isRunning}) => {
     };
   }, []);
 
+
   useEffect(() => {
     if (p5InstanceRef.current) {
       isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
@@ -33,8 +34,7 @@ const Sketch2 = ({isRunning}) => {
 
   const sketch = (p) => {
     let circle;
-    let pictureMedia
-    const radius = 50;
+    let pictureMedia;
 
     p.preload = () => {
       pictureMedia = p.loadImage(ProfilPicture);
@@ -52,15 +52,27 @@ const Sketch2 = ({isRunning}) => {
     p.draw = () => {
       p.clear();
       p.background(197, 15, 72); 
-      p.noFill();
-      p.stroke(circle.collisionDetected ? '#2BF7BC' : '#FFFFFF'); 
-      p.strokeWeight(2);
-      p.ellipse(p.mouseX, p.mouseY, radius * 2, radius * 2); 
       
-      const mouseCircle = { x: p.mouseX, y: p.mouseY, radius: radius };
+      const mouseCircle = drawMouseCircle(circle.size);
       circle.update(mouseCircle);
       circle.display();
     };
+
+    function drawMouseCircle(circleSize){
+      const mouseCircleRadius =  circleSize * 0.18;
+      const mouseCircle = { x: p.mouseX, y: p.mouseY, radius: mouseCircleRadius };
+
+      p.noFill();
+      p.stroke(circle.collisionDetected ? '#2BF7BC' : '#FFFFFF'); 
+      p.strokeWeight(2);
+      p.ellipse(p.mouseX, p.mouseY, mouseCircleRadius  * 2, mouseCircleRadius  * 2); 
+      
+      return mouseCircle;
+    }
+
+    p.windowResized = () => {
+      circle.size = circle.calculateSize();      
+    }
 
     class Circle {
       constructor() {
@@ -68,14 +80,15 @@ const Sketch2 = ({isRunning}) => {
         this.y = p.height / 2;
         this.vx = 0;
         this.vy = 0;
-        this.size = Math.min(p.width, p.height) * 0.2
+        this.size = this.calculateSize();
         this.maskedImage = null; 
         this.media = pictureMedia;
-        this.collisionDetected = false 
+        this.collisionDetected = false;
         this.collisionTimer = 0; 
       }
     
       update(mouseCircle) {
+        this.size = this.calculateSize();
         // Check collision with the mouse circle
         const dx = this.x - mouseCircle.x;
         const dy = this.y - mouseCircle.y;
@@ -117,14 +130,22 @@ const Sketch2 = ({isRunning}) => {
         
         this.constrainToCanvas();
       }
-    
+
+      calculateSize() {
+        const minSize = 150; 
+        const maxSize = p.width * 0.13; 
+      
+        // logarithmic function
+        const size = minSize + (maxSize - minSize) * Math.log(p.width) / Math.log(1920);
+        return Math.max(minSize, size); 
+      }
+
       display() {
         this.drawMedia();
         p.noFill();
         p.stroke('#2BF7BC');
         p.strokeWeight(2);
         p.ellipse(this.x, this.y, this.size);
-  
       }
 
       drawMedia() {
