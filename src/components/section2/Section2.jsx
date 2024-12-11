@@ -134,7 +134,7 @@ const Section2 = ({scrollValue}) => {
                   </div>
                 </div>
               </div>
-              <img src={Avatar} alt="Profile_picture" className="profilePicture"/>
+              {/* <img src={Avatar} alt="Profile_picture" className="profilePicture"/> */}
             </div>            
           </AnimatedTitle>
         </div>
