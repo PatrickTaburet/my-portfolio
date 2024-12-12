@@ -36,7 +36,7 @@ const DynamicColorText = ({ text, circleData, sectionRef }) => {
             Math.pow(charPosition.x - circleData.x, 2) +
               Math.pow(charPosition.y - circleData.y, 2)
           );
-          isInside = distance < circleData.size / 2  * 0.95;
+          isInside = distance < circleData.size / 2;
         }
 
         return (

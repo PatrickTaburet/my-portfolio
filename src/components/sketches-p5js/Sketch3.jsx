@@ -54,7 +54,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     };
 
     p.setup = () => {
-      const canvas = p.createCanvas(p.windowWidth, p.windowHeight + 50);
+      const canvas = p.createCanvas(p.windowWidth, p.windowHeight );
       canvas.parent('sketch-container3');
       p.setAttributes({ alpha: true });
       p.colorMode(p.HSB, 360, 100, 100, 1);

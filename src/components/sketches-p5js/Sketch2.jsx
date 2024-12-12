@@ -146,7 +146,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         this.drawMedia();
         p.noFill();
         p.stroke('#2BF7BC');
-        p.strokeWeight(2);
+        p.strokeWeight(3);
         p.ellipse(this.x, this.y, this.size);
       }
 

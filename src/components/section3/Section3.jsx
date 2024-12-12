@@ -1,16 +1,20 @@
-  import React, { useState } from 'react';
+  import React, { useState, useEffect } from 'react';
   import AnimatedTitle from '../animated-title/AnimatedTitle';
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
   import useVisibility from '../hooks/useVisibility';
 
-  const Section3 = ({scrollValue}) => {
+  const Section3 = ({scrollValue, onProjectInfoChange }) => {
     const [sectionRef, isVisible] = useVisibility();
     const [activeProject, setActiveProject] = useState(null);
     const [launchMode, setLaunchMode] = useState(true); 
     const [closedCircle, setClosedCircle] = useState(null); // Store the last active circle
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [showSketch, setShowSketch] = useState(true);
+
+    useEffect(() => {
+      onProjectInfoChange(isProjectInfoVisible);
+    }, [isProjectInfoVisible, onProjectInfoChange]);
 
     const handleProjectClick = (projectName) => {
       setActiveProject(projectName);
@@ -63,8 +67,8 @@
           )} 
         </div>
         <div
-          className={`projectInfosContainer ${!isProjectInfoVisible ? 'hidden' : ''}`}
-          style={!isProjectInfoVisible ? {} : { transition: 'none' }}
+          className={`projectInfosContainer ${isProjectInfoVisible ? '' : 'hidden'}`}
+          style={isProjectInfoVisible ? { transition: 'none' } : {}}
         >            
           <div className="projectInfos">{activeProject} is active</div>
           <span className="cross" onClick={handleCloseProject}>X</span>

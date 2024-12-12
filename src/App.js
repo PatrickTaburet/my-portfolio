@@ -3,15 +3,16 @@ import './css/global.css';
 import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 
-const Section1 = React.lazy(() => import('./components/section1/Section1'));
-const Section2 = React.lazy(() => import('./components/section2/Section2'));
-const Section3 = React.lazy(() => import('./components/section3/Section3'));
+const Section1 = lazy(() => import('./components/section1/Section1'));
+const Section2 = lazy(() => import('./components/section2/Section2'));
+const Section3 = lazy(() => import('./components/section3/Section3'));
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
   const windowHeight = window.innerHeight - 300;
   const [sectionOffsets, setSectionOffsets] = useState({ section1Offset: 0, section2Offset: 0, section3Offset: 0 });
-  
+  const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
+
  useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -44,6 +45,9 @@ function App() {
     window.scrollTo({ top: offset + adjustment, behavior: 'smooth' });
   };
   
+  const handleProjectInfoChange = (visibility) => {
+    setIsProjectInfoVisible(visibility);
+  };
 
   return (
     <div className="App">
@@ -55,14 +59,28 @@ function App() {
         <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
           <a 
             onClick={() => scrollToSection(sectionOffsets.section3Offset)}
-            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "white" : ""}`}}
+            style={{
+              color: `${
+                (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
+                || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
+                ? "white" 
+                : ""
+              }`
+            }}
           >
             Projects
           </a> 
             / 
           <a 
             onClick={() => scrollToSection(sectionOffsets.section2Offset)}
-            style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "white" : ""}`}}
+            style={{
+              color:`${
+                scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6
+                || isProjectInfoVisible  && scrollY >= window.innerHeight * 1.6 
+                ? "white" 
+                : ""
+              }`
+            }}
           >
             Contact
           </a>
@@ -81,6 +99,7 @@ function App() {
           <Section3 
             className="section3" 
             scrollValue = {scrollY} 
+            onProjectInfoChange={handleProjectInfoChange}
           />
         </Suspense>
       </main>
