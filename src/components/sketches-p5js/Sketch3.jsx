@@ -32,9 +32,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   }, []);
 
   useEffect(() => {
-    if (p5InstanceRef.current) {
-      console.log(isRunning);
-      
+    if (p5InstanceRef.current) {      
       isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
     }
   }, [isRunning]);

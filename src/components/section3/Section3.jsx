@@ -3,6 +3,8 @@
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
   import useVisibility from '../hooks/useVisibility';
+  import { TbCircleArrowLeftFilled } from "react-icons/tb";
+  import Slider from "./image-slider/Slider"
 
   const Section3 = ({scrollValue, onProjectInfoChange }) => {
     const [sectionRef, isVisible] = useVisibility();
@@ -11,6 +13,7 @@
     const [closedCircle, setClosedCircle] = useState(null); // Store the last active circle
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [showSketch, setShowSketch] = useState(true);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
       onProjectInfoChange(isProjectInfoVisible);
@@ -41,7 +44,7 @@
       >
         {/* Galaxy background */}
         <div className="bg"></div>
-        <div className="star-field">
+        <div className="starField">
           <div className="layer"></div>
           <div className="layer"></div>
           <div className="layer"></div>
@@ -69,9 +72,36 @@
         <div
           className={`projectInfosContainer ${isProjectInfoVisible ? '' : 'hidden'}`}
           style={isProjectInfoVisible ? { transition: 'none' } : {}}
-        >            
-          <div className="projectInfos">{activeProject} is active</div>
-          <span className="cross" onClick={handleCloseProject}>X</span>
+        >      
+
+
+          <div className="projectInfos">
+            <span className='projectTitle'>{activeProject}</span>
+            <div className='sliderWrapper'>
+              <Slider/>
+            </div>
+            <div className='bottomBack'>
+              
+              <TbCircleArrowLeftFilled 
+                className="backButton" 
+                onClick={handleCloseProject} 
+                color='white' 
+                size={55}
+                style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+              />
+
+             <span 
+              onMouseEnter={() => setIsHovered(true)} 
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={handleCloseProject} 
+            >
+              Back
+            </span>
+            </div>
+          </div>
+
+   
+         
         </div>
   
       </section>

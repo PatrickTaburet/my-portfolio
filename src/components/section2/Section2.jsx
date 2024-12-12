@@ -90,24 +90,18 @@ const Section2 = ({scrollValue}) => {
               <DynamicColorText 
                 text={"Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding."}
                 circleData={circleData}
-                verticalOffset={1}
                 sectionRef={sectionRef}
               />
               <DynamicColorText 
                 text={"I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions."}
                 circleData={circleData}
-                verticalOffset={2}
                 sectionRef={sectionRef}
               />
               <DynamicColorText 
                 text={"Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code."}
                 circleData={circleData}
-                verticalOffset={3}
                 sectionRef={sectionRef}
               />
-                {/* <span>Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding.</span> */}
-                {/* <span>I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions.</span>  */}
-                {/* <span>Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code.</span> */}
               </div>
             </AnimatedTitle>
           </div>

@@ -24,10 +24,32 @@ body {
   color: var(--color-light);
   z-index: 10;
 }
-.header a{
+.link {
   margin: 0 5px 0 5px;
   cursor: pointer;
+  transition: color 0.1s ease;
 }
+
+.link.modeA {
+  color: var(--color-primary);
+}
+.link.modeA:hover {
+  color: var(--color-text);
+}
+.link.modeB {
+  color: var(--color-text);
+}
+.link.modeB:hover {
+  color: var(--color-primary);
+}
+.link.modeC {
+
+  color: var(--color-secondary);
+}
+.link.modeC:hover {
+  color: var(--color-text);
+}
+
 .section1, .section2, .section3 {
   position: relative;
   height: 100vh;

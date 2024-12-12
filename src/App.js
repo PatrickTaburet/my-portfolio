@@ -54,33 +54,34 @@ function App() {
       <header 
         className="header"
         style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "#2BF7BC" : ''}`}}
-
       >
         <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
           <a 
-            onClick={() => scrollToSection(sectionOffsets.section3Offset)}
-            style={{
-              color: `${
-                (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
+           className={`link ${
+              isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
+              ? 'modeC' 
+              : (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6 
                 || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
-                ? "white" 
-                : ""
-              }`
-            }}
+                ? 'modeB' : 'modeA')
+            }`
+          }
+            onClick={() => scrollToSection(sectionOffsets.section3Offset)}
+            
           >
             Projects
           </a> 
             / 
           <a 
+           className={`link ${
+              isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
+              ? 'modeC' 
+              : (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6 
+                || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
+                ? 'modeB' : 'modeA')
+            }`
+          }
             onClick={() => scrollToSection(sectionOffsets.section2Offset)}
-            style={{
-              color:`${
-                scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6
-                || isProjectInfoVisible  && scrollY >= window.innerHeight * 1.6 
-                ? "white" 
-                : ""
-              }`
-            }}
+      
           >
             Contact
           </a>

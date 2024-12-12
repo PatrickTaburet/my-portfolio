@@ -12,6 +12,7 @@
     --color-text: #EEEEEE;
     --color-light: #e0f2f8;
     --color-text-transp: #b6ecf7af;
+    --color-section2: #9baeb6;
     
     /* Colors */
     /* --color-primary: #2BD7F9;
@@ -46,10 +47,9 @@ a {
     color: var(--color-primary); 
     font-size: var(--text-size-small);
 }
-a:hover{
-    color: var(--color-light);
-}
+
 main {
+    background-color: var(--color-section2);
     font-family:  var(--font-main);
     font-size: var(--text-size-main);
 }
