@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import ProfilPicture from './../../assets/images/avatar.jpg';
 
-const Sketch2 = ({isRunning}) => {
+const Sketch2 = ({isRunning, onCircleUpdate }) => {
   const p5InstanceRef = useRef(null);
 
   useEffect(() => {
@@ -56,6 +56,8 @@ const Sketch2 = ({isRunning}) => {
       const mouseCircle = drawMouseCircle(circle.size);
       circle.update(mouseCircle);
       circle.display();
+
+      onCircleUpdate(circle.x, circle.y, circle.size);
     };
 
     function drawMouseCircle(circleSize){

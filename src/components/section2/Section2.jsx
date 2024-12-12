@@ -4,6 +4,7 @@ import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
 import useVisibility from '../hooks/useVisibility';
+import DynamicColorText from './DynamicColorText';
 import { TbMail } from "react-icons/tb";
 import { TbPhone } from "react-icons/tb";
 import { TbBrandGithub } from "react-icons/tb";
@@ -17,8 +18,9 @@ const Section2 = ({scrollValue}) => {
   const [copied, setCopied] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [sectionTranslateY, setSectionTranslateY] = useState(0);
+  const [circleData, setCircleData] = useState({x: 0, y: 0, size: 0});
 
-  useEffect(() => {
+  useEffect(() => {    
     const updateTranslateY = () => {
       setSectionTranslateY( Math.max(-scrollValue, -window.innerHeight) / 2.8);
     };
@@ -67,6 +69,9 @@ const Section2 = ({scrollValue}) => {
     });
   };
 
+  const handleCircleUpdate = (x, y, size) => {
+    setCircleData({x: x, y: y, size: size});
+  };
   return (
     <section 
       id="section2" 
@@ -82,9 +87,27 @@ const Section2 = ({scrollValue}) => {
             </AnimatedTitle>
             <AnimatedTitle timeout={"200"} direction="up">
               <div className='bio'>
-                <span>Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding.</span>
-                <span>I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions.</span> 
-                <span>Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code.</span>
+              <DynamicColorText 
+                text={"Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding."}
+                circleData={circleData}
+                verticalOffset={1}
+                sectionRef={sectionRef}
+              />
+              <DynamicColorText 
+                text={"I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions."}
+                circleData={circleData}
+                verticalOffset={2}
+                sectionRef={sectionRef}
+              />
+              <DynamicColorText 
+                text={"Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code."}
+                circleData={circleData}
+                verticalOffset={3}
+                sectionRef={sectionRef}
+              />
+                {/* <span>Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding.</span> */}
+                {/* <span>I enjoy building digital products and crafting unique experiences that combine logic and creativity. My goal is to turn ideas into impactful and efficient solutions.</span>  */}
+                {/* <span>Driven by curiosity and a love for learning, I constantly seek to improve my skills and explore new ways to bring ideas to life through code.</span> */}
               </div>
             </AnimatedTitle>
           </div>
@@ -166,7 +189,11 @@ const Section2 = ({scrollValue}) => {
         </span>
       )}
 
-      <Sketch2 className="sketch" isRunning={isVisible}/>
+      <Sketch2 
+        className="sketch" 
+        isRunning={isVisible}
+        onCircleUpdate={handleCircleUpdate}
+      />
      
     </section>
   );
