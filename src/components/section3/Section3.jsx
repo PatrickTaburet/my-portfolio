@@ -74,29 +74,68 @@
           style={isProjectInfoVisible ? { transition: 'none' } : {}}
         >      
 
+          {activeProject == "NexusLab" ? (
+           <div className="projectInfos">
+           <span className='projectTitle'>{activeProject}</span>
+           <div className='projectContent'>
+             <Slider/>
+             <div className='projectDescription'>
+               <p>NexusLab is a collaborative platform focused on the fusion of art and technology. It enables users to manipulate, create, and share digital artworks generated through creative coding algorithms.</p>
+               <p>By integrating artistic practices that blend programming with visual art, NexusLab aims to make these forms of expression more accessible and to build a community around these disciplines, fostering co-creation and knowledge sharing.</p>
+               <p>The project, available on both web and mobile platforms, leverages modern technologies such as React, Symfony, and React Native.
+               Its structure and technical choices ensure a seamless and secure user experience across all devices.</p>
+             </div>
+           </div>
 
-          <div className="projectInfos">
-            <span className='projectTitle'>{activeProject}</span>
-              <Slider/>
-            <div className='bottomBack'>
-              
-              <TbCircleArrowLeftFilled 
-                className="backButton" 
-                onClick={handleCloseProject} 
-                color='white' 
-                size={55}
-                style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
-              />
-
+           <div className='bottomBack'>
+             <TbCircleArrowLeftFilled 
+               className="backButton" 
+               onClick={handleCloseProject} 
+               color='white' 
+               size={55}
+               style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+             />
              <span 
-              onMouseEnter={() => setIsHovered(true)} 
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={handleCloseProject} 
-            >
-              Back
-            </span>
-            </div>
-          </div>
+               onMouseEnter={() => setIsHovered(true)} 
+               onMouseLeave={() => setIsHovered(false)}
+               onClick={handleCloseProject} 
+             >
+               Back
+             </span>
+           </div>
+         </div>
+
+          ) : 
+
+         <div className="projectInfos">
+         <span className='projectTitle'>{activeProject}</span>
+         <div className='projectContent'>
+           <Slider/>
+           <div className='projectDescription'>
+             <p>BLABLABLABLABLA</p>
+           </div>
+         </div>
+
+         <div className='bottomBack'>
+           <TbCircleArrowLeftFilled 
+             className="backButton" 
+             onClick={handleCloseProject} 
+             color='white' 
+             size={55}
+             style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+           />
+           <span 
+             onMouseEnter={() => setIsHovered(true)} 
+             onMouseLeave={() => setIsHovered(false)}
+             onClick={handleCloseProject} 
+           >
+             Back
+           </span>
+         </div>
+       </div>
+          
+          } 
+         
 
    
          
