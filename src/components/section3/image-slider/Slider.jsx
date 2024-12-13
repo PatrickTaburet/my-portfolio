@@ -2,9 +2,9 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import styles from './slider.module.css';
-import img1 from './../../../assets/images/avatar.jpg';
-import img2 from './../../../assets/images/blue-background.png';
-import img3 from './../../../assets/images/cyber.png';
+import img1 from './../../../assets/images/nexusLab/dataart.jpg';
+import img2 from './../../../assets/images/nexusLab/gallery desktop.jpg';
+import img3 from './../../../assets/images/nexusLab/generative desktop.jpg';
 
 
 const Slider = () => {
@@ -30,23 +30,24 @@ const Slider = () => {
 
     ]
     return (
-        <div>
+        <div className={styles.sliderWrapper}>
             <Carousel
-            autoPlay
-            interval={3000}
-            infiniteLoop
-            showThumbs={false}
-            showStatus={false}
+                autoPlay
+                interval={3000}
+                infiniteLoop
+                showThumbs={false}
+                showStatus={false}
+                dynamicHeight={false}
             >
                 {data.map(slide => (
-                    <div key={slide.id}>
-                        <img src={slide.image} alt=""/>
-                        <div className={styles.overlay}>
+                    <div key={slide.id} className={styles.slideContainer}>
+                        <img src={slide.image} className={styles.sliderImage} alt=""/>
+                        {/* <div className={styles.overlay}>
                             <h2 className={styles.overlayTitle}>{slide.title}</h2>
                             <p className={styles.overlayText}>{slide.text}</p>
-                        </div>
+                        </div> */}
                       
-                    </div>
+                    </div>  
                 ))}
             </Carousel>
         </div>

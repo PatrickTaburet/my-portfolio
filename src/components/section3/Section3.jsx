@@ -77,9 +77,7 @@
 
           <div className="projectInfos">
             <span className='projectTitle'>{activeProject}</span>
-            <div className='sliderWrapper'>
               <Slider/>
-            </div>
             <div className='bottomBack'>
               
               <TbCircleArrowLeftFilled 

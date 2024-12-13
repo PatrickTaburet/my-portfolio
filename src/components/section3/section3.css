@@ -102,12 +102,6 @@
   transition: scale 0.2s; 
 }
 
-.sliderWrapper{
-  max-width: 600px;
-  margin: 0 auto;
-  margin-bottom: 5vw;
-}
-
 
 /* particle background */
 
