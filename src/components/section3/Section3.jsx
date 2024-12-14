@@ -5,6 +5,7 @@
   import useVisibility from '../hooks/useVisibility';
   import { TbCircleArrowLeftFilled } from "react-icons/tb";
   import Slider from "./image-slider/Slider"
+  import ProjectsMapping from './ProjectsMapping';
 
   const Section3 = ({scrollValue, onProjectInfoChange }) => {
     const [sectionRef, isVisible] = useVisibility();
@@ -19,8 +20,9 @@
       onProjectInfoChange(isProjectInfoVisible);
     }, [isProjectInfoVisible, onProjectInfoChange]);
 
-    const handleProjectClick = (projectName) => {
-      setActiveProject(projectName);
+    const handleProjectClick = (projectName) => {    
+      const cleanedProjectName = projectName.replace(/\n/g, '');  
+      setActiveProject(cleanedProjectName);
       setIsProjectInfoVisible(true);
       setShowSketch(false);
     };
@@ -74,16 +76,13 @@
           style={isProjectInfoVisible ? { transition: 'none' } : {}}
         >      
 
-          {activeProject == "NexusLab" ? (
+          {activeProject && ProjectsMapping[activeProject] ? (
            <div className="projectInfos">
-           <span className='projectTitle'>{activeProject}</span>
+           <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
            <div className='projectContent'>
-             <Slider/>
+             <Slider images={ProjectsMapping[activeProject].images}/>
              <div className='projectDescription'>
-               <p>NexusLab is a collaborative platform focused on the fusion of art and technology. It enables users to manipulate, create, and share digital artworks generated through creative coding algorithms.</p>
-               <p>By integrating artistic practices that blend programming with visual art, NexusLab aims to make these forms of expression more accessible and to build a community around these disciplines, fostering co-creation and knowledge sharing.</p>
-               <p>The project, available on both web and mobile platforms, leverages modern technologies such as React, Symfony, and React Native.
-               Its structure and technical choices ensure a seamless and secure user experience across all devices.</p>
+               {ProjectsMapping[activeProject].description}
              </div>
            </div>
 
@@ -103,43 +102,13 @@
                Back
              </span>
            </div>
-         </div>
-
-          ) : 
-
-         <div className="projectInfos">
-         <span className='projectTitle'>{activeProject}</span>
-         <div className='projectContent'>
-           <Slider/>
-           <div className='projectDescription'>
-             <p>BLABLABLABLABLA</p>
-           </div>
-         </div>
-
-         <div className='bottomBack'>
-           <TbCircleArrowLeftFilled 
-             className="backButton" 
-             onClick={handleCloseProject} 
-             color='white' 
-             size={55}
-             style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
-           />
-           <span 
-             onMouseEnter={() => setIsHovered(true)} 
-             onMouseLeave={() => setIsHovered(false)}
-             onClick={handleCloseProject} 
-           >
-             Back
-           </span>
-         </div>
+          </div>
+          ) : (
+            <div className="projectInfos">
+             
+            </div>
+          )} 
        </div>
-          
-          } 
-         
-
-   
-         
-        </div>
   
       </section>
     );
