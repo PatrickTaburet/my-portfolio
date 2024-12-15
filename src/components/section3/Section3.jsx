@@ -77,13 +77,18 @@
         >      
 
           {activeProject && ProjectsMapping[activeProject] ? (
-           <div className="projectInfos">
-           <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
-           <div className='projectContent'>
-             <Slider images={ProjectsMapping[activeProject].images}/>
-             <div className='projectDescription'>
-               {ProjectsMapping[activeProject].description}
-             </div>
+            <div className="projectInfos">
+            <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
+            <div className='projectContent'>
+              <Slider images={ProjectsMapping[activeProject].images}/>
+              <div className='projectDescription'>
+                {ProjectsMapping[activeProject].description}
+                <div className='elementWrapper'>
+                  {ProjectsMapping[activeProject].element}
+                </div>
+
+              </div>
+             
            </div>
 
            <div className='bottomBack'>
