@@ -36,20 +36,23 @@ const ProjectsMapping = {
             text: "loremisdsdsdpsuuum"
         },
       ],
-      links: {
-        github: "https://github.com/PatrickTaburet/nexus-lab-project",
-      },
+      links: [
+        {
+          title: "GitHub Repository",
+          url: "https://github.com/PatrickTaburet/nexus-lab-project",
+        },
+      ],
       element: (
         <>
           <p>Click below to view the project documentation :</p>
           <a 
-            className='pdfLink'
+            className='link'
             href="/documents/DOSSIER_PROJET_NEXUS_LAB-Taburet_Patrick.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
           >
             <TbFileTypePdf size={35}/>
-            Open NexusLab Documentation
+            Open NexusLab Documentation (FR)
           </a>
         </>
       )
@@ -70,9 +73,21 @@ const ProjectsMapping = {
             text: "loremipsuuum"
         },
       ],
-      links: {
-        github: "https://github.com/PatrickTaburet/P5JS-explorations",
-      },
+      links:  [
+        {
+          title: "p5.js explorations",
+          url: "https://github.com/PatrickTaburet/P5JS-explorations",
+        },
+        {
+          title: "Vanilla JavaScript generative art",
+          url: "https://github.com/PatrickTaburet/Generative_Art",
+        },
+        {
+          title: "Data art visualization",
+          url: "https://github.com/PatrickTaburet/data-art-population",
+        },
+
+      ],
       element: (
         <>
         

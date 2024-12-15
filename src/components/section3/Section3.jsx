@@ -6,6 +6,7 @@
   import { TbCircleArrowLeftFilled } from "react-icons/tb";
   import Slider from "./image-slider/Slider"
   import ProjectsMapping from './ProjectsMapping';
+  import { TbBrandGithub } from "react-icons/tb";
 
   const Section3 = ({scrollValue, onProjectInfoChange }) => {
     const [sectionRef, isVisible] = useVisibility();
@@ -83,6 +84,21 @@
               <Slider images={ProjectsMapping[activeProject].images}/>
               <div className='projectDescription'>
                 {ProjectsMapping[activeProject].description}
+                <div className='linksWrapper'>
+                <p>Source code :</p>
+                {ProjectsMapping[activeProject].links.map((link, index) => (
+                  <a 
+                    key={index}
+                    className='link'
+                    href={link.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <TbBrandGithub size={33}/>
+                    {link.title}
+                  </a>
+                ))}
+                </div>
                 <div className='elementWrapper'>
                   {ProjectsMapping[activeProject].element}
                 </div>
