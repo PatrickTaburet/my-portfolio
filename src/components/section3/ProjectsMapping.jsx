@@ -1,5 +1,5 @@
 import React from 'react'
-import NexusLab1 from './../../assets/images/nexusLab/dataart.jpg';
+import NexusLab1 from './../../assets/images/nexusLab/NexusLab-full-purple.jpg';
 import NexusLab2 from './../../assets/images/nexusLab/gallery desktop.jpg';
 import NexusLab3 from './../../assets/images/nexusLab/generative desktop.jpg';
 import CreativeCoding1 from './../../assets/images/creativeCoding/artwork.png';
@@ -52,12 +52,21 @@ const ProjectsMapping = {
             rel="noopener noreferrer"
           >
             <TbFileTypePdf size={35}/>
-            Open NexusLab Documentation (FR)
+            Specifications Document (FR)
+          </a>
+          <a 
+            className='link'
+            href="/documents/DOSSIER_PROJET_NEXUS_LAB-Taburet_Patrick.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <TbFileTypePdf size={35}/>
+            NexusLab - Complete Project File (FR)
           </a>
         </>
       )
     },
-    CreativeCoding: {
+    Creative_Coding: {
       title: "Creative Coding",
       description: (
         <>

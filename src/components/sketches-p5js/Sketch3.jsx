@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import NexusLabMedia from './../../assets/images/avatar.jpg';
-import CreativeCodingMedia from './../../assets/images/cyber.png';
+import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.png';
+import CreativeCodingMedia from './../../assets/images/creativeCoding/short_flowfield-gif.gif';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
@@ -65,7 +65,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
       // Add circles projects
       circles.push(new Circle(0, "NexusLab", mediaProject1));
-      circles.push(new Circle(p.PI, "Creative\nCoding", mediaProject2)); // Start the second circle at the opposite
+      circles.push(new Circle(p.PI, "Creative_Coding", mediaProject2)); // Start the second circle at the opposite
       // circles.push(new Circle(p.PI/2, "test"));
       // ---> Add new circles for new projects
       
@@ -245,28 +245,88 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         p.ellipse(this.x, this.y, this.size);
       }
       drawMedia() {
-        // Display project preview with fade effect
         if (this.media && this.opacity > 0) {
-          if (!this.maskedImage) this.maskedImage = this.createMaskedImage(this.media, this.size);
-
-          // Center the image and make it match the size of the circle
-          const imgX = this.x - this.size / 2;
-          const imgY = this.y - this.size / 2;
-          const imgSize = this.size;
-          
+          const circleDiameter = this.size;
+      
+          const aspectRatio = this.media.width / this.media.height;
+          let imgWidth, imgHeight;
+      
+          // Calculate the scaled width and height while maintaining aspect ratio
+          if (aspectRatio > 1) {
+          // Landscape orientation
+            imgWidth = circleDiameter;
+            imgHeight = circleDiameter / aspectRatio;
+          } else {
+            // Portrait or square orientation
+            imgWidth = circleDiameter * aspectRatio;
+            imgHeight = circleDiameter;
+          }
+      
           p.push();
+          p.ellipseMode(p.CENTER);
+          p.imageMode(p.CENTER);
+
+          p.translate(this.x, this.y);
+      
+          // Crop image into the circle
+          p.beginClip();
+          p.ellipse(0, 0, circleDiameter, circleDiameter);
           p.tint(255, this.opacity); // Apply fade transition to image opacity
-          p.image(this.maskedImage, imgX, imgY, imgSize, imgSize); 
-          p.pop();
+
+          p.image(this.media, 0, 0, imgWidth, imgHeight);
+          p.endClip();
+      
+          p.pop(); // Restauration du contexte graphique
         }
       }
+      // drawMedia() {
+      //   // Display project preview with fade effect
+      //   if (this.media && this.opacity > 0) {
+      //     if (!this.maskedImage) this.maskedImage = this.createMaskedImage(this.media, this.size);
+      
+      //     // Center the image and preserve proportions
+      //     const imgX = this.x - this.size / 2;
+      //     const imgY = this.y - this.size / 2;
+      //     const circleDiameter = this.size;
+      
+      //     // Calculate the scaled width and height while maintaining aspect ratio
+      //     const aspectRatio = this.media.width / this.media.height;
+      //     let imgWidth, imgHeight;
+      
+      //     if (aspectRatio > 1) {
+      //       // Landscape orientation
+      //       imgWidth = circleDiameter;
+      //       imgHeight = circleDiameter / aspectRatio;
+      //     } else {
+      //       // Portrait or square orientation
+      //       imgWidth = circleDiameter * aspectRatio;
+      //       imgHeight = circleDiameter;
+      //     }
+      
+      //     // Adjust the image position to center it
+      //     const adjustedImgX = this.x - imgWidth / 2;
+      //     const adjustedImgY = this.y - imgHeight / 2;
+      
+      //     p.push();
+      //     p.tint(255, this.opacity); // Apply fade transition to image opacity
+      //     p.image(this.maskedImage, adjustedImgX, adjustedImgY, imgWidth, imgHeight);
+      //     p.pop();
+      //   }
+      // }
+      
       drawText() {
         if (!this.isExpanded) {
           // Display project title
           p.textAlign(p.CENTER, p.CENTER);
           p.fill(0);
           p.textSize(this.size / 7);
-          p.text(this.text, this.x, this.y);
+
+          const lines = this.text.split('_');
+          const lineHeight = this.size / 7;
+          lines.forEach((line, index) => {
+            const yOffset = (index - (lines.length - 1) / 2) * lineHeight;
+            p.text(line, this.x, this.y + yOffset);
+          });
         }
       }
 

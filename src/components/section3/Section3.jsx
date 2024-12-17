@@ -22,8 +22,7 @@
     }, [isProjectInfoVisible, onProjectInfoChange]);
 
     const handleProjectClick = (projectName) => {    
-      const cleanedProjectName = projectName.replace(/\n/g, '');  
-      setActiveProject(cleanedProjectName);
+      setActiveProject(projectName);
       setIsProjectInfoVisible(true);
       setShowSketch(false);
     };
