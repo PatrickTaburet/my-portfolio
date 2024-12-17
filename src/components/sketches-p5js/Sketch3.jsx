@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.png';
-import CreativeCodingMedia from './../../assets/images/creativeCoding/short_flowfield-gif.gif';
+import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-gif.gif';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
@@ -245,6 +245,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         p.ellipse(this.x, this.y, this.size);
       }
       drawMedia() {
+         // Display project preview with fade effect
         if (this.media && this.opacity > 0) {
           const circleDiameter = this.size;
       
@@ -263,62 +264,20 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
           }
       
           p.push();
-          p.ellipseMode(p.CENTER);
           p.imageMode(p.CENTER);
-
           p.translate(this.x, this.y);
-      
-          // Crop image into the circle
-          p.beginClip();
-          p.ellipse(0, 0, circleDiameter, circleDiameter);
           p.tint(255, this.opacity); // Apply fade transition to image opacity
-
           p.image(this.media, 0, 0, imgWidth, imgHeight);
-          p.endClip();
-      
-          p.pop(); // Restauration du contexte graphique
+          p.pop(); 
         }
       }
-      // drawMedia() {
-      //   // Display project preview with fade effect
-      //   if (this.media && this.opacity > 0) {
-      //     if (!this.maskedImage) this.maskedImage = this.createMaskedImage(this.media, this.size);
-      
-      //     // Center the image and preserve proportions
-      //     const imgX = this.x - this.size / 2;
-      //     const imgY = this.y - this.size / 2;
-      //     const circleDiameter = this.size;
-      
-      //     // Calculate the scaled width and height while maintaining aspect ratio
-      //     const aspectRatio = this.media.width / this.media.height;
-      //     let imgWidth, imgHeight;
-      
-      //     if (aspectRatio > 1) {
-      //       // Landscape orientation
-      //       imgWidth = circleDiameter;
-      //       imgHeight = circleDiameter / aspectRatio;
-      //     } else {
-      //       // Portrait or square orientation
-      //       imgWidth = circleDiameter * aspectRatio;
-      //       imgHeight = circleDiameter;
-      //     }
-      
-      //     // Adjust the image position to center it
-      //     const adjustedImgX = this.x - imgWidth / 2;
-      //     const adjustedImgY = this.y - imgHeight / 2;
-      
-      //     p.push();
-      //     p.tint(255, this.opacity); // Apply fade transition to image opacity
-      //     p.image(this.maskedImage, adjustedImgX, adjustedImgY, imgWidth, imgHeight);
-      //     p.pop();
-      //   }
-      // }
-      
+     
       drawText() {
         if (!this.isExpanded) {
           // Display project title
           p.textAlign(p.CENTER, p.CENTER);
-          p.fill(0);
+          this.hovered ?  p.fill(255) : p.fill(0);
+
           p.textSize(this.size / 7);
 
           const lines = this.text.split('_');
@@ -328,22 +287,6 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
             p.text(line, this.x, this.y + yOffset);
           });
         }
-      }
-
-      createMaskedImage(img, size) {
-        // Create a p5.Image for the mask
-        const mask = p.createGraphics(size, size);
-        mask.ellipseMode(p.CENTER);
-        mask.fill(255);
-        mask.noStroke();
-        mask.ellipse(size / 2, size / 2, size, size);
-    
-        // Create a new p5.Image with the media and apply the mask
-        const maskedImage = img.get(); // Clone the image to avoid mutating the original
-        maskedImage.resize(size, size); // Resize to match the circle size
-        maskedImage.mask(mask); // Apply the mask
-    
-        return maskedImage;
       }
 
       checkHover(mx, my) {
