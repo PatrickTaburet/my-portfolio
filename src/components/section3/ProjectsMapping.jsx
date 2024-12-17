@@ -1,7 +1,8 @@
 import React from 'react'
 import NexusLab1 from './../../assets/images/nexusLab/NexusLab-full-purple.jpg';
-import NexusLab2 from './../../assets/images/nexusLab/gallery desktop.jpg';
-import NexusLab3 from './../../assets/images/nexusLab/generative desktop.jpg';
+import NexusLab2 from './../../assets/images/nexusLab/gallery-desktop.jpg';
+import NexusLab3 from './../../assets/images/nexusLab/generative-desktop.jpg';
+import NexusLab4 from './../../assets/images/nexusLab/dataart.jpg';
 import CreativeCoding1 from './../../assets/images/creativeCoding/artwork.png';
 import { TbFileTypePdf } from "react-icons/tb";
 
@@ -35,6 +36,12 @@ const ProjectsMapping = {
             title: "image 3",
             text: "loremisdsdsdpsuuum"
         },
+        {
+            id: 4,
+            image: NexusLab4,
+            title: "image 4",
+            text: "loremisdsdsdpsuuum"
+        },
       ],
       links: [
         {
@@ -61,7 +68,7 @@ const ProjectsMapping = {
             rel="noopener noreferrer"
           >
             <TbFileTypePdf size={35}/>
-            NexusLab - Complete Project File (FR)
+            NexusLab - CDA Final Project File (FR)
           </a>
         </>
       )
@@ -70,8 +77,9 @@ const ProjectsMapping = {
       title: "Creative Coding",
       description: (
         <>
-          <p>Creative Coding is an exploration of artistic expression using programming. This project showcases generative art, interactive installations, and visual experiments crafted through code.</p>
-          <p>It bridges the gap between technology and creativity, offering workshops and tools for artists and developers to experiment with innovative forms of digital art.</p>
+          <p>Creative coding is a practice that combines art and technology to create interactive and animated experiences. It encompasses various creative processes, such as data art and generative art, both of which I focus on in my work. By using algorithms and data, these approaches enable the creation of unique and visually compelling pieces that blend creativity with logic.</p>
+          <p>My work primarily involves Processing and p5.js, tools that allow me to develop visually engaging and dynamic content. I'm currently expanding into WebGL and Three.js to explore 3D environments and the power of shaders.</p>
+          <p>Creative coding offers a unique way to bring animation and interactivity into web applications, enhancing the user experience with intuitive and visually appealing designs. It's an approach that transforms static interfaces into more engaging and immersive experiences, blending aesthetics with functionality.</p>
         </>
       ),
       images: [

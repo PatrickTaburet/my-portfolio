@@ -8,7 +8,7 @@
   import ProjectsMapping from './ProjectsMapping';
   import { TbBrandGithub } from "react-icons/tb";
 
-  const Section3 = ({scrollValue, onProjectInfoChange }) => {
+  const Section3 = ({scrollValue, onProjectInfoChange, isClosedFromHeader }) => {
     const [sectionRef, isVisible] = useVisibility();
     const [activeProject, setActiveProject] = useState(null);
     const [launchMode, setLaunchMode] = useState(true); 
@@ -16,6 +16,10 @@
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [showSketch, setShowSketch] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
+    
+    useEffect(() => {
+      isClosedFromHeader && handleCloseProject();
+    }, [isClosedFromHeader]);
 
     useEffect(() => {
       onProjectInfoChange(isProjectInfoVisible);
@@ -83,25 +87,26 @@
               <Slider images={ProjectsMapping[activeProject].images}/>
               <div className='projectDescription'>
                 {ProjectsMapping[activeProject].description}
-                <div className='linksWrapper'>
-                <p>Source code :</p>
-                {ProjectsMapping[activeProject].links.map((link, index) => (
-                  <a 
-                    key={index}
-                    className='link'
-                    href={link.url}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    <TbBrandGithub size={33}/>
-                    {link.title}
-                  </a>
-                ))}
+                <div className='linksContainer'>
+                  <div className='elementWrapper'>
+                    {ProjectsMapping[activeProject].element}
+                  </div>
+                  <div className='linksWrapper'>
+                    <p>Source code :</p>
+                    {ProjectsMapping[activeProject].links.map((link, index) => (
+                      <a 
+                        key={index}
+                        className='link'
+                        href={link.url}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <TbBrandGithub size={33}/>
+                        {link.title}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-                <div className='elementWrapper'>
-                  {ProjectsMapping[activeProject].element}
-                </div>
-
               </div>
              
            </div>

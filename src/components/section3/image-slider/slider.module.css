@@ -1,8 +1,8 @@
 .sliderWrapper{
    max-width: 1000px;
    /* Manage global height */
-   max-height: 37vw ;
-   min-height: 77vh;
+   max-height: 35vw ;
+   min-height: 73vh;
    margin:20px;
    overflow: hidden;
 }
@@ -14,8 +14,8 @@
 .sliderImage {
    width: 100% ;
    /* Manage global height */
-   max-height: 37vw ;
-   min-height: 77vh;
+   max-height: 35vw ;
+   min-height: 73vh;
    object-position: top;
    object-fit: cover ;
 }

@@ -12,6 +12,7 @@ function App() {
   const windowHeight = window.innerHeight - 300;
   const [sectionOffsets, setSectionOffsets] = useState({ section1Offset: 0, section2Offset: 0, section3Offset: 0 });
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
+  const [isClosedFromHeader, setIsClosedFromHeader] = useState(false);
 
  useEffect(() => {
     const handleScroll = () => {
@@ -41,12 +42,19 @@ function App() {
   }, []);
   
   const scrollToSection = (offset) => {
-    const adjustment = -240; // Ajustez cette valeur en fonction de vos besoins
+    const adjustment = -240;
     window.scrollTo({ top: offset + adjustment, behavior: 'smooth' });
   };
   
   const handleProjectInfoChange = (visibility) => {
     setIsProjectInfoVisible(visibility);
+  };
+
+  const handleCloseFromHeader = () => {
+    setIsClosedFromHeader (isProjectInfoVisible ? true : false); 
+    setTimeout(() => {
+      setIsClosedFromHeader (!isProjectInfoVisible); 
+    }, 200);
   };
 
   return (
@@ -65,7 +73,10 @@ function App() {
                 ? 'modeB' : 'modeA')
             }`
           }
-            onClick={() => scrollToSection(sectionOffsets.section3Offset)}
+            onClick={ () => {
+              scrollToSection(sectionOffsets.section3Offset);
+              handleCloseFromHeader();              
+            }}
             
           >
             Projects
@@ -101,6 +112,7 @@ function App() {
             className="section3" 
             scrollValue = {scrollY} 
             onProjectInfoChange={handleProjectInfoChange}
+            isClosedFromHeader = {isClosedFromHeader}
           />
         </Suspense>
       </main>
