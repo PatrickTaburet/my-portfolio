@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.png';
-import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-gif.gif';
+import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm.webm';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
@@ -48,16 +48,22 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
 
     p.preload = () => {
       mediaProject1 = p.loadImage(NexusLabMedia);
-      mediaProject2 = p.loadImage(CreativeCodingMedia);
+      mediaProject2 = p.createVideo(CreativeCodingMedia);
     };
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight );
       canvas.parent('sketch-container3');
-      p.setAttributes({ alpha: true });
+      canvas.elt.getContext('2d', { willReadFrequently: true }); 
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
 
+      mediaProject2.loop();
+      mediaProject2.volume(0);
+      mediaProject2.hide();
+      if (mediaProject2.elt.paused) {
+        mediaProject2.play();
+      }
       // Proportional orbital distance and size
       maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
       maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
@@ -83,6 +89,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     p.draw = () => {
       // p.background(196, 58, 5);      
       p.clear(); 
+
       const isClosingCircle = circles.some(circle => circle.isClosing);
 
      // Sort circles by size to draw larger ones on top

@@ -47,7 +47,7 @@ const ProjectsMapping = {
           <p>Click below to view the project documentation :</p>
           <a 
             className='link'
-            href="/documents/DOSSIER_PROJET_NEXUS_LAB-Taburet_Patrick.pdf" 
+            href="/documents/Cahier des charges - projet NexusLab.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
           >
