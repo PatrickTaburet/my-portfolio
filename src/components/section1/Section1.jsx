@@ -75,8 +75,8 @@ const Section1 = ({scrollValue}) => {
 
       <div className='sliderContainer'>
         <AnimatedTitle timeout={"900"} direction="down">
-          <p>lines</p>
-          <input type="range" min="1" max="60" defaultValue="13" step="1" id="lineSlider" />
+          {/* <p>Lines</p> */}
+          <input type="range"  min="1" max="60" defaultValue="13" step="1"  className="slider" id="lineSlider"/>
         </AnimatedTitle>
       </div>
     </section>
