@@ -6,11 +6,7 @@
 }
 
 .sketch-container {
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
-  /* margin-top: 100px; */
+
 }
 
 .section1Content{
@@ -86,7 +82,8 @@
 }
 
 
-/* slider */
+/* Range slider */
+
 .sliderContainer{
   color: white;
   position: absolute;
@@ -96,20 +93,20 @@
   justify-content: flex-start;
   width: 5vw;
   height: 5vw;
-  top: 16vw;
-  right: 2vw;
+  top: 17vw;
+  right: 1.5vw;
 }
 .sliderContainer p{
   margin-bottom: 7px;
   position: relative;
 }
 
-.slider {
+.rangeSlider {
   position: relative;
   margin-top: 5.5vw;
   -webkit-appearance: none;
-  width: 10vw;
-  min-width: 130px;
+  width: 12vw;
+  min-width: 150px;
   height: 15px;
   background: #000;
   outline: none;
@@ -120,7 +117,7 @@
 
 
 /* for chrome/safari */
-.slider::-webkit-slider-thumb {
+.rangeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 1.2vw;
@@ -134,12 +131,14 @@
 }
 
 /* for firefox */
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 60px;
+.rangeSlider::-moz-range-thumb {
+  width: 1.2vw;
+  min-width: 20px;
+  height: 3vw;
+  min-height: 40px;
   background: #000;
   cursor: pointer;
-  border: 5px solid lawngreen;
+  border: 5px solid var(--color-primary);
   border-radius: 4px;
 }
 
@@ -163,6 +162,9 @@ Media queries
   .bottomLine {
     font-size: 18px;
   }
+  .sliderContainer{
+    right: 3vw;
+  }
 
 }
 
@@ -182,6 +184,9 @@ Media queries
     font-size: 18px;
     padding: 100px 50px 100px 50px;
   }
+  .sliderContainer{
+    right: 4vw;
+  }
 
 }
 
@@ -199,7 +204,7 @@ Media queries
     margin-top: 5vw;
   }
   .bottomLine {
-    text-align: center;
+    text-align: start;
     font-size: 18px;
     padding: 100px 30px 100px 30px;
   }

@@ -204,7 +204,8 @@
     margin: 3px;
 }
 .logoContainer p{
-    font-size: var(--text-size-text);
+    font-size: var(--text-size-small);
+    color: var(--color-text);
     font-weight: 400;
 }
 
@@ -272,6 +273,10 @@ Media queries
     .card2{
         min-width: 180px;
         min-height: 180px;
+    }
+    .logoContainer p{
+        font-size: var(--text-size-mobile);
+        font-weight: 300;
     }
     /*  Contact Card */
 

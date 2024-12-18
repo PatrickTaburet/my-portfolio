@@ -248,3 +248,39 @@
 .starField .layer:nth-child(3) {
   animation: sf-fly-by-3 5s linear infinite;
 }
+
+
+/* 
+========================
+Media queries
+========================
+*/
+
+/* ----------------------------- Tablet < 1024px ------------------------------ */
+
+@media screen and (max-width: 1024px)
+{
+  .section3Content{
+    padding-top: 5vw;
+  }
+  .section3Content h3{
+    font-size: 55px;
+  }
+}
+/* ----------------------------- Tablet < 768px ------------------------------ */
+
+@media screen and (max-width: 768px)
+{
+  .section3Content{
+    padding-top: 10vw;
+  }
+
+}
+/* ----------------------------- Mobile < 560px ------------------------------ */
+
+@media screen and (max-width: 560px)
+{
+  .section3Content h3{
+    font-size: 43px;
+  }
+}

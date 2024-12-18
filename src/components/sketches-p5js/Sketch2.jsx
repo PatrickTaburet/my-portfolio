@@ -73,13 +73,13 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     }
 
     p.windowResized = () => {
-      circle.size = circle.calculateSize();      
+      circle.size = circle.calculateSize();    
+      // circle.calculatePosition();   
     }
 
     class Circle {
       constructor() {
-        this.x = p.width / 2;
-        this.y = p.height / 2;
+        this.calculatePosition(); 
         this.vx = 0;
         this.vy = 0;
         this.size = this.calculateSize();
@@ -87,6 +87,25 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         this.media = pictureMedia;
         this.collisionDetected = false;
         this.collisionTimer = 0; 
+      }
+
+      calculatePosition(){
+        if (p.width > 1400) {
+          this.x = p.width / 2;
+          this.y = p.height;
+        } else if (p.width < 768) {
+          this.x = p.width / 3.5;
+          this.y = p.height / 1.55;
+         } else if (p.width < 1100) {
+          this.x = p.width / 1.39;
+          this.y = p.height / 1.2;
+        } else if (p.width < 560) {
+          // this.x = p.width / 3.5;
+          // this.y = p.height / 1.55;
+        }  else {
+          this.x = p.width / 1.75;
+          this.y = p.height / 1.2;
+        }
       }
     
       update(mouseCircle) {
