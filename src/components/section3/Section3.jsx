@@ -82,11 +82,20 @@
 
           {activeProject && ProjectsMapping[activeProject] ? (
             <div className="projectInfos">
-            <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
+            <AnimatedTitle timeout={"0"} direction="up">
+             <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
+            </AnimatedTitle>
             <div className='projectContent'>
-              <Slider images={ProjectsMapping[activeProject].images}/>
+              <AnimatedTitle timeout={"200"} direction="up">
+                <Slider images={ProjectsMapping[activeProject].images}/>
+              </AnimatedTitle>
+
               <div className='projectDescription'>
+              <AnimatedTitle timeout={"400"} direction="up">
+
                 {ProjectsMapping[activeProject].description}
+                </AnimatedTitle>
+                <AnimatedTitle timeout={"600"} direction="up">
                 <div className='linksContainer'>
                   <div className='elementWrapper'>
                     {ProjectsMapping[activeProject].element}
@@ -101,16 +110,18 @@
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
-                        <TbBrandGithub size={33}/>
+                        <TbBrandGithub size={27}/>
                         {link.title}
                       </a>
                     ))}
                   </div>
                 </div>
+                </AnimatedTitle>
               </div>
              
            </div>
-
+           <AnimatedTitle timeout={"800"} direction="up">
+         
            <div className='bottomBack'>
              <TbCircleArrowLeftFilled 
                className="backButton" 
@@ -127,6 +138,8 @@
                Back
              </span>
            </div>
+           </AnimatedTitle>
+
           </div>
           ) : (
             <div className="projectInfos">

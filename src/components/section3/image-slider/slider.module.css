@@ -1,8 +1,8 @@
 .sliderWrapper{
    max-width: 1000px;
    /* Manage global height */
-   max-height: 35vw ;
-   min-height: 73vh;
+   max-height:36vw ;
+   /* min-height: 36vw; */
    margin:20px;
    overflow: hidden;
 }
@@ -12,10 +12,10 @@
 
 }
 .sliderImage {
-   width: 100% ;
+   max-width: 1000px;
    /* Manage global height */
-   max-height: 35vw ;
-   min-height: 73vh;
+   max-height:36vw ;
+   /* min-height: 36vw; */
    object-position: top;
    object-fit: cover ;
 }
@@ -50,19 +50,19 @@ Media queries
 
 @media screen and (max-width: 1024px)
 {
-   .sliderWrapper{
+   /* .sliderWrapper{ */
       /* Manage global height */
       /* max-height: 30vw ; */
-      min-height: 75vw;
-   }
-   .sliderImage {
-      width: 100% ;
+      /* min-height: 75vw;
+   } */
+   /* .sliderImage {
+      width: 100% ; */
       /* Manage global height */
       /* max-height: 30vw ; */
-      min-height: 75vw;
+      /* min-height: 75vw;
       object-position: top;
       object-fit: cover ;
-   }
+   } */
 }
 
 /* ----------------------------- Tablet < 768px ------------------------------ */

@@ -58,7 +58,7 @@ const ProjectsMapping = {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            <TbFileTypePdf size={35}/>
+            <TbFileTypePdf size={27}/>
             Specifications Document (FR)
           </a>
           <a 
@@ -67,7 +67,7 @@ const ProjectsMapping = {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            <TbFileTypePdf size={35}/>
+            <TbFileTypePdf size={27}/>
             NexusLab - CDA Final Project File (FR)
           </a>
         </>
