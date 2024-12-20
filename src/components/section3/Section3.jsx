@@ -97,9 +97,12 @@
                 </AnimatedTitle>
                 <AnimatedTitle timeout={"600"} direction="up">
                 <div className='linksContainer'>
+                {ProjectsMapping[activeProject].element && ProjectsMapping[activeProject].element.props.children && (
                   <div className='elementWrapper'>
                     {ProjectsMapping[activeProject].element}
                   </div>
+                )}
+                                
                   <div className='linksWrapper'>
                     <p>Source code :</p>
                     {ProjectsMapping[activeProject].links.map((link, index) => (
@@ -110,7 +113,7 @@
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
-                        <TbBrandGithub size={27}/>
+                        <TbBrandGithub size={25}/>
                         {link.title}
                       </a>
                     ))}

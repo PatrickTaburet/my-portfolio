@@ -50,26 +50,48 @@ Media queries
 
 @media screen and (max-width: 1024px)
 {
-   /* .sliderWrapper{ */
+   .sliderWrapper{
+      max-width: 53vw;
       /* Manage global height */
-      /* max-height: 30vw ; */
-      /* min-height: 75vw;
-   } */
-   /* .sliderImage {
-      width: 100% ; */
+      max-height:37vw ;
+      /* min-height: 36vw; */
+      margin:auto;
+      overflow: hidden;
+      margin-bottom: 4vw;
+   }
+
+   .sliderImage {
+      max-width: 65vw;
       /* Manage global height */
-      /* max-height: 30vw ; */
-      /* min-height: 75vw;
+      max-height:37vw ;
+      /* min-height: 36vw; */
       object-position: top;
       object-fit: cover ;
-   } */
+   }
 }
 
 /* ----------------------------- Tablet < 768px ------------------------------ */
 
 @media screen and (max-width: 768px)
 {
+   .sliderWrapper{
+      max-width: 65vw;
+      /* Manage global height */
+      max-height:45vw ;
+      /* min-height: 36vw; */
+      margin:auto;
+      overflow: hidden;
+      margin-bottom: 4vw;
+   }
 
+   .sliderImage {
+      max-width: 65vw;
+      /* Manage global height */
+      max-height:45vw ;
+      /* min-height: 36vw; */
+      object-position: top;
+      object-fit: cover ;
+   }
 
 }
 

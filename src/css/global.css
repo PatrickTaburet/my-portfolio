@@ -26,6 +26,7 @@
     /* Fonts */
     --font-main: "Georama", sans-serif;
     --font-title:  "Poppins", sans-serif;
+    --text-size-mini: 14px;
     --text-size-mobile: 16px;
     --text-size-small: 20px;
     --text-size-main: 24px;
