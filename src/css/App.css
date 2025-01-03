@@ -4,11 +4,12 @@
 body {
   
 }
+
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 267vh;
+  height: 271vh;
   overflow: hidden; 
   /* display: flex;
   flex-direction: column;
@@ -52,22 +53,23 @@ body {
 
 .section1, .section2, .section3 {
   position: relative;
-  height: 100vh;
   flex-shrink: 0; /* Prevent shrinking sections with flexbox */
 }
 .section1 {
   z-index: 1; 
+  height: 100vh;
+
 }
 
 .section2 {
-  height: 102vh;
+  height: 106vh;
   z-index: 5;
   will-change: transform;
   transition: transform 0.1s ease-out;
 }
 .section3 {
   z-index: 2;
-  height: 101vh;
+  height: 106vh;
 }
 .loadingScreen{
 
