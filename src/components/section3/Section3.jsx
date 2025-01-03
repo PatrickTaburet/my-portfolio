@@ -26,6 +26,7 @@
     }, [isProjectInfoVisible, onProjectInfoChange]);
 
     const handleProjectClick = (projectName) => {    
+      window.history.pushState({ project: projectName }, '', `#${projectName}`);
       setActiveProject(projectName);
       setIsProjectInfoVisible(true);
       setShowSketch(false);
@@ -36,11 +37,29 @@
       setLaunchMode(false);
       setIsProjectInfoVisible(false);
       setActiveProject(null);
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
       setTimeout(() => {
         setShowSketch(true);
       }, 200);
     };
 
+    useEffect(() => {
+      const handlePopState = (event) => {
+        if (isVisible && isProjectInfoVisible) {
+          handleCloseProject();
+        }
+        if (!isVisible) {
+          window.history.back();
+        }
+      };
+    
+      window.addEventListener('popstate', handlePopState);
+    
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }, [isVisible, isProjectInfoVisible]);
+    
     return (
       <section 
         id="section3" 

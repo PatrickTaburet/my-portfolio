@@ -144,7 +144,7 @@
 .bottomBack{
   height: 100%;
   /* position: absolute; */
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   display: flex;
   justify-content: center;
   gap: 10px;
