@@ -101,75 +101,72 @@
 
           {activeProject && ProjectsMapping[activeProject] ? (
             <div className="projectInfos">
-            <AnimatedTitle timeout={"0"} direction="up">
-             <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
-            </AnimatedTitle>
-            <div className='projectContent'>
-              <AnimatedTitle timeout={"200"} direction="up">
-                <Slider images={ProjectsMapping[activeProject].images}/>
+              <AnimatedTitle timeout={"0"} direction="up">
+                <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
               </AnimatedTitle>
 
-              <div className='projectDescription'>
-              <AnimatedTitle timeout={"400"} direction="up">
-
-                {ProjectsMapping[activeProject].description}
+              <div className='projectContent'>
+                <AnimatedTitle timeout={"200"} direction="up">
+                  <Slider images={ProjectsMapping[activeProject].images}/>
                 </AnimatedTitle>
-                <AnimatedTitle timeout={"600"} direction="up">
-                <div className='linksContainer'>
-                {ProjectsMapping[activeProject].element && ProjectsMapping[activeProject].element.props.children && (
-                  <div className='elementWrapper'>
-                    {ProjectsMapping[activeProject].element}
-                  </div>
-                )}
-                                
-                  <div className='linksWrapper'>
-                    <p>Source code :</p>
-                    {ProjectsMapping[activeProject].links.map((link, index) => (
-                      <a 
-                        key={index}
-                        className='link'
-                        href={link.url}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        <TbBrandGithub size={25}/>
-                        {link.title}
-                      </a>
-                    ))}
-                  </div>
+
+                <div className='projectDescription'>
+                  <AnimatedTitle timeout={"400"} direction="up">
+                    {ProjectsMapping[activeProject].description}
+                  </AnimatedTitle>
+
+                  <AnimatedTitle timeout={"600"} direction="up">
+                    <div className='linksContainer'>
+                      {ProjectsMapping[activeProject].element && ProjectsMapping[activeProject].element.props.children && (
+                        <div className='elementWrapper'>
+                          {ProjectsMapping[activeProject].element}
+                        </div>
+                      )}
+                                    
+                      <div className='linksWrapper'>
+                        <p>Source code :</p>
+                        {ProjectsMapping[activeProject].links.map((link, index) => (
+                          <a 
+                            key={index}
+                            className='link'
+                            href={link.url}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            <TbBrandGithub size={25}/>
+                            {link.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </AnimatedTitle>
                 </div>
-                </AnimatedTitle>
               </div>
-             
-           </div>
-           <AnimatedTitle timeout={"800"} direction="up">
-         
-           <div className='bottomBack'>
-             <TbCircleArrowLeftFilled 
-               className="backButton" 
-               onClick={handleCloseProject} 
-               color='white' 
-               size={55}
-               style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
-             />
-             <span 
-               onMouseEnter={() => setIsHovered(true)} 
-               onMouseLeave={() => setIsHovered(false)}
-               onClick={handleCloseProject} 
-             >
-               Back
-             </span>
-           </div>
-           </AnimatedTitle>
-
-          </div>
+              <AnimatedTitle timeout={"800"} direction="up">
+                <div className='bottomBack'>
+                  <TbCircleArrowLeftFilled 
+                    className="backButton" 
+                    onClick={handleCloseProject} 
+                    color='white' 
+                    size={55}
+                    style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+                  />
+                  <span 
+                    onMouseEnter={() => setIsHovered(true)} 
+                    onMouseLeave={() => setIsHovered(false)}
+                    onClick={handleCloseProject} 
+                  >
+                    Back
+                  </span>
+                </div>
+              </AnimatedTitle>
+            </div>
           ) : (
             <div className="projectInfos">
              
             </div>
           )} 
-       </div>
-  
+        </div>
       </section>
     );
   }

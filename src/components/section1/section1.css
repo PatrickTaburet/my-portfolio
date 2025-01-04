@@ -208,4 +208,8 @@ Media queries
     font-size: 18px;
     padding: 100px 30px 100px 30px;
   }
+  .sliderContainer{
+    top: 25vw;
+    right: 6vw;
+  }
 }
