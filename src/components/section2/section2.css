@@ -119,23 +119,35 @@
 
 /* ----- SkillsCards ----- */
 
-.cardsContainer{
+
+.cardsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+
+}
+.card1Wrapper, .card2Wrapper{
     display: flex;
     position: relative;
     flex-direction: column;
     align-items: center;
-    margin-right: 4vw;
-    /* justify-content: center; */
     gap: 1vw;
-    /* width: 100%; */
-    /* height: 10vw; */
+
+}
+.cardsContainer{
+    margin-right: 4vw;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 .cardsContainer h3{
     color: var(--color-primary);
     font-size: 75px;
     margin-top: 1vw;
 }
-.cardsContainer h4{
+.cardsWrapper h4{
     color: var(--color-background);
     font-size: 35px;
     margin: 0;
@@ -262,7 +274,7 @@ Media queries
         font-size: 4rem;
         margin: 15px;
     }
-    .cardsContainer h4{
+    .cardsWrapper h4{
         font-size: 2rem;
         margin: 10px;
     }
@@ -322,7 +334,7 @@ Media queries
         margin: 3vw 0 0 0;
         font-size: var(--text-size-mobile);
     }
-    .cardsContainer{
+    .cardsWrapper{
         gap: 1vw;
         margin: 0 0 0 7vw;
         width: 40%;
@@ -331,12 +343,13 @@ Media queries
     .cardsContainer h3{
         font-size: 2.5rem;
     }
-    .cardsContainer h4{
+    .cardsWrapper h4{
         font-size: 1.5rem;
         margin: 10px;
     }
 
     /*  Contact Card */
+
     .contactContainer{
         position: relative;
         display: flex;
@@ -405,38 +418,87 @@ Media queries
 {
     .section2Content{
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: start;
         width: 100%;
         color: var(--color-background);
         height: 100%;
         margin-top: 3vw;
     }
     .topSection2{
-        height: 100%;
         width: 90%;
-        margin: auto;
+        margin: 0 auto;
+        height: 30%;
     }
     .bio{
-        width: 100%;
+        font-size: var(--text-size-mini);
     }
     
     .topSection2 h3{
         font-size: 3rem ;
-        min-width: none;
-        text-align: center;
+        margin: 0;
+        margin-top: 4vw;
+    }
+    .cardsWrapper{
+        margin: 0;
+        gap: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .cardsContainer{
+        gap: 0;
+        margin-right: 0;
     }
     .cardsContainer h3{
         font-size: 3rem ;
+        margin: 0;
+        margin-top: 4vw;
+        text-align: start;
+        width: 90vw;
     }
-    .cardsContainer h4{
+    .cardsWrapper h4{
         font-size: 1rem;
+        font-weight: normal;
         margin: 10px;
-    }
-    
-    .card1, .card2{
-        padding: 0px;
+
     }
 
+    .card1, .card2{
+        padding: 12px;
+    }
+    .card1{
+        min-width: 190px;
+        min-height: 190px;
+    }
+    .card2{
+        min-width: 170px;
+        min-height: 170px;
+    }
+    .logoContainer{
+        width: 10vw;
+        height: 6vw;
+        gap: 1.3vw;
+        margin: 3px;
+    }
+    .logoContainer p{
+        font-size: var(--text-size-mini);
+        font-weight: 300;
+    }
+    .LogoDocker{
+        margin-top: 10px;
+    }
+
+    /*  Contact Card */
+
+    .contactContainer{
+        position: absolute;
+        display: block;
+        align-items: center;
+        bottom: -30vh;
+        margin: 0;
+    }
     .contactContent{
         flex-wrap: wrap;
         display: flex;
@@ -444,4 +506,21 @@ Media queries
         gap: 0;
         width:  100%;
     }
+    .contactCard span{
+        margin-top: 10px;
+    }
+    .contactLine{
+        height: 40px;
+    }
 }
+/* -----------------------------  h < 667px ------------------------------ */
+
+@media screen and (max-height: 667px)
+{
+
+    .contactContainer{
+        bottom: -40vh;
+    }
+
+}
+

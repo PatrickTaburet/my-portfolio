@@ -81,7 +81,7 @@ const Section2 = ({scrollValue}) => {
     >
       <div className='section2Content'>
         <div className='topSection2'>
-          <div>
+          <div className='bioContainer'>
             <AnimatedTitle timeout={"100"} direction="up">
               <h3>About me</h3>
             </AnimatedTitle>
