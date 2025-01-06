@@ -457,7 +457,7 @@ Media queries
         font-size: 3rem ;
         margin: 0;
         text-align: center;
-        margin-top: 4vw;
+        margin-top: 48vw;
         text-align: start;
         width: 100%;
     }
@@ -499,7 +499,7 @@ Media queries
         position: absolute;
         display: block;
         align-items: center;
-        bottom: -30vh;
+        bottom: -52vh;
         margin: 0;
     }
     .contactContent{
@@ -522,7 +522,7 @@ Media queries
 {
 
     .contactContainer{
-        bottom: -40vh;
+        bottom: -63vh;
     }
     .cardsWrapper{
         margin: 0;

@@ -10,7 +10,8 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         
     const handleResize = () => {
       if (p5InstanceRef.current) {
-        p5InstanceRef.current.resizeCanvas(window.innerWidth, window.innerHeight + 20);
+        const canvasHeight =  p5InstanceRef.current.windowWidth <= 560 ?  p5InstanceRef.current.windowHeight +  p5InstanceRef.current.windowHeight * 0.30 :  p5InstanceRef.current.windowHeight + 55;
+        p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
         p5InstanceRef.current.background(197, 15, 72);
       }
     };
@@ -41,7 +42,13 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     };
 
     p.setup = () => {
-      const canvas = p.createCanvas(p.windowWidth, p.windowHeight + 20);
+      const canvasHeight = 
+        p.windowHeight < 800 
+          ? p.windowHeight + p.windowHeight * 0.60 
+          : p.windowWidth <= 560
+            ? p.windowHeight + p.windowHeight * 0.30 
+            : p.windowHeight + 55;
+      const canvas = p.createCanvas(p.windowWidth, canvasHeight);
       canvas.parent('sketch-container2');
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
@@ -93,16 +100,16 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         if (p.width > 1400) {
           this.x = p.width / 2;
           this.y = p.height;
+        } else if (p.width < 560) {
+          this.x = p.width / 2;
+          this.y = p.height / 2.8;
         } else if (p.width < 768) {
           this.x = p.width / 3.5;
-          this.y = p.height / 1.55;
+          this.y = p.height / 1.63;
          } else if (p.width < 1100) {
           this.x = p.width / 1.39;
           this.y = p.height / 1.2;
-        } else if (p.width < 560) {
-          // this.x = p.width / 3.5;
-          // this.y = p.height / 1.55;
-        }  else {
+        } else {
           this.x = p.width / 1.75;
           this.y = p.height / 1.2;
         }

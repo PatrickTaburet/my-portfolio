@@ -105,7 +105,11 @@ Media queries
 @media screen and (max-width: 560px)
 {
   .container {
-    height: 291vh;
+    height: 315vh;
+  }
+  .section2 {
+    height: 130vh;
+
   }
   .section3 {
     height: 126vh;
@@ -118,10 +122,10 @@ Media queries
 {
   
   .container {
-    height: 351vh;
+    height: 375vh;
   }
   .section2 {
-    height: 136vh;
+    height: 160vh;
 
   }
   .section3 {

@@ -142,7 +142,7 @@
                   </AnimatedTitle>
                 </div>
               </div>
-              <AnimatedTitle timeout={"800"} direction="up">
+              {/* <AnimatedTitle timeout={"800"} direction="up"> */}
                 <div className='bottomBack'>
                   <TbCircleArrowLeftFilled 
                     className="backButton" 
@@ -159,7 +159,7 @@
                     Back
                   </span>
                 </div>
-              </AnimatedTitle>
+              {/* </AnimatedTitle> */}
             </div>
           ) : (
             <div className="projectInfos">
