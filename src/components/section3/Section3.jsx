@@ -167,6 +167,7 @@
             </div>
           )} 
         </div>
+        <span className='copyright'>© 2025 Taburet Patrick</span>
       </section>
     );
   }

@@ -100,13 +100,32 @@ Media queries
   } */
 
 }
-/* -----------------------------  h < 667px ------------------------------ */
+/* ----------------------------- Mobile < 560px ------------------------------ */
+
+@media screen and (max-width: 560px)
+{
+  .container {
+    height: 291vh;
+  }
+  .section3 {
+    height: 126vh;
+
+  }
+}
+/* ----------------------------- Mobile h < 667px ------------------------------ */
 
 @media screen and (max-height: 667px)
 {
+  
+  .container {
+    height: 351vh;
+  }
   .section2 {
     height: 136vh;
 
+  }
+  .section3 {
+    height: 153vh;
   }
 
 }

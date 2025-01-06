@@ -79,7 +79,7 @@
     color: var(--color-primary);
     text-align: center;
     width: 100%;
-    padding: 1vw;
+    padding: 0 1vw 1vw 1vw;
     font-size: var(--text-size-title);
     font-weight: 500;
 }
@@ -422,12 +422,12 @@ Media queries
         width: 100%;
         color: var(--color-background);
         height: 100%;
-        margin-top: 3vw;
+        margin-top: 2vh;
     }
     .topSection2{
         width: 90%;
         margin: 0 auto;
-        height: 30%;
+        height: 31vh;
     }
     .bio{
         font-size: var(--text-size-mini);
@@ -435,12 +435,14 @@ Media queries
     
     .topSection2 h3{
         font-size: 3rem ;
+        width: 100%;
+        text-align: center;
         margin: 0;
         margin-top: 4vw;
     }
     .cardsWrapper{
         margin: 0;
-        gap: 5px;
+        gap: 3vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -454,9 +456,10 @@ Media queries
     .cardsContainer h3{
         font-size: 3rem ;
         margin: 0;
+        text-align: center;
         margin-top: 4vw;
         text-align: start;
-        width: 90vw;
+        width: 100%;
     }
     .cardsWrapper h4{
         font-size: 1rem;
@@ -469,7 +472,7 @@ Media queries
         padding: 12px;
     }
     .card1{
-        min-width: 190px;
+        min-width: 200px;
         min-height: 190px;
     }
     .card2{
@@ -513,14 +516,26 @@ Media queries
         height: 40px;
     }
 }
-/* -----------------------------  h < 667px ------------------------------ */
+/* -----------------------------  h < 800px ------------------------------ */
 
-@media screen and (max-height: 667px)
+@media screen and (max-height: 800px)
 {
 
     .contactContainer{
         bottom: -40vh;
     }
-
+    .cardsWrapper{
+        margin: 0;
+        gap: 1vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+    .topSection2{
+        width: 90%;
+        margin: 0 auto;
+        height: 40vh;
+    }
 }
 

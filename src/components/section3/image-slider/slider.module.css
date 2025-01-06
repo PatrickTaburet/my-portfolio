@@ -99,9 +99,23 @@ Media queries
 
 @media screen and (max-width: 560px)
 {
-   .carousel .slide img{
+   .sliderWrapper{
+      max-width: 95vw;
+      /* Manage global height */
+      max-height:68vw ;
+      /* min-height: 36vw; */
+   }
+
+   .sliderImage {
+      max-width: 95vw;
+      /* Manage global height */
+      max-height:68vw ;
+      /* min-height: 36vw; */
+
+   }
+   /* .carousel .slide img{
       width: 100vw !important;
       height: 40vw;
       object-fit: cover; 
-   }
+   } */
 }
