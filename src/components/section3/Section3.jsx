@@ -107,7 +107,7 @@
 
               <div className='projectContent'>
                 <AnimatedTitle timeout={"200"} direction="up">
-                  <Slider images={ProjectsMapping[activeProject].images}/>
+                  <Slider images={ProjectsMapping[activeProject].slides}/>
                 </AnimatedTitle>
 
                 <div className='projectDescription'>

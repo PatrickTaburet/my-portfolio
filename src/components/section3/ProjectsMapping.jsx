@@ -1,8 +1,9 @@
 import React from 'react'
-import NexusLab1 from './../../assets/images/nexusLab/NexusLab-full-purple.jpg';
+import NexusLab1 from './../../assets/images/nexusLab/NexusLab-full-purple.png';
 import NexusLab2 from './../../assets/images/nexusLab/gallery-desktop.jpg';
 import NexusLab3 from './../../assets/images/nexusLab/generative-desktop.jpg';
 import NexusLab4 from './../../assets/images/nexusLab/dataart.jpg';
+import NexusLab5 from './../../assets/images/nexusLab/homepage.png';
 import CreativeCoding1 from './../../assets/images/creativeCoding/artwork.png';
 import { TbFileTypePdf } from "react-icons/tb";
 
@@ -17,30 +18,48 @@ const ProjectsMapping = {
           <p>It was developed as part of my Application Designer and Developer program (Concepteur Développeur d'Applications) and was presented as my final project during the certification exam.</p>
         </>
       ),
-      images: [
+      slides: [
         {
             id: 1,
-            image: NexusLab1,
+            type: 'image',
+            source: NexusLab1,
             title: "image 1",
             text: "loremipsuuum"
         },
         {
             id: 2,
-            image: NexusLab2,
+            type: 'image',
+            source: NexusLab5,
             title: "image 2",
-            text: "loremipsuufregrereggeegrgeum"
+            text: "loremipsuuum"
         },
         {
             id: 3,
-            image: NexusLab3,
+            type: 'image',
+            source: NexusLab2,
             title: "image 3",
-            text: "loremisdsdsdpsuuum"
+            text: "loremipsuufregrereggeegrgeum"
         },
         {
             id: 4,
-            image: NexusLab4,
+            type: 'image',
+            source: NexusLab3,
             title: "image 4",
             text: "loremisdsdsdpsuuum"
+        },
+        {
+            id: 5,
+            type: 'image',
+            source: NexusLab4,
+            title: "image 5",
+            text: "loremisdsdsdpsuuum"
+        },
+        {
+            id: 6,
+            type: 'video',
+            source: "https://www.youtube.com/watch?v=WDfY6dC5Wak",
+            title: "video demo",
+            text: "loremisdsdsdpsddddduuum"
         },
       ],
       links: [
@@ -82,10 +101,11 @@ const ProjectsMapping = {
           <p>Creative coding offers a unique way to bring animation and interactivity into web applications, enhancing the user experience with intuitive and visually appealing designs. It's an approach that transforms static interfaces into more engaging and immersive experiences, blending aesthetics with functionality.</p>
         </>
       ),
-      images: [
+      slides: [
         {
             id: 1,
-            image: CreativeCoding1,
+            type: 'image',
+            source: CreativeCoding1,
             title: "image 1",
             text: "loremipsuuum"
         },
