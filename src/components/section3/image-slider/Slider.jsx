@@ -1,9 +1,21 @@
+/**
+ * @module Slider
+ * @description A customizable image and video carousel component for React applications.
+ */
+
 import React, { useState, useEffect, useCallback } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import styles from "./slider.module.css";
 import ReactPlayer from "react-player";
 
+/**
+ * @component VideoSlide
+ * @description Renders a video slide using ReactPlayer.
+ * @param {Object} props - Component props
+ * @param {string} props.url - URL of the video
+ * @param {boolean} props.isSelected - Whether the slide is currently selected
+ */
 const VideoSlide = ({ url, isSelected }) => (
     <ReactPlayer
         url={url}
@@ -15,6 +27,12 @@ const VideoSlide = ({ url, isSelected }) => (
     />
 );
 
+/**
+ * @component Slider
+ * @description A carousel component that supports both images and videos.
+ * @param {Object} props - Component props
+ * @param {Array} props.images - Array of image and video objects to display in the slider
+ */
 const Slider = ({ images }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);

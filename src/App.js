@@ -1,11 +1,13 @@
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import './css/App.css';
 import './css/global.css';
-import AnimatedTitle from './components/animated-title/AnimatedTitle';
-import React, { Suspense, lazy, useEffect, useState } from 'react';
 
 const Section1 = lazy(() => import('./components/section1/Section1'));
 const Section2 = lazy(() => import('./components/section2/Section2'));
 const Section3 = lazy(() => import('./components/section3/Section3'));
+
+const SCROLL_ADJUSTMENT = -240;
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -24,9 +26,7 @@ function App() {
       const section1Offset = document.querySelector('.section1')?.offsetTop || 0;
       const section2Offset = document.querySelector('.section2')?.offsetTop || 0;
       const section3Offset = document.querySelector('.section3')?.offsetTop || 0;
-      // console.log("offstet 2 : " + section2Offset);
-      // console.log("offstet 3 : " + section3Offset);
-      
+
       setSectionOffsets({ section1Offset, section2Offset, section3Offset });
     };
 
@@ -42,8 +42,7 @@ function App() {
   }, []);
   
   const scrollToSection = (offset) => {
-    const adjustment = -240; // Section 2 translation value (px)
-    window.scrollTo({ top: offset + adjustment, behavior: 'smooth' });
+    window.scrollTo({ top: offset + SCROLL_ADJUSTMENT, behavior: 'smooth' });
   };
   
   const handleProjectInfoChange = (visibility) => {
@@ -64,7 +63,7 @@ function App() {
         style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "#2BF7BC" : ''}`}}
       >
         <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
-          <a 
+          <button 
            className={`link ${
               isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
               ? 'modeC' 
@@ -73,6 +72,7 @@ function App() {
                 ? 'modeB' : 'modeA')
             }`
           }
+            role="button"
             onClick={ () => {
               scrollToSection(sectionOffsets.section3Offset);
               handleCloseFromHeader();              
@@ -80,9 +80,9 @@ function App() {
             
           >
             Projects
-          </a> 
+          </button> 
             / 
-          <a 
+          <button 
            className={`link ${
               isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
               ? 'modeC' 
@@ -91,15 +91,16 @@ function App() {
                 ? 'modeB' : 'modeA')
             }`
           }
+            role="button"
             onClick={() => scrollToSection(sectionOffsets.section2Offset)}
       
           >
             Contact
-          </a>
+          </button>
         </AnimatedTitle>
       </header>
       <main className='container'>
-        <Suspense>
+        <Suspense fallback={<div className='loading'>Loading...</div>}>
           <Section1 
             className="section1"
             scrollValue = {scrollY}

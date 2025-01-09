@@ -42,15 +42,12 @@
  .videoContainer{
    width: 100%;
    height: 100%;
-   /* display: flex;
-   align-items: center;
-   justify-content: center;
-   overflow: hidden;  */
  }
  .videoContainer iframe {
    width: 100% !important; 
    margin: 0 !important;
  }
+ 
 /* 
 ========================
 Media queries
@@ -65,7 +62,6 @@ Media queries
       max-width: 53vw;
       /* Manage global height */
       max-height:37vw ;
-      /* min-height: 36vw; */
       margin:auto;
       overflow: hidden;
       margin-bottom: 4vw;
@@ -75,7 +71,6 @@ Media queries
       max-width: 65vw;
       /* Manage global height */
       max-height:37vw ;
-      /* min-height: 36vw; */
       object-position: top;
       object-fit: cover ;
    }
@@ -89,7 +84,6 @@ Media queries
       max-width: 65vw;
       /* Manage global height */
       max-height:45vw ;
-      /* min-height: 36vw; */
       margin:auto;
       overflow: hidden;
       margin-bottom: 4vw;
@@ -99,7 +93,6 @@ Media queries
       max-width: 65vw;
       /* Manage global height */
       max-height:45vw ;
-      /* min-height: 36vw; */
       object-position: top;
       object-fit: cover ;
    }
@@ -114,19 +107,12 @@ Media queries
       max-width: 95vw;
       /* Manage global height */
       max-height:68vw ;
-      /* min-height: 36vw; */
    }
 
    .sliderImage {
       max-width: 95vw;
       /* Manage global height */
       max-height:68vw ;
-      /* min-height: 36vw; */
 
    }
-   /* .carousel .slide img{
-      width: 100vw !important;
-      height: 40vw;
-      object-fit: cover; 
-   } */
 }

@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-// import "../section1/section1.css"
 
 const Sketch1 = ({isRunning}) => {
   const p5InstanceRef = useRef(null);
@@ -67,8 +66,6 @@ const Sketch1 = ({isRunning}) => {
     };
 
     p.draw = () => {
-      // console.log(lineSlider.value());
-
       if (!mainColor) {
         mainColor = p.color(180, 100, 50, 1);
       }

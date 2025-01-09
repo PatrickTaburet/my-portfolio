@@ -22,7 +22,7 @@ const ProjectsMapping = {
         <>
           <p>NexusLab is a collaborative platform focused on the fusion of art and technology. It enables users to manipulate, create, and share digital artworks generated through creative coding algorithms.</p>
           <p>By integrating artistic practices that blend programming with visual art, NexusLab aims to make these forms of expression more accessible and to build a community around these disciplines, fostering co-creation and knowledge sharing.</p>
-          <p>The project, available on both web and mobile platforms, leverages modern technologies such as React, Symfony, and React Native. Its structure and technical choices ensure a seamless and secure user experience across all devices.</p>
+          <p>The project, available in web and mobile versions, leverages modern technologies such as React, Symfony, and React Native. Its structure and technical choices ensure a seamless and secure user experience across all devices.</p>
           <p>It was developed as part of my Application Designer and Developer program (Concepteur Développeur d'Applications) and was presented as my final project during the certification exam.</p>
         </>
       ),
@@ -119,7 +119,7 @@ const ProjectsMapping = {
       description: (
         <>
           <p>Creative coding is a practice that combines art and technology to create interactive and animated experiences. It encompasses various creative processes, such as data art and generative art, both of which I focus on in my work. By using algorithms and data, these approaches enable the creation of unique and visually compelling pieces that blend creativity with logic.</p>
-          <p>My work primarily involves Processing and p5.js, tools that allow me to develop visually engaging and dynamic content. I'm currently expanding into WebGL and Three.js to explore 3D environments and the power of shaders.</p>
+          <p>My work primarily involves Processing and p5.js, tools that allow me to develop visual and dynamic content. I'm currently expanding into WebGL and Three.js to explore 3D environments and the power of shaders.</p>
           <p>Creative coding offers a unique way to bring animation and interactivity into web applications, enhancing the user experience with intuitive and visually appealing designs. It's an approach that transforms static interfaces into more engaging and immersive experiences, blending aesthetics with functionality.</p>
         </>
       ),

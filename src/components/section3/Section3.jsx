@@ -142,24 +142,22 @@
                   </AnimatedTitle>
                 </div>
               </div>
-              {/* <AnimatedTitle timeout={"800"} direction="up"> */}
-                <div className='bottomBack'>
-                  <TbCircleArrowLeftFilled 
-                    className="backButton" 
-                    onClick={handleCloseProject} 
-                    color='white' 
-                    size={55}
-                    style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
-                  />
-                  <span 
-                    onMouseEnter={() => setIsHovered(true)} 
-                    onMouseLeave={() => setIsHovered(false)}
-                    onClick={handleCloseProject} 
-                  >
-                    Back
-                  </span>
-                </div>
-              {/* </AnimatedTitle> */}
+              <div className='bottomBack'>
+                <TbCircleArrowLeftFilled 
+                  className="backButton" 
+                  onClick={handleCloseProject} 
+                  color='white' 
+                  size={55}
+                  style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+                />
+                <span 
+                  onMouseEnter={() => setIsHovered(true)} 
+                  onMouseLeave={() => setIsHovered(false)}
+                  onClick={handleCloseProject} 
+                >
+                  Back
+                </span>
+              </div>
             </div>
           ) : (
             <div className="projectInfos">

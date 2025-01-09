@@ -13,7 +13,7 @@
   opacity: 1;
 }
 
-/* Animation vers le bas */
+/* Animation down */
 .titleAnime.down {
   transform: translateY(-60px);
 }
@@ -22,7 +22,7 @@
   transform: translateY(0);
 }
 
-/* Animation vers le haut */
+/* Animation up */
 .titleAnime.up {
   transform: translateY(60px);
 }
@@ -31,7 +31,7 @@
   transform: translateY(0);
 }
 
-/* Animation vers la droite */
+/* Animation right */
 .titleAnime.right {
     transform: translateX(60px);
 }
@@ -40,7 +40,7 @@
     transform: translateX(0);
 }
 
-/* Animation vers la gauche */
+/* Animation left */
 .titleAnime.left {
     transform: translateX(-60px);
 }

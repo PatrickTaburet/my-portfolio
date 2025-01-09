@@ -2,7 +2,6 @@ import React from "react";
 import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 
-
 import LogoSymfo from '../../assets/images/logos/symfony_black_03.svg';
 import LogoReact from '../../assets/images/logos/react.svg'
 import LogoCSharp from '../../assets/images/logos/Logo_C_sharp.svg'
@@ -82,13 +81,9 @@ const SkillsCards = () =>{
                         </div>
                     </AnimatedTitle>
                 </div>
-  
             </div>
-           
         </div>
     );
 }
-
-
 
 export default SkillsCards;

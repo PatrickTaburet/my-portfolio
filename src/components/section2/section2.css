@@ -1,15 +1,12 @@
 /* Section 2  */
 
 .section2{
-    /* height: 100vh; */
-     /*background-color: var(--color-secondary); */
     overflow: hidden;
 }
 
 .section2Content{
     position: absolute;
     display: flex;
-    /* justify-content: space-between; */
     width: 100%;
     color: var(--color-background);
     height: 100%;
@@ -19,7 +16,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    /* align-items: end; */
     height: 100%;
     width: 50%;
     margin-left: 5vw;
@@ -32,8 +28,6 @@
 
 .profilePicture{
     position: relative;
-    /* right: -2vw;
-    top: -5vw; */
     border-radius: 50%;
     height: 15vw;
     margin: auto;
@@ -57,14 +51,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    /* gap: 5vw; */
     margin: 4vw 0 0 0vw;
 }
 
 .contactCard{
     display: flex;
     flex-direction: column;
-    /* height: 20vw; */
     background-color: var(--color-background);
     opacity: 0.9;
     border-style: solid;
@@ -227,7 +219,6 @@
     justify-content: space-around;
     align-items: center;
     padding: 20px 15px 20px 15px;
-    /* gap: 15px; */
     border-style: solid;
     border-width: 3px;
     border-radius: 23px;
@@ -239,7 +230,6 @@
     max-width: 60%;
     min-width: 300px;
     min-height: 150px;
-    /* height: 100%; */
 }
 .card2{
     width: 60%;
@@ -290,6 +280,7 @@ Media queries
         font-size: var(--text-size-mobile);
         font-weight: 300;
     }
+
     /*  Contact Card */
 
     .contactCard {
@@ -398,17 +389,6 @@ Media queries
     }
     .card2{
         padding: 25px;
-        /* min-width: 10px;
-        min-height: 200px; */
-    }
-    .card1{
-        /* max-width: 62%; */
-        /* min-width: 180px; */
-        /* min-height: 180px; */
-        /* max-height: 200px; */
-    }
-    .section2Content{
-
     }
     
 }

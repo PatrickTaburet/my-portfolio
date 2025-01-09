@@ -10,8 +10,6 @@ import { TbPhone } from "react-icons/tb";
 import { TbBrandGithub } from "react-icons/tb";
 import { TbBrandLinkedin } from "react-icons/tb";
 
-import Avatar from '../../assets/images/avatar.jpg'; 
-
 const Section2 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
   const [hovered, setHovered] = useState(false);
@@ -31,22 +29,7 @@ const Section2 = ({scrollValue}) => {
     return () => {
       window.removeEventListener('resize', updateTranslateY);
     };
-  }, [scrollValue]);
-
-  // useEffect(() => {
-  //   setSectionTranslateY(-scrollValue / 2.8);
-  //   const handleResize = () => {
-  //     setSectionTranslateY(-scrollValue / 2.8);
-  //   };
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
-
-  // useEffect(() => {
-  // console.log("scrollValue", scrollValue);
-  
-  // }, [scrollValue])
-  
+  }, [scrollValue]); 
 
   useEffect(() => {    
     window.addEventListener('mousemove', handleMouseMove);
@@ -58,7 +41,7 @@ const Section2 = ({scrollValue}) => {
   const handleCopy = (message) => {
     navigator.clipboard.writeText(message);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // Réinitialise après 2 secondes
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
   const handleMouseMove = (event) => {
@@ -151,7 +134,6 @@ const Section2 = ({scrollValue}) => {
                   </div>
                 </div>
               </div>
-              {/* <img src={Avatar} alt="Profile_picture" className="profilePicture"/> */}
             </div>            
           </AnimatedTitle>
         </div>

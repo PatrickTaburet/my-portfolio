@@ -8,7 +8,6 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // console.log("Init up p5 instance");
     if (!p5InstanceRef.current) {
       p5InstanceRef.current = new p5(sketch, containerRef.current);
     }
@@ -22,7 +21,6 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      // console.log("Cleaning up p5 instance");
       window.removeEventListener('resize', handleResize);
       if (p5InstanceRef.current) {
         p5InstanceRef.current.remove();
@@ -303,7 +301,6 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     }
   };
 
-  // return <div  id="sketch-container3"></div>;
   return <div ref={containerRef} id="sketch-container3" key="sketch-container3"></div>;
 };
 

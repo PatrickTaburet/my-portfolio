@@ -11,7 +11,6 @@ const Section1 = ({scrollValue}) => {
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
   const textSlowDownFactor = 3;
-  // console.log(scrollValue);
 
   useEffect(() => {
     const handleScroll = () => {

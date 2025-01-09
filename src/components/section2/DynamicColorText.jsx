@@ -1,5 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+/**
+ * Display text with dynamic colors based on the position of characters relative to a circle.
+ *
+ * @param {string} props.text - The text to display
+ * @param {Object} props.circleData - The circle data (x, y, size)
+ * @param {Object} props.sectionRef - The reference to the section containing the text
+ *
+ * @returns {JSX.Element} A JSX element containing the text with dynamic colors
+ */
 const DynamicColorText = ({ text, circleData, sectionRef }) => {
   const containerRef = useRef(null);
   const [charPositions, setCharPositions] = useState([]);
