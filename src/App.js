@@ -42,7 +42,7 @@ function App() {
   }, []);
   
   const scrollToSection = (offset) => {
-    const adjustment = -240;
+    const adjustment = -240; // Section 2 translation value (px)
     window.scrollTo({ top: offset + adjustment, behavior: 'smooth' });
   };
   

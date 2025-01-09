@@ -164,7 +164,7 @@
 }
 .copyright{
   color: var(--color-text);
-  font-size: 1em;
+  font-size: 0.7em;
   position: absolute;
   bottom: 60px;
   width: 100%;

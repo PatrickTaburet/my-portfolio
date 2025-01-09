@@ -6,13 +6,13 @@ import NexusLab4 from './../../assets/images/nexusLab/dataart.jpg';
 import NexusLab5 from './../../assets/images/nexusLab/homepage.png';
 import NexusLabMobile1 from './../../assets/images/nexusLab/tryptique-nexuslab-homepage.jpg';
 import NexusLabMobile2 from './../../assets/images/nexusLab/tryptique-nexuslab-gallery.jpg';
-import CreativeCoding1 from './../../assets/images/creativeCoding/artwork.png';
 import CreativeCoding2 from './../../assets/images/creativeCoding/linewalker.png';
 import CreativeCoding3 from './../../assets/images/creativeCoding/mousedraw.png';
 import CreativeCoding4 from './../../assets/images/creativeCoding/flowfield2.png';
 import CreativeCoding5 from './../../assets/images/creativeCoding/artwork2.png';
 import CreativeCoding6 from './../../assets/images/creativeCoding/artwork4.png';
 import CreativeCoding7 from './../../assets/images/creativeCoding/artwork3.png';
+import CreativeCoding1 from './../../assets/images/creativeCoding/lifeSimulator.png';
 import { TbFileTypePdf } from "react-icons/tb";
 
 const ProjectsMapping = {
@@ -124,28 +124,28 @@ const ProjectsMapping = {
         </>
       ),
       slides: [
-        // {
-        //     id: 1,
-        //     type: 'image',
-        //     source: CreativeCoding1,
-        //     title: "image 1",
-        // },
+        {
+            id: 1,
+            type: 'image',
+            source: CreativeCoding4,
+            title: "image 1",
+        },
         {
             id: 2,
             type: 'image',
-            source: CreativeCoding4,
+            source: CreativeCoding2,
             title: "image 2",
         },
         {
             id: 3,
             type: 'image',
-            source: CreativeCoding2,
+            source: CreativeCoding3,
             title: "image 3",
         },
         {
             id: 4,
             type: 'image',
-            source: CreativeCoding3,
+            source: CreativeCoding1,
             title: "image 4",
         },
         {
@@ -166,6 +166,7 @@ const ProjectsMapping = {
             source: CreativeCoding7,
             title: "image 7",
         },
+
       ],
       links:  [
         {
@@ -173,12 +174,12 @@ const ProjectsMapping = {
           url: "https://github.com/PatrickTaburet/P5JS-explorations",
         },
         {
-          title: "Vanilla JavaScript generative art",
-          url: "https://github.com/PatrickTaburet/Generative_Art",
-        },
-        {
           title: "Data art visualization",
           url: "https://github.com/PatrickTaburet/data-art-population",
+        },
+        {
+          title: "Vanilla JavaScript generative art",
+          url: "https://github.com/PatrickTaburet/Generative_Art",
         },
 
       ],
