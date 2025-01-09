@@ -4,6 +4,8 @@ import NexusLab2 from './../../assets/images/nexusLab/gallery-desktop.jpg';
 import NexusLab3 from './../../assets/images/nexusLab/generative-desktop.jpg';
 import NexusLab4 from './../../assets/images/nexusLab/dataart.jpg';
 import NexusLab5 from './../../assets/images/nexusLab/homepage.png';
+import NexusLabMobile1 from './../../assets/images/nexusLab/tryptique-nexuslab-homepage.jpg';
+import NexusLabMobile2 from './../../assets/images/nexusLab/tryptique-nexuslab-gallery.jpg';
 import CreativeCoding1 from './../../assets/images/creativeCoding/artwork.png';
 import { TbFileTypePdf } from "react-icons/tb";
 
@@ -23,43 +25,57 @@ const ProjectsMapping = {
             id: 1,
             type: 'image',
             source: NexusLab1,
-            title: "image 1",
-            text: "loremipsuuum"
+            title: "NexusLab logo",
         },
         {
             id: 2,
             type: 'image',
             source: NexusLab5,
-            title: "image 2",
-            text: "loremipsuuum"
+            title: "NexusLab screenshot 2",
         },
         {
             id: 3,
             type: 'image',
             source: NexusLab2,
-            title: "image 3",
-            text: "loremipsuufregrereggeegrgeum"
+            title: "NexusLab screenshot 3",
         },
         {
             id: 4,
             type: 'image',
             source: NexusLab3,
-            title: "image 4",
-            text: "loremisdsdsdpsuuum"
+            title: "NexusLab screenshot 4",
         },
         {
             id: 5,
             type: 'image',
             source: NexusLab4,
-            title: "image 5",
-            text: "loremisdsdsdpsuuum"
+            title: "NexusLab screenshot 5",
         },
         {
             id: 6,
+            type: 'image',
+            source: NexusLabMobile1,
+            title: "NexusLab screenshot 6",
+        },
+        {
+            id: 7,
+            type: 'image',
+            source: NexusLabMobile2,
+            title: "NexusLab screenshot 6",
+        },
+        {
+            id: 8,
             type: 'video',
             source: "https://www.youtube.com/watch?v=WDfY6dC5Wak",
-            title: "video demo",
-            text: "loremisdsdsdpsddddduuum"
+            title: "NexusLab desktop demo video",
+
+        },
+        {
+            id: 9,
+            type: 'video',
+            source: "https://youtube.com/shorts/kL-P-wCw1_s?feature=share",
+            title: "video NexusLab mobile app",
+            text: "NexusLab mobile demo video"
         },
       ],
       links: [
