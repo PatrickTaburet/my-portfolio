@@ -35,7 +35,6 @@ const Sketch1 = ({isRunning}) => {
     let colors = [];
     let lines = [];
     let lineSlider;
-    let noiseOffsets = [];
     let prevX, prevY;
 
     p.setup = () => {

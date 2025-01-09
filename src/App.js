@@ -67,31 +67,29 @@ function App() {
            className={`link ${
               isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
               ? 'modeC' 
-              : (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6 
+              : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
                 || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
                 ? 'modeB' : 'modeA')
             }`
           }
-            role="button"
             onClick={ () => {
               scrollToSection(sectionOffsets.section3Offset);
               handleCloseFromHeader();              
             }}
             
           >
-            Projects
+            Projects 
           </button> 
             / 
           <button 
            className={`link ${
               isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
               ? 'modeC' 
-              : (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6 
+              : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
                 || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
                 ? 'modeB' : 'modeA')
             }`
           }
-            role="button"
             onClick={() => scrollToSection(sectionOffsets.section2Offset)}
       
           >
