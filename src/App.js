@@ -98,7 +98,7 @@ function App() {
         </AnimatedTitle>
       </header>
       <main className='container'>
-        <Suspense fallback={<div className='loading'>Loading...</div>}>
+        <Suspense fallback={<div className='loading'><span class="loader"></span></div>}>
           <Section1 
             className="section1"
             scrollValue = {scrollY}
