@@ -35,7 +35,6 @@ const Sketch1 = ({isRunning}) => {
     let colors = [];
     let lines = [];
     let lineSlider;
-    let prevX, prevY;
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -43,8 +42,6 @@ const Sketch1 = ({isRunning}) => {
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
       p.background(196, 58, 5);
-      prevX = p.mouseX;
-      prevY = p.mouseY;
       p.strokeWeight(10);
 
       colors = [

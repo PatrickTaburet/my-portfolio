@@ -28,25 +28,26 @@ function AnimatedTitle({ children, timeout = 0, direction, initiallyVisible = fa
     const titleRef = useRef(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setIsInView(true);
-              observer.unobserve(titleRef.current);
-            }
-          },
-          { threshold: 0.2 }
-        );
-    
-        if (titleRef.current) {
-          observer.observe(titleRef.current);
-        }
-    
-        return () => {
-          if (titleRef.current) {
-            observer.unobserve(titleRef.current);
+      const node = titleRef.current;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.unobserve(node);
           }
-        };
+        },
+        { threshold: 0.2 }
+      );
+  
+      if (node) {
+        observer.observe(node);
+      }
+  
+      return () => {
+        if (node) {
+          observer.unobserve(node);
+        }
+      };
     }, []);
 
     useEffect(() => {

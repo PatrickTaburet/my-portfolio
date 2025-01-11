@@ -15,6 +15,7 @@ function useVisibility() {
   const elementRef = useRef(null);
 
   useEffect(() => {
+    const node = elementRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -22,13 +23,13 @@ function useVisibility() {
       { threshold: 0.01 }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
   }, []);

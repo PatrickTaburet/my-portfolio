@@ -1,30 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import p5 from 'p5';
 import ProfilPicture from './../../assets/images/avatar.jpg';
 
 const Sketch2 = ({isRunning, onCircleUpdate }) => {
   const p5InstanceRef = useRef(null);
 
-  useEffect(() => {
-    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container2'));
-        
-    const handleResize = () => {
-      if (p5InstanceRef.current) {
-        const canvasHeight =  p5InstanceRef.current.windowWidth <= 560 ?  p5InstanceRef.current.windowHeight +  p5InstanceRef.current.windowHeight * 0.30 :  p5InstanceRef.current.windowHeight + 55;
-        p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
-        p5InstanceRef.current.background(197, 15, 72);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (p5InstanceRef.current) {
-        p5InstanceRef.current.remove();
-      }
-    };
-  }, []);
 
 
   useEffect(() => {
@@ -32,10 +12,10 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
       isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
     }
   }, [isRunning]);
-
-  const sketch = (p) => {
+ 
+  const sketch = useCallback((p) => {
     let circle;
-    let pictureMedia;
+    let pictureMedia; 
 
     p.preload = () => {
       pictureMedia = p.loadImage(ProfilPicture);
@@ -231,7 +211,28 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         }
       }
     }
-  };
+  }, [onCircleUpdate]); 
+  
+  useEffect(() => {
+    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container2'));
+        
+    const handleResize = () => {
+      if (p5InstanceRef.current) {
+        const canvasHeight =  p5InstanceRef.current.windowWidth <= 560 ?  p5InstanceRef.current.windowHeight +  p5InstanceRef.current.windowHeight * 0.30 :  p5InstanceRef.current.windowHeight + 55;
+        p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
+        p5InstanceRef.current.background(197, 15, 72);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
+    };
+  }, [sketch]);
 
   return <div id="sketch-container2"></div>;
 };

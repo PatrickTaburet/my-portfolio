@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect, useCallback} from 'react';
   import AnimatedTitle from '../animated-title/AnimatedTitle';
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
@@ -17,9 +17,20 @@
     const [showSketch, setShowSketch] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
     
+    const handleCloseProject = useCallback(() => {
+      setClosedCircle(activeProject); // Track the last opened circle
+      setLaunchMode(false);
+      setIsProjectInfoVisible(false);
+      setActiveProject(null);
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      setTimeout(() => {
+        setShowSketch(true);
+      }, 200); 
+    }, [activeProject]);  
+
     useEffect(() => {
       isClosedFromHeader && handleCloseProject();
-    }, [isClosedFromHeader]);
+    }, [isClosedFromHeader, handleCloseProject]);
 
     useEffect(() => {
       onProjectInfoChange(isProjectInfoVisible);
@@ -29,19 +40,9 @@
       window.history.pushState({ project: projectName }, '', `#${projectName}`);
       setActiveProject(projectName);
       setIsProjectInfoVisible(true);
-      setShowSketch(false);
+      setShowSketch(false); 
     };
     
-    const handleCloseProject = () => {
-      setClosedCircle(activeProject); // Track the last opened circle
-      setLaunchMode(false);
-      setIsProjectInfoVisible(false);
-      setActiveProject(null);
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
-      setTimeout(() => {
-        setShowSketch(true);
-      }, 200);
-    };
 
     useEffect(() => {
       const handlePopState = (event) => {
@@ -58,7 +59,7 @@
       return () => {
         window.removeEventListener('popstate', handlePopState);
       };
-    }, [isVisible, isProjectInfoVisible]);
+    }, [isVisible, isProjectInfoVisible, handleCloseProject]);
     
     return (
       <section 

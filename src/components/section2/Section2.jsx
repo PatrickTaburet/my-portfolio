@@ -31,12 +31,20 @@ const Section2 = ({scrollValue}) => {
     };
   }, [scrollValue]); 
 
-  useEffect(() => {    
+  useEffect(() => {  
+    const handleMouseMove = (event) => {
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top 
+      });
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+    }; 
+  }, [sectionRef]);
 
   const handleCopy = (message) => {
     navigator.clipboard.writeText(message);
@@ -44,13 +52,7 @@ const Section2 = ({scrollValue}) => {
     setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
-  const handleMouseMove = (event) => {
-    const rect = sectionRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top 
-    });
-  };
+
 
   const handleCircleUpdate = (x, y, size) => {
     setCircleData({x: x, y: y, size: size});
