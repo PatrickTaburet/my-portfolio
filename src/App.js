@@ -52,7 +52,7 @@ function App() {
   const handleCloseFromHeader = () => {
     setIsClosedFromHeader (isProjectInfoVisible ? true : false); 
     setTimeout(() => {
-      setIsClosedFromHeader (!isProjectInfoVisible); 
+      setIsClosedFromHeader (false); 
     }, 200);
   };
 
@@ -98,7 +98,7 @@ function App() {
         </AnimatedTitle>
       </header>
       <main className='container'>
-        <Suspense fallback={<div className='loading'><span class="loader"></span></div>}>
+        <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
           <Section1 
             className="section1"
             scrollValue = {scrollY}

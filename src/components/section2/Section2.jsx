@@ -113,7 +113,7 @@ const Section2 = ({scrollValue}) => {
                         onMouseEnter={() => setHovered(true)}
                         onMouseLeave={() => setHovered(false)}
                       >
-                        06 11 01 23 70
+                        +33 6 11 01 23 70
                       </p>
                     </div>
                   </div>

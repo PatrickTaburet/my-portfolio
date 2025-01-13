@@ -36,7 +36,7 @@
 }
 .link.modeC {
 
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 .link.modeC:hover {
   color: var(--color-text);

@@ -5,6 +5,8 @@
    /* min-height: 36vw; */
    margin:20px;
    overflow: hidden;
+   border: 3px solid #2BF7BC; /* Ajout de la bordure */
+   border-radius: 23px; 
 }
 .slideContainer{
    width: 100%;

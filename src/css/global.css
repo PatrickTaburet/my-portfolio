@@ -7,13 +7,11 @@
 :root {
     /* Colors */
     --color-primary: #2BF7BC;
-    --color-secondary: #393e46;
-    --color-background: #051014;
+    --color-secondary: #051014;
     --color-text: #EEEEEE;
     --color-light: #e0f2f8;
     --color-text-transp: #b6ecf7af;
-    --color-section2: #9baeb6;
-    --color-purple: #5c07a2;
+    --color-purple: #1F0A33;
     
     /* Colors */
     /* --color-primary: #2BD7F9;
@@ -47,7 +45,7 @@ a {
 }
 
 main {
-    background-color: var(--color-section2);
+    background-color: var(--color-purple);
     font-family:  var(--font-main);
     font-size: var(--text-size-main);
 }

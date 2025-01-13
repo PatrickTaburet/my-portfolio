@@ -56,12 +56,9 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
 
-      mediaProject2.loop();
       mediaProject2.volume(0);
       mediaProject2.hide();
-      if (mediaProject2.elt.paused) {
-        mediaProject2.play();
-      }
+
       // Proportional orbital distance and size
       maxDistanceX = p.map(p.width, 300, 1800, p.width * 0.3, p.width * 0.2, true);
       maxDistanceY = p.map(p.width, 300, 1800, p.height * 0.1, p.height * 0.15, true);
@@ -113,6 +110,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     };
 
     p.mouseMoved = () => {
+
       if (!p._renderer || !p._renderer.elt) return;
     
       let isHovering = false;
@@ -127,8 +125,15 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     
         if (isHovered) {
           isHovering = true;
+          if (mediaProject2.elt.paused) {
+            mediaProject2.play();
+            mediaProject2.loop();
+          }
           break;
         }
+      }
+      if (!isHovering && !mediaProject2.elt.paused) {
+        mediaProject2.pause();
       }
     
       p.cursor(isHovering ? p.HAND : p.ARROW);

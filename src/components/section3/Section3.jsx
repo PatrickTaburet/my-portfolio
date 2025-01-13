@@ -16,12 +16,15 @@
     const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
     const [showSketch, setShowSketch] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
-    
+    const [fadeBackground, setFadeBackground] = useState(false);
+
     const handleCloseProject = useCallback(() => {
       setClosedCircle(activeProject); // Track the last opened circle
       setLaunchMode(false);
       setIsProjectInfoVisible(false);
       setActiveProject(null);
+      setFadeBackground(false);
+      setIsHovered(false)
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
       setTimeout(() => {
         setShowSketch(true);
@@ -41,6 +44,9 @@
       setActiveProject(projectName);
       setIsProjectInfoVisible(true);
       setShowSketch(false); 
+      setTimeout(() => {
+        setFadeBackground(true);
+      }, 50);
     };
     
 
@@ -101,7 +107,7 @@
         >      
 
           {activeProject && ProjectsMapping[activeProject] ? (
-            <div className="projectInfos">
+            <div className={`projectInfos ${fadeBackground ? 'fade-background' : ''}`}>
               <AnimatedTitle timeout={"0"} direction="up">
                 <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
               </AnimatedTitle>
@@ -143,18 +149,21 @@
                   </AnimatedTitle>
                 </div>
               </div>
-              <div className='bottomBack'>
+              <div 
+                className='bottomBack'
+                onMouseEnter={() => setIsHovered(true)} 
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 <TbCircleArrowLeftFilled 
-                  className="backButton" 
+                  className="backArrow" 
                   onClick={handleCloseProject} 
-                  color='white' 
+                  // color='white' 
                   size={55}
-                  style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s' }} 
+                  style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s', color: isHovered ? "#FFFFFF" : "#2BF7BC" }} 
                 />
                 <span 
-                  onMouseEnter={() => setIsHovered(true)} 
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={handleCloseProject} 
+
+                  onClick={handleCloseProject}
                 >
                   Back
                 </span>
