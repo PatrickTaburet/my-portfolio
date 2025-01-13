@@ -12,15 +12,7 @@
     --color-light: #e0f2f8;
     --color-text-transp: #b6ecf7af;
     --color-purple: #1F0A33;
-    
-    /* Colors */
-    /* --color-primary: #2BD7F9;
-    --color-secondary: #5c07a2;
-    --color-background: #0D1520;
-    --color-text: #B6ECF7;
-    --color-light: #e0f2f8;
-    --color-text-transp: #b6ecf7af; */
-    
+        
     /* Fonts */
     --font-main: "Georama", sans-serif;
     --font-title:  "Poppins", sans-serif;
@@ -35,7 +27,6 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-
 }
 
 a {

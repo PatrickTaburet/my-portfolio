@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import './css/App.css';
 import './css/global.css';
+import Header from './components/header/Header';
 
 const Section1 = lazy(() => import('./components/section1/Section1'));
 const Section2 = lazy(() => import('./components/section2/Section2'));
@@ -58,45 +59,14 @@ function App() {
 
   return (
     <div className="App">
-      <header 
-        className="header"
-        style={{color:`${scrollY > windowHeight && scrollY <=  window.innerHeight * 1.6 ? "#2BF7BC" : ''}`}}
-      >
-        <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
-          <button 
-           className={`link ${
-              isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
-              ? 'modeC' 
-              : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
-                || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
-                ? 'modeB' : 'modeA')
-            }`
-          }
-            onClick={ () => {
-              scrollToSection(sectionOffsets.section3Offset);
-              handleCloseFromHeader();              
-            }}
-            
-          >
-            Projects 
-          </button> 
-            / 
-          <button 
-           className={`link ${
-              isProjectInfoVisible && scrollY >= window.innerHeight * 1.6 
-              ? 'modeC' 
-              : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6) 
-                || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6) 
-                ? 'modeB' : 'modeA')
-            }`
-          }
-            onClick={() => scrollToSection(sectionOffsets.section2Offset)}
-      
-          >
-            Contact
-          </button>
-        </AnimatedTitle>
-      </header>
+     <Header 
+        scrollY={scrollY}
+        windowHeight={windowHeight}
+        isProjectInfoVisible={isProjectInfoVisible}
+        sectionOffsets={sectionOffsets}
+        scrollToSection={scrollToSection}
+        handleCloseFromHeader={handleCloseFromHeader}
+      />
       <main className='container'>
         <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
           <Section1 
@@ -115,7 +85,6 @@ function App() {
           />
         </Suspense>
       </main>
-
     </div>
   );
 }

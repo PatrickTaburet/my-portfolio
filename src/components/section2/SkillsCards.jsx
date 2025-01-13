@@ -25,7 +25,6 @@ const SkillsCards = () =>{
                         <h4>Front-end / Back-end</h4>
                     </AnimatedTitle>
                     <AnimatedTitle timeout={"100"} direction="up">
-
                         <div className='card1'>
                             <div className='logoContainer'>
                                 <img src={LogoSymfo} alt="Logo_Symfony" className="logoSymfo"/>
@@ -58,7 +57,6 @@ const SkillsCards = () =>{
                     <AnimatedTitle timeout={"100"} direction="up">
                         <h4>Tools</h4>
                     </AnimatedTitle>
-
                     <AnimatedTitle timeout={"100"} direction="up">
                         <div className='card2'>
                             <div className='logoContainer'>
@@ -77,7 +75,6 @@ const SkillsCards = () =>{
                                 <img src={LogoFigma} alt="Logo_Figma" className="LogoFigma"/>
                                 <p>Figma</p>
                             </div>
-
                         </div>
                     </AnimatedTitle>
                 </div>

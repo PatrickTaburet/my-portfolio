@@ -52,8 +52,6 @@ const Section2 = ({scrollValue}) => {
     setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
-
-
   const handleCircleUpdate = (x, y, size) => {
     setCircleData({x: x, y: y, size: size});
   };
@@ -172,7 +170,7 @@ const Section2 = ({scrollValue}) => {
         isRunning={isVisible}
         onCircleUpdate={handleCircleUpdate}
       />
-     
+
     </section>
   );
 }

@@ -118,7 +118,7 @@ const ProjectsMapping = {
       title: "Creative Coding",
       description: (
         <>
-          <p>Creative coding is a practice that combines art and technology to create interactive and animated experiences. It encompasses various creative processes, such as data art and generative art, both of which I focus on in my work. By using algorithms and data, these approaches enable the creation of unique and visually compelling pieces that blend creativity with logic.</p>
+          <p>Creative coding is a practice that combines art and programming to create interactive and animated experiences. It encompasses various creative processes, such as data art and generative art, both of which I focus on in my work. By using algorithms and data, these approaches allow the creation of unique and visually original pieces by combining creativity and logic.</p>
           <p>My work primarily involves Processing and p5.js, tools that allow me to develop visual and dynamic content. I'm currently expanding into WebGL and Three.js to explore 3D environments and the power of shaders.</p>
           <p>Creative coding offers a unique way to bring animation and interactivity into web applications, enhancing the user experience with intuitive and visually appealing designs. It's an approach that transforms static interfaces into more engaging and immersive experiences, blending aesthetics with functionality.</p>
         </>

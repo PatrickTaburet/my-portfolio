@@ -49,7 +49,6 @@
       }, 50);
     };
     
-
     useEffect(() => {
       const handlePopState = (event) => {
         if (isVisible && isProjectInfoVisible) {
@@ -111,25 +110,21 @@
               <AnimatedTitle timeout={"0"} direction="up">
                 <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
               </AnimatedTitle>
-
               <div className='projectContent'>
                 <AnimatedTitle timeout={"200"} direction="up">
                   <Slider images={ProjectsMapping[activeProject].slides}/>
                 </AnimatedTitle>
-
                 <div className='projectDescription'>
                   <AnimatedTitle timeout={"400"} direction="up">
                     {ProjectsMapping[activeProject].description}
                   </AnimatedTitle>
-
                   <AnimatedTitle timeout={"600"} direction="up">
                     <div className='linksContainer'>
                       {ProjectsMapping[activeProject].element && ProjectsMapping[activeProject].element.props.children && (
                         <div className='elementWrapper'>
                           {ProjectsMapping[activeProject].element}
                         </div>
-                      )}
-                                    
+                      )}     
                       <div className='linksWrapper'>
                         <p>Source code :</p>
                         {ProjectsMapping[activeProject].links.map((link, index) => (
@@ -170,9 +165,7 @@
               </div>
             </div>
           ) : (
-            <div className="projectInfos">
-             
-            </div>
+            <div className="projectInfos"></div>
           )} 
         </div>
         <span className='copyright'>© 2025 Taburet Patrick</span>
