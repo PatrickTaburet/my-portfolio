@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
+import './header.css';
 
 function Header({ scrollY, windowHeight, isProjectInfoVisible, sectionOffsets, scrollToSection, handleCloseFromHeader }) {
   return (

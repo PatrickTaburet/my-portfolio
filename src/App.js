@@ -1,5 +1,4 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import AnimatedTitle from './components/animated-title/AnimatedTitle';
 import './css/App.css';
 import './css/global.css';
 import Header from './components/header/Header';
