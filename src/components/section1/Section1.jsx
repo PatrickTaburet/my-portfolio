@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
-import BackgroundCyber from '../../assets/images/blue-background.png';
+import BackgroundCyber from '../../assets/images/blue-background.webp';
 import useVisibility from '../hooks/useVisibility';
 
 

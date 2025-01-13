@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.png';
+import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.webp';
 import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm.webm';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {

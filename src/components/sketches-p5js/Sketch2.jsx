@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import ProfilPicture from './../../assets/images/avatar.jpg';
+import ProfilPicture from './../../assets/images/avatar.webp';
 
 const Sketch2 = ({isRunning, onCircleUpdate }) => {
   const p5InstanceRef = useRef(null);
@@ -25,7 +25,6 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
       }
     };
   }, []);
-
 
   useEffect(() => {
     if (p5InstanceRef.current) {
