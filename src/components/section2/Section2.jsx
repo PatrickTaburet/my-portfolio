@@ -20,7 +20,12 @@ const Section2 = ({scrollValue}) => {
 
   useEffect(() => {    
     const updateTranslateY = () => {
-      setSectionTranslateY( Math.max(-scrollValue, -window.innerHeight) / 2.8);
+      const isMobile = window.innerWidth <= 768; 
+      if (isMobile) {
+        setSectionTranslateY(0);
+      } else {
+        setSectionTranslateY(Math.max(-scrollValue, -window.innerHeight) / 2.8);
+      }
     };
 
     updateTranslateY();
@@ -164,13 +169,11 @@ const Section2 = ({scrollValue}) => {
           Copied!
         </span>
       )}
-
-      <Sketch2 
-        className="sketch" 
-        isRunning={isVisible}
-        onCircleUpdate={handleCircleUpdate}
-      />
-
+        <Sketch2 
+          className="sketch" 
+          isRunning={isVisible}
+          onCircleUpdate={handleCircleUpdate}
+        />
     </section>
   );
 }

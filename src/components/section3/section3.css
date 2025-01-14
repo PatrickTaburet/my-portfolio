@@ -177,6 +177,34 @@
   width: 100%;
   text-align: center;
 }
+.rocketIcon{
+  pointer-events: auto;
+  z-index: 99; 
+  position: absolute;
+  cursor: pointer;
+  left: 46%;
+  bottom: 80px;
+  width: 50px;
+  animation: rocketFly 6s infinite;
+}
+@keyframes rocketFly {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(5px) translateY(5px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(0px) translateY(7px) rotate(-5deg);
+  }
+  75% {
+    transform: translateX(5px) translateY(5px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
 
 /* particle background */
 
@@ -185,7 +213,7 @@
   background: #000;
   height: 100%;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: -3;
@@ -232,7 +260,7 @@
   }
 }
 .starField {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -411,24 +439,33 @@ Media queries
   .link{
     text-align: start;
   }
+  .copyright{
+    color: var(--color-text);
+    font-size: 0.7em;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
 }
 /* ----------------------------- Mobile h < 667px ------------------------------ */
 
 @media screen and (max-height: 667px)
 {
-  .sketchContainer {
+  /* .sketchContainer {
     display: flex ;
     align-items: center;
     justify-content: center;
-  }
-  .copyright{
+  } */
+  /* .copyright{
     color: var(--color-text);
+    font-size: 0.7em;
     position: absolute;
-    bottom: 30px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
-  }
-  .bottomBack{
+  } */
+  /* .bottomBack{
     margin-top: 20px;
-  }
+  } */
 }

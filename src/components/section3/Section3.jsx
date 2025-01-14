@@ -1,4 +1,4 @@
-  import React, { useState, useEffect, useCallback} from 'react';
+  import React, { useState, useEffect, useCallback } from 'react';
   import AnimatedTitle from '../animated-title/AnimatedTitle';
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
@@ -7,8 +7,9 @@
   import Slider from "./image-slider/Slider"
   import ProjectsMapping from './ProjectsMapping';
   import { TbBrandGithub } from "react-icons/tb";
+  import Rocket from '../../assets/images/rocket.png';
 
-  const Section3 = ({scrollValue, onProjectInfoChange, isClosedFromHeader }) => {
+  const Section3 = ({scrollValue, onProjectInfoChange, isClosedFromHeader, scrollToSection, sectionOffsets}) => {
     const [sectionRef, isVisible] = useVisibility();
     const [activeProject, setActiveProject] = useState(null);
     const [launchMode, setLaunchMode] = useState(true); 
@@ -17,6 +18,7 @@
     const [showSketch, setShowSketch] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
     const [fadeBackground, setFadeBackground] = useState(false);
+    const isMobile = window.innerWidth <= 768; 
 
     const handleCloseProject = useCallback(() => {
       setClosedCircle(activeProject); // Track the last opened circle
@@ -70,7 +72,7 @@
       <section 
         id="section3" 
         className='section3' 
-        style={{ transform: `translateY(${(Math.max(-scrollValue, -window.innerHeight) / 2.8)}px)` }}
+        style={{ transform: isMobile ? 'none' : `translateY(${(Math.max(-scrollValue, -window.innerHeight) / 2.8)}px)` }}
         ref={sectionRef}
       >
         {/* Galaxy background */}
@@ -92,12 +94,12 @@
 
         <div className={`sketchContainer ${showSketch ? 'visible' : ''}`}>
           {!activeProject && (
-            <Sketch3
-              onCircleClick={handleProjectClick}
-              launchMode={launchMode}
-              closedCircle={closedCircle}
-              isRunning={isVisible}
-            />
+              <Sketch3
+                onCircleClick={handleProjectClick}
+                launchMode={launchMode}
+                closedCircle={closedCircle}
+                isRunning={isVisible}
+              />
           )} 
         </div>
         <div
@@ -107,9 +109,7 @@
 
           {activeProject && ProjectsMapping[activeProject] ? (
             <div className={`projectInfos ${fadeBackground ? 'fade-background' : ''}`}>
-              <AnimatedTitle timeout={"0"} direction="up">
-                <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
-              </AnimatedTitle>
+              <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
               <div className='projectContent'>
                 <AnimatedTitle timeout={"200"} direction="up">
                   <Slider images={ProjectsMapping[activeProject].slides}/>
@@ -168,6 +168,14 @@
             <div className="projectInfos"></div>
           )} 
         </div>
+        <img           
+          onClick={() => {
+            scrollToSection(sectionOffsets.section3Offset);            
+          }}
+          src={Rocket} alt="rocket_icon" 
+          className="rocketIcon" 
+          style={{display: isMobile ? 'block' : 'none'}}
+        />
         <span className='copyright'>© 2025 Taburet Patrick</span>
       </section>
     );

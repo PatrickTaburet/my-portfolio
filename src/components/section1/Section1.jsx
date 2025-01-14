@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,} from 'react';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 import BackgroundCyber from '../../assets/images/blue-background.webp';
 import useVisibility from '../hooks/useVisibility';
 
-
 const Section1 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
   const textSlowDownFactor = 3;
+  const isMobile = window.innerWidth <= 768; 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,21 +36,29 @@ const Section1 = ({scrollValue}) => {
       <img
         src={BackgroundCyber}
         alt="Background_cyber"
+        fetchPriority="high"
         className={
-          !initialAnimationComplete && !isScrollTriggered
+          isMobile
+            ? 'backgroundScrolled'
+            : !initialAnimationComplete && !isScrollTriggered
             ? 'backgroundInitial'
             : 'backgroundScrolled'
         }
-        style={{
-          filter: `blur(${Math.min(15, scrollValue / 70)}px)`,
-          opacity: Math.max(0, 1 - scrollValue / 500),
-          transform: `scale(${1 + scrollValue / 1000})`,
-        }}
+        style={
+          !isMobile
+            ? {
+                filter: `blur(${Math.min(15, scrollValue / 70)}px)`,
+                opacity: Math.max(0, 1 - scrollValue / 500),
+                transform: `scale(${1 + scrollValue / 1000})`,
+              }
+            : {}
+        }
       />
       <div 
         className='section1Content' 
         style={{ 
-          transform: `translateY(${scrollValue / textSlowDownFactor}px)`, // parallax effect
+          transform: isMobile ? 'none' : `translateY(${scrollValue / textSlowDownFactor}px)`, 
+          // transform: `translateY(${scrollValue / textSlowDownFactor}px)`, // parallax effect
           opacity: `${scrollValue > 200 ? (1- scrollValue/700) : 1}` // Text disapear when scroll down
         }}
       >
@@ -69,15 +77,15 @@ const Section1 = ({scrollValue}) => {
           </AnimatedTitle>
         </div>
       </div>
-        
       <Sketch1 isRunning={isVisible}/>
 
-      <div className='sliderContainer'>
-        <AnimatedTitle timeout={"900"} direction="down">
-          {/* <p>Lines</p> */}
-          <input type="range"  min="1" max="60" defaultValue="13" step="1"  className="rangeSlider" id="lineSlider"/>
-        </AnimatedTitle>
-      </div>
+          <div className='sliderContainer' style={{ display: isMobile ? 'none' : 'block'}}>
+            <AnimatedTitle timeout={"900"} direction="down">
+              {/* <p>Lines</p> */}
+              <input type="range"  min="1" max="60" defaultValue="13" step="1"  className="rangeSlider" id="lineSlider"/>
+            </AnimatedTitle>
+          </div>
+
     </section>
   );
 }

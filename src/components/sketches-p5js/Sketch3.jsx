@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.webp';
-import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm.webm';
+import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm-original.webm';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
@@ -237,7 +237,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         // Calculate the position of the circle
         this.x = p.width / 2 + p.cos(this.angle) * maxDistanceX;
         this.y = p.height / 2 + p.sin(this.angle) * maxDistanceY;
-        // Dynamic cicles size
+        // Dynamic circles size
         const targetSize = this.hovered ? circleSize * 2 : circleSize;
 
         this.size = p.lerp(this.size, targetSize * perspective, 0.3);

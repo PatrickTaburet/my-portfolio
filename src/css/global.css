@@ -1,3 +1,53 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/poppins-light-webfont.woff2') format('woff2'),
+         url('../assets/fonts/poppins-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap; 
+}
+  
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/poppins-regular-webfont.woff2') format('woff2'),
+         url('../assets/fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; 
+}
+  
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/poppins-medium-webfont.woff2') format('woff2'),
+         url('../assets/fonts/poppins-medium-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; 
+}
+@font-face {
+    font-family: 'Georama';
+    src: url('../assets/fonts/Georama-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap; 
+  }
+  
+@font-face {
+    font-family: 'Georama';
+    src: url('../assets/fonts/Georama-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; 
+}
+@font-face {
+    font-family: 'Georama';
+    src: url('../assets/fonts/Georama-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; 
+}
+  
+
 :root {
     /* Colors */
     --color-primary: #2BF7BC;
@@ -30,7 +80,7 @@ a {
 }
 
 main {
-    background-color: var(--color-purple);
+    background-color: var(--color-secondary);
     font-family:  var(--font-main);
     font-size: var(--text-size-main);
 }
@@ -50,8 +100,12 @@ button {
     background-color: transparent;
     line-height: inherit;
     cursor: pointer;
-  }
-
+}
+.bioLetters{
+    line-height: 1.3em;
+    white-space: 'pre-wrap';
+    font-weight: 300;
+}
 /* 
 ========================
 Media queries

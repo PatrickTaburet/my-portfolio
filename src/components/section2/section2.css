@@ -10,7 +10,7 @@
     width: 100%;
     color: var(--color-secondary);
     height: 100%;
-    margin-top: 1vw;
+    margin-top: 4vw;
 }
 .topSection2{
     position: relative;
@@ -424,8 +424,9 @@ Media queries
         margin-top: 4vw;
     }
     .cardsWrapper{
+        width: none;
         margin: 0;
-        gap: 3vw;
+        gap: 2vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -434,13 +435,14 @@ Media queries
 
     .cardsContainer{
         gap: 0;
-        margin-right: 0;
+        margin-right: 2vw;
+        margin-top: 250px;
     }
     .cardsContainer h3{
         font-size: 3rem ;
         margin: 0;
         text-align: center;
-        margin-top: 48vw;
+        margin-bottom: 20px;
         text-align: start;
         width: 100%;
     }
@@ -453,13 +455,14 @@ Media queries
 
     .card1, .card2{
         padding: 12px;
+        gap: 0;
     }
     .card1{
-        min-width: 200px;
-        min-height: 190px;
+        min-width: 180px;
+        min-height: 170px;
     }
     .card2{
-        min-width: 170px;
+        min-width: 150px;
         min-height: 170px;
     }
     .logoContainer{
@@ -482,7 +485,7 @@ Media queries
         position: absolute;
         display: block;
         align-items: center;
-        bottom: -52vh;
+        bottom: -470px;
         margin: 0;
     }
     .contactContent{
@@ -492,6 +495,9 @@ Media queries
         gap: 0;
         width:  100%;
     }
+    .contactCard{
+        min-width: 280px;
+    }
     .contactCard span{
         margin-top: 10px;
     }
@@ -499,12 +505,16 @@ Media queries
         height: 40px;
     }
 }
-/* -----------------------------  h < 800px ------------------------------ */
+/* -----------------------------  h < 900px ------------------------------ */
 
-@media screen and (max-height: 800px)
+@media screen and (max-height: 900px)
 {
-
-    .contactContainer{
+    /* .contactCard{
+        position: absolute;
+        gap: 3vw;
+        width: 85vw;
+    } */
+    /* .contactContainer{
         bottom: -63vh;
     }
     .cardsWrapper{
@@ -519,6 +529,6 @@ Media queries
         width: 90%;
         margin: 0 auto;
         height: 40vh;
-    }
+    } */
 }
 

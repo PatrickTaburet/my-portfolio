@@ -4,26 +4,29 @@ import ProfilPicture from './../../assets/images/avatar.webp';
 
 const Sketch2 = ({isRunning, onCircleUpdate }) => {
   const p5InstanceRef = useRef(null);
+  const sketchContainerRef = useRef(null);
 
   useEffect(() => {
-    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container2'));
-        
-    const handleResize = () => {
-      if (p5InstanceRef.current) {
-        const canvasHeight =  p5InstanceRef.current.windowWidth <= 560 ?  p5InstanceRef.current.windowHeight +  p5InstanceRef.current.windowHeight * 0.30 :  p5InstanceRef.current.windowHeight + 55;
-        p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
-        p5InstanceRef.current.background(270, 80, 30);
-      }
-    };
+    if (sketchContainerRef.current) {
+      p5InstanceRef.current = new p5(sketch, sketchContainerRef.current);
+          
+      const handleResize = () => {
+        if (p5InstanceRef.current) {
+          const canvasHeight = p5InstanceRef.current.windowWidth < 560 ? 1150 : p5InstanceRef.current.windowHeight + 55;     
+          p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
+          p5InstanceRef.current.background(270, 80, 30);
+        }
+      };
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (p5InstanceRef.current) {
-        p5InstanceRef.current.remove();
-      }
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        if (p5InstanceRef.current) {
+          p5InstanceRef.current.remove();
+        }
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -41,14 +44,9 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     };
 
     p.setup = () => {
-      const canvasHeight = 
-        p.windowHeight < 800 
-          ? p.windowHeight + p.windowHeight * 0.60 
-          : p.windowWidth <= 560
-            ? p.windowHeight + p.windowHeight * 0.30 
-            : p.windowHeight + 55;
+      const canvasHeight = p.windowWidth < 560 ? 1150 : p.windowHeight + 55;
       const canvas = p.createCanvas(p.windowWidth, canvasHeight);
-      canvas.parent('sketch-container2');
+      canvas.parent(sketchContainerRef.current);
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
       p.background(270, 80, 20);
@@ -101,7 +99,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
           this.y = p.height;
         } else if (p.width < 560) {
           this.x = p.width / 2;
-          this.y = p.height / 2.8;
+          this.y = p.height / 2.9;
         } else if (p.width < 768) {
           this.x = p.width / 3.5;
           this.y = p.height / 1.63;
@@ -232,7 +230,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     }
   };
 
-  return <div id="sketch-container2"></div>;
+  return <div id="sketch-container2" ref={sketchContainerRef}></div>;
 };
 
 export default Sketch2;

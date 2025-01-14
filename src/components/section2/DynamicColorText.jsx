@@ -35,7 +35,7 @@ const DynamicColorText = ({ text, circleData, sectionRef }) => {
   }, [text, circleData, sectionRef]);
 
   return (
-    <div ref={containerRef} style={{lineHeight: '1.3em', whiteSpace: 'pre-wrap', fontWeight: 300 }}>
+    <div ref={containerRef} className='bioLetters'>
       {text.split('').map((char, index) => {
         const charPosition = charPositions[index];
         let isInside = false;
@@ -53,6 +53,7 @@ const DynamicColorText = ({ text, circleData, sectionRef }) => {
             key={index}
             style={{
               color: isInside ? '#2BF7BC' : '#e0f2f8',
+              fontWeight: 300, // Utilisez 300 ici
             }}
           >
             {char}

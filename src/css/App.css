@@ -77,26 +77,36 @@ Media queries
 
 @media screen and (max-width: 768px)
 {
+  .container {
+    height: 313vh;
+  }
+  .section2 {
+    height: 106vh;
+
+  }
+  .section3 {
+    height: 124vh;
+
+  }
 }
 /* ----------------------------- Mobile < 560px ------------------------------ */
 
 @media screen and (max-width: 560px)
 {
   .container {
-    height: 315vh;
+    height: calc(100vh + 2200px);
   }
   .section2 {
-    height: 130vh;
+    height: 1150px;
 
   }
   .section3 {
-    height: 126vh;
-
+    height: 1050px;
   }
 }
 /* ----------------------------- Mobile h < 667px ------------------------------ */
 
-@media screen and (max-height: 667px)
+/* @media screen and (max-height: 667px)
 {
   
   .container {
@@ -111,4 +121,4 @@ Media queries
   }
 
 }
-
+ */
