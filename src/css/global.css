@@ -79,7 +79,7 @@ a {
 }
 
 main {
-    background-color: var(--color-purple);
+    background-color: var(--color-secondary);
     font-family:  var(--font-main);
     font-size: var(--text-size-main);
 }

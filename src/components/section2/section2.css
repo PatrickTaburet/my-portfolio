@@ -11,7 +11,7 @@
     width: 100%;
     color: var(--color-secondary);
     height: 100%;
-    padding-top: 4vw;
+    padding-top: 3vw;
 }
 .topSection2{
     position: relative;
@@ -119,7 +119,7 @@
 .cardsWrapper{
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 2vw;
 
 }
 .card1Wrapper, .card2Wrapper{
@@ -142,10 +142,11 @@
     color: var(--color-primary);
     font-size: 75px;
     margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 .cardsWrapper h4{
     color: var(--color-light);
-    font-size: 35px;
+    font-size: 28px;
     margin: 0;
     white-space: nowrap;
 }

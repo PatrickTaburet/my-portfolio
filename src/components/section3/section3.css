@@ -15,7 +15,6 @@
   padding-top: 3vw;
   width: 100%;
 }
-
 .section3Content h3{
   color: var(--color-primary);
   font-size: 75px;
@@ -188,7 +187,7 @@
   position: absolute;
   cursor: pointer;
   left: 46%;
-  bottom: 80px;
+  bottom: 110px;
   width: 50px;
   animation: rocketFly 6s infinite;
 }

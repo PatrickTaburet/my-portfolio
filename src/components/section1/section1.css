@@ -93,10 +93,14 @@
   right: 1.5vw;
 }
 .sliderContainer p{
-  margin-bottom: 7px;
-  position: relative;
+  color: var(--color-primary);
+  margin-bottom: 0.4vw;
+  font-weight: 900;
+  font-size: var(--text-size-title);
 }
-
+.negativePole{
+  margin-top: 5.5vw;
+}
 .rangeSlider {
   position: relative;
   margin-top: 5.5vw;
@@ -138,6 +142,7 @@
   border-radius: 4px;
 }
 
+
 /* 
 ========================
 Media queries
@@ -161,7 +166,13 @@ Media queries
   .sliderContainer{
     right: 3vw;
   }
+  .sliderContainer p{
 
+    margin-bottom: 2vw;
+  }
+  .negativePole{
+    margin-top: 7vw;
+  }
 }
 
 /* ----------------------------- Tablet < 768px ------------------------------ */

@@ -81,8 +81,9 @@ const Section1 = ({scrollValue}) => {
 
           <div className='sliderContainer' style={{ display: isMobile ? 'none' : 'block'}}>
             <AnimatedTitle timeout={"900"} direction="down">
-              {/* <p>Lines</p> */}
+              <p>+</p>
               <input type="range"  min="1" max="60" defaultValue="13" step="1"  className="rangeSlider" id="lineSlider"/>
+              <p className='negativePole'>-</p>
             </AnimatedTitle>
           </div>
 
