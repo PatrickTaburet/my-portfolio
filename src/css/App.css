@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 271vh;
+  height: 274vh;
   overflow: hidden; 
 }
 .section1, .section2, .section3 {
@@ -78,7 +78,7 @@ Media queries
 @media screen and (max-width: 768px)
 {
   .container {
-    height: 313vh;
+    height: 328vh;
   }
   .section2 {
     height: 106vh;

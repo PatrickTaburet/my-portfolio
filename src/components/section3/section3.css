@@ -47,6 +47,7 @@
 /* Projects view */
 
 .projectInfos{
+  overflow-y: auto;
   z-index: 100;
   background-color: var(--color-primary);
   width: 100%;
@@ -66,7 +67,7 @@
   padding: 10px;
   margin: auto 0;
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
   justify-content: space-around;
   color: var(--color-secondary);
@@ -132,6 +133,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 17px;
+
 }
 .link{
   font-size: inherit;
@@ -148,11 +150,14 @@
 
 
 .bottomBack{
-  height: 100%;
-  margin-top: 20px;
+  position: relative;
+  /* bottom: 5vh; */
+/* 
+  margin-top: 20px; */
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 30px;
 }
 .bottomBack span{
   display: inline-block;
@@ -173,7 +178,7 @@
   color: var(--color-text);
   font-size: 0.7em;
   position: absolute;
-  bottom: 60px;
+  bottom: 30px;
   width: 100%;
   text-align: center;
 }
@@ -405,6 +410,10 @@ Media queries
 
 @media screen and (max-width: 560px)
 {
+    
+.projectInfos{
+  overflow: hidden;
+}
   .section3Content h3{
     font-size: 2.5rem;
     margin-top: 7vw;
@@ -448,24 +457,22 @@ Media queries
     text-align: center;
   }
 }
-/* ----------------------------- Mobile h < 667px ------------------------------ */
-
-@media screen and (max-height: 667px)
+/* ----------------------------- Desktop h < 900px ------------------------------ */
+@media screen and (max-height: 900px) and (min-width: 561px) 
 {
-  /* .sketchContainer {
-    display: flex ;
-    align-items: center;
-    justify-content: center;
-  } */
-  /* .copyright{
-    color: var(--color-text);
-    font-size: 0.7em;
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  } */
-  /* .bottomBack{
-    margin-top: 20px;
-  } */
+  .projectDescription p{
+    font-size: var(--text-size-mobile);
+    /* margin: 7px 0; */
+  }
+  .projectContent{
+    margin-top: 15px;
+ }
+}
+
+@media screen and (max-height: 560px)
+{
+  .projectDescription p{
+    font-size: var(--text-size-mini);
+    /* margin: 7px 0; */
+  }
 }

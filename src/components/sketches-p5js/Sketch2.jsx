@@ -13,7 +13,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
       const handleResize = () => {
         if (p5InstanceRef.current) {
           const canvasHeight = p5InstanceRef.current.windowWidth < 560 ? 1150 : p5InstanceRef.current.windowHeight + 55;     
-          p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
+          p5InstanceRef.current.resizeCanvas(window.innerWidth - 15, canvasHeight);
           p5InstanceRef.current.background(270, 80, 30);
         }
       };
@@ -45,7 +45,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
 
     p.setup = () => {
       const canvasHeight = p.windowWidth < 560 ? 1150 : p.windowHeight + 55;
-      const canvas = p.createCanvas(p.windowWidth, canvasHeight);
+      const canvas = p.createCanvas(p.windowWidth - 15, canvasHeight);
       canvas.parent(sketchContainerRef.current);
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);

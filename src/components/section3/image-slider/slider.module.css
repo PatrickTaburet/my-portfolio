@@ -115,3 +115,22 @@ Media queries
 
    }
 }
+/* ----------------------------- Desktop h < 900px ------------------------------ */
+@media screen and (max-height: 900px) and (min-width: 561px) 
+{
+   .sliderWrapper{
+      max-width: 53vw;
+
+      overflow: hidden;
+      margin-bottom: 4vw;
+      /* Manage global height */
+      max-height:30vw ;
+   }
+   .sliderImage {
+      max-width: 65vw;
+      /* Manage global height */
+      max-height:30vw ;
+      /* min-height: 36vw; */
+   }
+
+}

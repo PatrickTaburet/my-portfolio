@@ -1,7 +1,8 @@
 /* Section 2  */
 
 .section2{
-    overflow: hidden;
+    /* overflow-y: auto;
+    overflow-x:hidden */
 }
 
 .section2Content{
@@ -10,7 +11,7 @@
     width: 100%;
     color: var(--color-secondary);
     height: 100%;
-    margin-top: 4vw;
+    padding-top: 4vw;
 }
 .topSection2{
     position: relative;
@@ -436,7 +437,7 @@ Media queries
     .cardsContainer{
         gap: 0;
         margin-right: 2vw;
-        margin-top: 250px;
+        margin-top: 220px;
     }
     .cardsContainer h3{
         font-size: 3rem ;
@@ -485,7 +486,7 @@ Media queries
         position: absolute;
         display: block;
         align-items: center;
-        bottom: -470px;
+        bottom: -54vh;
         margin: 0;
     }
     .contactContent{
@@ -497,38 +498,131 @@ Media queries
     }
     .contactCard{
         min-width: 280px;
+        /* top: 8vh; */
     }
     .contactCard span{
         margin-top: 10px;
     }
     .contactLine{
-        height: 40px;
+        height: 35px;
     }
 }
-/* -----------------------------  h < 900px ------------------------------ */
+/* -----------------------------  Desktop h < 900px ------------------------------ */
 
-@media screen and (max-height: 900px)
+@media screen and (max-height: 900px) and (min-width: 561px) 
 {
-    /* .contactCard{
+    .section2Content{
+        justify-content: space-between;
+    }
+    .bio{
+        font-size: var(--text-size-small);
+    }
+    
+    .contactCard{
+        gap: 0vw;
+    }
+    .contactCard span{
+        font-size: var(--text-size-text);
+    }
+    .contactLine{
+        margin-bottom: 5px;
+    }
+    .contactLine p,  .contactLine a{
+        font-size: var(--text-size-mobile);
+    }
+    .contactLine svg{
+        width: 30px;
+        height: 30px;
+    }
+    /* Logos techno : */
+
+    .logoSymfo{
+        width: 2.5vw;
+        min-width: 33px;
+    }
+    .logoReact{
+        width: 2.6vw;
+        min-width: 35px;
+        margin-bottom: 0px;
+    }
+    .LogoCSharp{
+        width: 2.3vw;
+        min-width: 30px;
+        margin-top: 3px;
+    }
+    .LogoP5js{
+        width: 2.5vw;
+        min-width: 35px;
+    }
+    .LogoMySql{
+        width: 1.7vw;
+        min-width: 25px;
+        margin-top: 7px;
+    }
+    .LogoPsd{
+        width: 2vw;
+        min-width: 35px;
+        margin-top: 2px;
+    }
+    .LogoFigma{
+        width: 1.05vw;
+        min-width: 23px;
+    }
+    .LogoGithub{
+        width: 2.7vw;
+        min-width: 35px;
+        margin-top: 0.5vw;
+
+    }
+    .LogoDocker{
+        width: 4vw;
+        min-width: 35px;
+    }
+    .LogoNode{
+        width: 2.5vw;
+        min-width: 35px;
+    }
+
+
+    .logoContainer{
+        width: 5vw;
+        height: 4.5vw;
+        margin: 0px;
+    }
+    .logoContainer p{
+        font-size: var(--text-size-mobile);
+        color: var(--color-text);
+        font-weight: 300;
+    }
+
+    .card1, .card2{
+        padding: 15px;
+    }
+}
+
+@media screen and (max-height: 700px) and (max-width: 561px) {
+    .cardsContainer{
+        gap: 0;
+        margin-right: 2vw;
+        margin-top: 280px;
+    }
+    .contactContainer{
         position: absolute;
-        gap: 3vw;
-        width: 85vw;
-    } */
-    /* .contactContainer{
-        bottom: -63vh;
-    }
-    .cardsWrapper{
-        margin: 0;
-        gap: 1vw;
-        display: flex;
-        justify-content: center;
+        display: block;
         align-items: center;
-        flex-direction: row;
+        bottom: -80vh;
+        margin: 0;
     }
-    .topSection2{
-        width: 90%;
-        margin: 0 auto;
-        height: 40vh;
-    } */
+    
+}
+/* ----------------------------- Desktop h < 760px ------------------------------ */
+
+@media screen and (max-height: 760px) and (min-width: 561px) 
+{
+    .bio{
+
+        font-size: var(--text-size-mobile);
+    }
+ 
 }
 
