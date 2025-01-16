@@ -9,6 +9,7 @@ import { TbMail } from "react-icons/tb";
 import { TbPhone } from "react-icons/tb";
 import { TbBrandGithub } from "react-icons/tb";
 import { TbBrandLinkedin } from "react-icons/tb";
+import { deobfuscText } from "../../utils/obfuscation";
 
 const Section2 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
@@ -17,8 +18,10 @@ const Section2 = ({scrollValue}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [sectionTranslateY, setSectionTranslateY] = useState(0);
   const [circleData, setCircleData] = useState({x: 0, y: 0, size: 0});
-
-  useEffect(() => {    
+  const phone = deobfuscText('-55"8"33"23"45"92');
+  const mail = deobfuscText('vcdwtgv0rcvtkemBiockn0eqo');
+  
+  useEffect(() => {  
     const updateTranslateY = () => {
       const isMobile = window.innerWidth <= 768; 
       if (isMobile) {
@@ -60,6 +63,7 @@ const Section2 = ({scrollValue}) => {
   const handleCircleUpdate = (x, y, size) => {
     setCircleData({x: x, y: y, size: size});
   };
+
   return (
     <section 
       id="section2" 
@@ -102,21 +106,21 @@ const Section2 = ({scrollValue}) => {
                     <div className='contactLine'>
                       <TbMail className='logoContact' color='white' size={45}/>
                       <p 
-                        onClick={() => handleCopy("taburet.patrick@gmail.com")}
+                        onClick={() => handleCopy(mail)}
                         onMouseEnter={() => setHovered(true)}
                         onMouseLeave={() => setHovered(false)}
                       >
-                        taburet.patrick@gmail.com
+                        {mail}
                       </p> 
                     </div>
                     <div className='contactLine'>
                       <TbPhone className='logoContact' color='white' size={45}/>
                       <p 
-                        onClick={() => handleCopy("06 11 01 23 70")}
+                        onClick={() => handleCopy(phone)}
                         onMouseEnter={() => setHovered(true)}
                         onMouseLeave={() => setHovered(false)}
                       >
-                        +33 6 11 01 23 70
+                        {phone}
                       </p>
                     </div>
                   </div>

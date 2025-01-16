@@ -94,12 +94,12 @@
 }
 .sliderContainer p{
   color: var(--color-primary);
-  margin-bottom: 0.4vw;
+  margin-bottom: 0.31vw;
   font-weight: 900;
   font-size: var(--text-size-title);
 }
 .negativePole{
-  margin-top: 5.5vw;
+  margin-top: 5.6vw;
 }
 .rangeSlider {
   position: relative;
