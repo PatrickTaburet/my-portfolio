@@ -3,14 +3,15 @@ import AnimatedTitle from './../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 import BackgroundCyber from '../../assets/images/blue-background.webp';
-import useVisibility from '../hooks/useVisibility';
+import useVisibility from '../../hooks/useVisibility';
+import {useMobile} from '../../context/MobileContext';
 
 const Section1 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
   const textSlowDownFactor = 3;
-  const isMobile = window.innerWidth <= 768; 
+  const isMobile = useMobile();
 
   useEffect(() => {
     const handleScroll = () => {

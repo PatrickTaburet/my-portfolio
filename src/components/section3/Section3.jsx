@@ -2,12 +2,13 @@
   import AnimatedTitle from '../animated-title/AnimatedTitle';
   import Sketch3 from '../sketches-p5js/Sketch3';
   import './section3.css';
-  import useVisibility from '../hooks/useVisibility';
+  import useVisibility from '../../hooks/useVisibility';
   import { TbCircleArrowLeftFilled } from "react-icons/tb";
   import Slider from "./image-slider/Slider"
   import ProjectsMapping from './ProjectsMapping';
   import { TbBrandGithub } from "react-icons/tb";
   import Rocket from '../../assets/images/rocket.png';
+  import {useMobile} from '../../context/MobileContext';
 
   const Section3 = ({scrollValue, onProjectInfoChange, isClosedFromHeader, scrollToSection, sectionOffsets}) => {
     const [sectionRef, isVisible] = useVisibility();
@@ -18,7 +19,7 @@
     const [showSketch, setShowSketch] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
     const [fadeBackground, setFadeBackground] = useState(false);
-    const isMobile = window.innerWidth <= 768; 
+    const isMobile = useMobile();
 
     const handleCloseProject = useCallback(() => {
       setClosedCircle(activeProject); // Track the last opened circle

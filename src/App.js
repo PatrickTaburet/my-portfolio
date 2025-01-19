@@ -2,6 +2,8 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import './css/App.css';
 import './css/global.css';
 import Header from './components/header/Header';
+import useIsMobile from './hooks/useIsMobile';
+import { MobileProvider } from './context/MobileContext';
 
 const Section1 = lazy(() => import('./components/section1/Section1'));
 const Section2 = lazy(() => import('./components/section2/Section2'));
@@ -13,7 +15,7 @@ function App() {
   const [sectionOffsets, setSectionOffsets] = useState({ section1Offset: 0, section2Offset: 0, section3Offset: 0 });
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState(false);
   const [isClosedFromHeader, setIsClosedFromHeader] = useState(false);
-  const isMobile = window.innerWidth <= 768; 
+  const isMobile = useIsMobile();
   const SCROLL_ADJUSTMENT = isMobile ? 0 : -240;
 
  useEffect(() => {
@@ -56,36 +58,38 @@ function App() {
   };
 
   return (
-    <div className="App">
-     <Header 
-        scrollY={scrollY}
-        windowHeight={windowHeight}
-        isProjectInfoVisible={isProjectInfoVisible}
-        sectionOffsets={sectionOffsets}
-        scrollToSection={scrollToSection}
-        handleCloseFromHeader={handleCloseFromHeader}
-      />
-      <main className='container'>
-        <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
-          <Section1 
-            className="section1"
-            scrollValue = {scrollY}
-          />
-          <Section2 
-            className="section2" 
-            scrollValue = {scrollY} 
-          />
-          <Section3 
-            className="section3" 
-            scrollValue = {scrollY} 
-            onProjectInfoChange={handleProjectInfoChange}
-            isClosedFromHeader = {isClosedFromHeader}
-            scrollToSection={scrollToSection}
-            sectionOffsets={sectionOffsets}
-          />
-        </Suspense>
-      </main>
-    </div>
+    <MobileProvider>
+      <div className="App">
+      <Header 
+          scrollY={scrollY}
+          windowHeight={windowHeight}
+          isProjectInfoVisible={isProjectInfoVisible}
+          sectionOffsets={sectionOffsets}
+          scrollToSection={scrollToSection}
+          handleCloseFromHeader={handleCloseFromHeader}
+        />
+        <main className='container'>
+          <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
+            <Section1 
+              className="section1"
+              scrollValue = {scrollY}
+            />
+            <Section2 
+              className="section2" 
+              scrollValue = {scrollY} 
+            />
+            <Section3 
+              className="section3" 
+              scrollValue = {scrollY} 
+              onProjectInfoChange={handleProjectInfoChange}
+              isClosedFromHeader = {isClosedFromHeader}
+              scrollToSection={scrollToSection}
+              sectionOffsets={sectionOffsets}
+            />
+          </Suspense>
+        </main>
+      </div>
+    </MobileProvider>
   );
 }
 

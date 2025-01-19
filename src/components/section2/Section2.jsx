@@ -3,13 +3,14 @@ import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from './../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
-import useVisibility from '../hooks/useVisibility';
+import useVisibility from '../../hooks/useVisibility';
 import DynamicColorText from './DynamicColorText';
 import { TbMail } from "react-icons/tb";
 import { TbPhone } from "react-icons/tb";
 import { TbBrandGithub } from "react-icons/tb";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { deobfuscText } from "../../utils/obfuscation";
+import {useMobile} from '../../context/MobileContext';
 
 const Section2 = ({scrollValue}) => {
   const [sectionRef, isVisible] = useVisibility();
@@ -20,10 +21,10 @@ const Section2 = ({scrollValue}) => {
   const [circleData, setCircleData] = useState({x: 0, y: 0, size: 0});
   const phone = deobfuscText('-55"8"33"23"45"92');
   const mail = deobfuscText('vcdwtgv0rcvtkemBiockn0eqo');
-  
+  const isMobile = useMobile();
+
   useEffect(() => {  
     const updateTranslateY = () => {
-      const isMobile = window.innerWidth <= 768; 
       if (isMobile) {
         setSectionTranslateY(0);
       } else {
@@ -37,7 +38,7 @@ const Section2 = ({scrollValue}) => {
     return () => {
       window.removeEventListener('resize', updateTranslateY);
     };
-  }, [scrollValue]); 
+  }, [scrollValue, isMobile]); 
 
   useEffect(() => {  
     const handleMouseMove = (event) => {
