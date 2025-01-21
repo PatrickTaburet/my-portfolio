@@ -1,13 +1,15 @@
 .header{
     font-size: var(--text-size-small);
     position: fixed;
+    top: 1vw;
+    right: 2vw;
+    z-index: 1000;
+}
+nav{
+    color: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 1vw;
-    right: 2vw;
-    color: var(--color-light);
-    z-index: 10;
 }
 .link {
     margin: 0 5px 0 5px;
