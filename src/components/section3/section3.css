@@ -105,7 +105,8 @@
 .projectTitle{
   color: var(--color-primary);
   display: inline-block;
-  margin-top: 2vw;
+  margin-top: 3vw;
+  margin-bottom: 1vw;
 }
 .linksWrapper,.elementWrapper{
   font-size: var(--text-size-mobile);
@@ -208,7 +209,16 @@
     transform: translateX(0) translateY(0) rotate(0deg);
   }
 }
-
+.linkWebSite{
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-size-mobile);
+}
+.linkWebSite:hover{
+  color: var(--color-primary);
+}
 
 /* particle background */
 
@@ -337,7 +347,7 @@ Media queries
     align-items: center;
   }
   .projectTitle{
-    margin-top: 2vw;
+    margin-top: 6vw;
   }
   .section3Content{
     padding-top: 5vw;

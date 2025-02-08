@@ -58,8 +58,7 @@ const Section1 = ({scrollValue}) => {
       <div 
         className='section1Content' 
         style={{ 
-          transform: isMobile ? 'none' : `translateY(${scrollValue / textSlowDownFactor}px)`, 
-          // transform: `translateY(${scrollValue / textSlowDownFactor}px)`, // parallax effect
+          transform: isMobile ? 'none' : `translateY(${scrollValue / textSlowDownFactor}px)`,  // Parallax effect
           opacity: `${scrollValue > 200 ? (1- scrollValue/700) : 1}` // Text disapear when scroll down
         }}
       >

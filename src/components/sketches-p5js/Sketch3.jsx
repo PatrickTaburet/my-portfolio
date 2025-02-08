@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.webp';
 import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm-original.webm';
+import LifeSimulatorMedia from './../../assets/images/lifeSimulator/molecule.png';
 
 const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
   const p5InstanceRef = useRef(null);
@@ -39,7 +40,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     
     let circles = [];
     let storedCircles = [];
-    let mediaProject1, mediaProject2;
+    let mediaProject1, mediaProject2, mediaProject3;
     let maxDistanceX, maxDistanceY;
     let circleSize;
     const LERP_SPEED = 0.1;
@@ -47,6 +48,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     p.preload = () => {
       mediaProject1 = p.loadImage(NexusLabMedia);
       mediaProject2 = p.createVideo(CreativeCodingMedia);
+      mediaProject3 = p.loadImage(LifeSimulatorMedia);
     };
 
     p.setup = () => {
@@ -67,7 +69,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
       // Add circles projects
       circles.push(new Circle(0, "NexusLab", mediaProject1));
       circles.push(new Circle(p.PI, "Creative_Coding", mediaProject2)); // Start the second circle at the opposite
-      // circles.push(new Circle(p.PI/2, "test"));
+      circles.push(new Circle(p.PI/2, "Life_Simulator", mediaProject3));
       // ---> Add new circles for new projects
       
       if (!launchMode && closedCircle) {

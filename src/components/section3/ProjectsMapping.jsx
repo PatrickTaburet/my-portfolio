@@ -13,7 +13,18 @@ import CreativeCoding5 from './../../assets/images/creativeCoding/artwork2.webp'
 import CreativeCoding6 from './../../assets/images/creativeCoding/artwork4.webp';
 import CreativeCoding7 from './../../assets/images/creativeCoding/artwork3.webp';
 import CreativeCoding1 from './../../assets/images/creativeCoding/lifeSimulator.webp';
+import LiveSimulator1 from './../../assets/images/lifeSimulator/artwork1.webp';
+import LiveSimulator2 from './../../assets/images/lifeSimulator/tuto.webp';
+import LiveSimulator3 from './../../assets/images/lifeSimulator/myArtwork6.webp';
+import LiveSimulator4 from './../../assets/images/lifeSimulator/myArtwork7.webp';
+import LiveSimulator5 from './../../assets/images/lifeSimulator/artwork4.webp';
+import LiveSimulator6 from './../../assets/images/lifeSimulator/artwork6.webp';
+import LiveSimulator7 from './../../assets/images/lifeSimulator/myArtwork5.webp';
+import LiveSimulator8 from './../../assets/images/lifeSimulator/mobile.webp';
+import LiveSimulator9 from './../../assets/images/lifeSimulator/mobile2.webp';
+
 import { TbFileTypePdf } from "react-icons/tb";
+import { TbWorld } from "react-icons/tb";
 
 const ProjectsMapping = {
     NexusLab: {
@@ -186,6 +197,93 @@ const ProjectsMapping = {
       element: (
         <>
         
+        </>
+      )
+    },
+    Life_Simulator: {
+      title: "Life Simulator",
+      description: (
+        <>
+          <p>This project is an interactive particle-based simulation inspired by molecular interactions in nature, simulating how particles attract, repel, and self-organize into evolving patterns. By adjusting interaction rules, users can observe emergent behaviors similar to those found in physics, chemistry, and biology.</p>
+          <p>Built using p5.js and ES6 modules, the simulation offers customizable particle interactions and creative modes to enhance visual complexity. The Drawing Mode leaves persistent trails for artistic effects, while Nexus Mode connects particles dynamically, creating intricate web-like structures.</p>
+          <p>Users can explore these behaviors in real-time and save their unique creations as images, blending science and art into an engaging interactive experience.</p>
+        </>
+      ),
+      slides: [
+        {
+            id: 1,
+            type: 'image',
+            source: LiveSimulator1,
+            title: "image 1",
+        },
+        {
+            id: 2,
+            type: 'image',
+            source: LiveSimulator2,
+            title: "image 2",
+        },
+        {
+            id: 3,
+            type: 'image',
+            source: LiveSimulator3,
+            title: "image 3",
+        },
+        {
+            id: 4,
+            type: 'image',
+            source: LiveSimulator4,
+            title: "image 4",
+        },
+        {
+            id: 5,
+            type: 'image',
+            source: LiveSimulator5,
+            title: "image 5",
+        },
+        {
+            id: 6,
+            type: 'image',
+            source: LiveSimulator6,
+            title: "image 6",
+        },
+        {
+            id: 7,
+            type: 'image',
+            source: LiveSimulator7,
+            title: "image 7",
+        },
+        {
+            id: 8,
+            type: 'image',
+            source: LiveSimulator8,
+            title: "image 8",
+        },
+        {
+            id: 9,
+            type: 'image',
+            source: LiveSimulator9,
+            title: "image 9",
+        },
+
+      ],
+      links:  [
+        {
+          title: "Source code",
+          url: "https://github.com/PatrickTaburet/Life_Generator",
+        },
+      ],
+      element: (
+        <>
+        <p className='linksWrapper'>Website :</p>
+          <a 
+            href="https://life-simulator.com" 
+            target="_blank" 
+            className='linkWebSite' 
+            rel="noopener noreferrer"
+          >
+            <TbWorld size={25} style={{marginRight: '8px'}}/>
+            life-simulator.com
+          </a>
         </>
       )
     }
