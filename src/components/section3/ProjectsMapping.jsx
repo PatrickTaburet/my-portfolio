@@ -205,7 +205,8 @@ const ProjectsMapping = {
       description: (
         <>
           <p>This project is an interactive particle-based simulation inspired by molecular interactions in nature, simulating how particles attract, repel, and self-organize into evolving patterns. By adjusting interaction rules, users can observe emergent behaviors similar to those found in physics, chemistry, and biology.</p>
-          <p>Built using p5.js and ES6 modules, the simulation offers customizable particle interactions and creative modes to enhance visual complexity. The Drawing Mode leaves persistent trails for artistic effects, while Nexus Mode connects particles dynamically, creating intricate web-like structures.</p>
+          <p>This application is built using p5.js to render visuals on an HTML5 canvas, with dat.GUI as a library for managing the user interface. The app is structured in a modular architecture with ES6 modules to promote clean code organization, scalability, and maintainability.</p>        
+          <p>Customizable particle interactions and creative modes such as Drawing Mode and Nexus Mode enhance visual complexity. The Drawing Mode leaves persistent trails for artistic effects, while Nexus Mode connects particles dynamically, creating intricate web-like structures.</p>
           <p>Users can explore these behaviors in real-time and save their unique creations as images, blending science and art into an engaging interactive experience.</p>
         </>
       ),
@@ -281,7 +282,7 @@ const ProjectsMapping = {
             className='linkWebSite' 
             rel="noopener noreferrer"
           >
-            <TbWorld size={25} style={{marginRight: '8px'}}/>
+            <TbWorld size={25} style={{marginRight: '10px'}}/>
             life-simulator.com
           </a>
         </>

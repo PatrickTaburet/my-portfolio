@@ -440,10 +440,11 @@ Media queries
   }
   .linksContainer{
     margin-top: 10px;
-    margin-left: 0;
+    margin-left: 7vw;
     width: 90vw;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   .linksWrapper,.elementWrapper{
     font-size: var(--text-size-mini);
