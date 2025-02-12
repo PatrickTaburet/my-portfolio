@@ -1,8 +1,4 @@
 # Patrick Taburet Portfolio Website 🌐  
-
-### 🎥 Demo Video  
-<video src="./src/assets/vidéo/portfolio_demo.mp4" controls width="100%"></video>  
-
 Welcome to the repository of my personal portfolio website! This site was built to showcase my projects, skills, and professional journey with an interactive touch of creative coding.
 
 ## 🖥️ Live Website  
