@@ -4,6 +4,7 @@ import NexusLab2 from './../../assets/images/nexusLab/gallery-desktop.webp';
 import NexusLab3 from './../../assets/images/nexusLab/generative-desktop.webp';
 import NexusLab4 from './../../assets/images/nexusLab/dataart.webp';
 import NexusLab5 from './../../assets/images/nexusLab/homepage.webp';
+
 import NexusLabMobile1 from './../../assets/images/nexusLab/tryptique-nexuslab-homepage.webp';
 import NexusLabMobile2 from './../../assets/images/nexusLab/tryptique-nexuslab-gallery.webp';
 import CreativeCoding2 from './../../assets/images/creativeCoding/linewalker.webp';
@@ -11,7 +12,9 @@ import CreativeCoding3 from './../../assets/images/creativeCoding/mousedraw.webp
 import CreativeCoding4 from './../../assets/images/creativeCoding/flowfield2.webp';
 import CreativeCoding5 from './../../assets/images/creativeCoding/artwork2.webp';
 import CreativeCoding6 from './../../assets/images/creativeCoding/artwork4.webp';
-import CreativeCoding7 from './../../assets/images/creativeCoding/artwork3.webp';
+import CreativeCoding7 from './../../assets/images/creativeCoding/artwork5.webp';
+import CreativeCoding8 from './../../assets/images/creativeCoding/artwork3.webp';
+
 import CreativeCoding1 from './../../assets/images/creativeCoding/lifeSimulator.webp';
 import LiveSimulator1 from './../../assets/images/lifeSimulator/artwork1.webp';
 import LiveSimulator2 from './../../assets/images/lifeSimulator/tuto.webp';
@@ -177,7 +180,12 @@ const ProjectsMapping = {
             source: CreativeCoding7,
             title: "image 7",
         },
-
+        {
+            id: 8,
+            type: 'image',
+            source: CreativeCoding8,
+            title: "image 8",
+        },
       ],
       links:  [
         {
@@ -269,7 +277,7 @@ const ProjectsMapping = {
       ],
       links:  [
         {
-          title: "Source code",
+          title: "GitHub Repository",
           url: "https://github.com/PatrickTaburet/Life_Generator",
         },
       ],
