@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import './header.css';
 import { useMobile } from '../../context/MobileContext'; 
+import { SectionOffsets } from '../../types/sectionOffsets';
 
-function Header({ scrollY, windowHeight, isProjectInfoVisible, sectionOffsets, scrollToSection, handleCloseFromHeader }) {
+type Props = {
+  scrollY: number;
+  windowHeight: number;
+  isProjectInfoVisible: boolean;
+  sectionOffsets: SectionOffsets;
+  scrollToSection: (offset: number) => void;
+  handleCloseFromHeader: () => void;
+}
+
+const Header: FunctionComponent<Props> = ({ scrollY, windowHeight, isProjectInfoVisible, sectionOffsets, scrollToSection, handleCloseFromHeader }) => {
   const isMobile = useMobile(); 
 
   const headerColor = isMobile
@@ -17,7 +27,7 @@ function Header({ scrollY, windowHeight, isProjectInfoVisible, sectionOffsets, s
         color: headerColor
       }}
     >
-      <AnimatedTitle timeout={"900"} direction="down" initiallyVisible={true}>
+      <AnimatedTitle timeout={900} direction="down" initiallyVisible={true}>
         <nav>
           <button 
             className={`link ${
