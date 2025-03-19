@@ -28,8 +28,9 @@ import LiveSimulator9 from './../../assets/images/lifeSimulator/mobile2.webp';
 
 import { TbFileTypePdf } from "react-icons/tb";
 import { TbWorld } from "react-icons/tb";
+import { ProjectMappingItem } from '../../types/ProjectMapping';
 
-const ProjectsMapping = {
+const ProjectsMapping: Record<string, ProjectMappingItem> = {
     NexusLab: {
       title: "NexusLab",
       description: (

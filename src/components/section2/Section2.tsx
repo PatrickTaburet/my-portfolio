@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
-import AnimatedTitle from './../animated-title/AnimatedTitle';
+import AnimatedTitle from '../animated-title/AnimatedTitle';
 import SkillsCards from './SkillsCards';
 import useVisibility from '../../hooks/useVisibility';
 import DynamicColorText from './DynamicColorText';
@@ -11,14 +11,23 @@ import { TbBrandGithub } from "react-icons/tb";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { deobfuscText } from "../../utils/obfuscation";
 import {useMobile} from '../../context/MobileContext';
+import { CircleDataType } from '../../types/CircleData';
 
-const Section2 = ({scrollValue}) => {
-  const [sectionRef, isVisible] = useVisibility();
-  const [hovered, setHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [sectionTranslateY, setSectionTranslateY] = useState(0);
-  const [circleData, setCircleData] = useState({x: 0, y: 0, size: 0});
+type Section2Props = {
+  scrollValue: number;
+}
+type mousePositionType = {
+  x: number;
+  y: number;
+}
+
+const Section2: FC<Section2Props> = ({scrollValue}) => {
+  const [sectionRef, isVisible] = useVisibility<HTMLElement>();
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [mousePosition, setMousePosition] = useState<mousePositionType>({ x: 0, y: 0 });
+  const [sectionTranslateY, setSectionTranslateY] = useState<number>(0);
+  const [circleData, setCircleData] = useState<CircleDataType>({x: 0, y: 0, size: 0});
   const phone = deobfuscText('-55"8"33"23"45"92');
   const mail = deobfuscText('vcdwtgv0rcvtkemBiockn0eqo');
   const isMobile = useMobile();
@@ -41,12 +50,14 @@ const Section2 = ({scrollValue}) => {
   }, [scrollValue, isMobile]); 
 
   useEffect(() => {  
-    const handleMouseMove = (event) => {
-      const rect = sectionRef.current.getBoundingClientRect();
-      setMousePosition({
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top 
-      });
+    const handleMouseMove = (event: globalThis.MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top 
+        });
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -55,13 +66,13 @@ const Section2 = ({scrollValue}) => {
     }; 
   }, [sectionRef]);
 
-  const handleCopy = (message) => {
+  const handleCopy = (message: string) => {
     navigator.clipboard.writeText(message);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
-  const handleCircleUpdate = (x, y, size) => {
+  const handleCircleUpdate = ({x, y, size}: CircleDataType) => {
     setCircleData({x: x, y: y, size: size});
   };
 
@@ -75,10 +86,10 @@ const Section2 = ({scrollValue}) => {
       <div className='section2Content'>
         <div className='topSection2'>
           <div className='bioContainer'>
-            <AnimatedTitle timeout={"100"} direction="up">
+            <AnimatedTitle timeout={100} direction="up">
               <h3>About me</h3>
             </AnimatedTitle>
-            <AnimatedTitle timeout={"200"} direction="up">
+            <AnimatedTitle timeout={200} direction="up">
               <div className='bio'>
               <DynamicColorText 
                 text={"Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding."}
@@ -98,7 +109,7 @@ const Section2 = ({scrollValue}) => {
               </div>
             </AnimatedTitle>
           </div>
-          <AnimatedTitle timeout={"300"} direction="up">
+          <AnimatedTitle timeout={300} direction="up">
             <div className='contactContainer'>
               <div className='contactCard'>
                 <span>Feel free to contact me</span>
@@ -175,7 +186,6 @@ const Section2 = ({scrollValue}) => {
         </span>
       )}
         <Sketch2 
-          className="sketch" 
           isRunning={isVisible}
           onCircleUpdate={handleCircleUpdate}
         />

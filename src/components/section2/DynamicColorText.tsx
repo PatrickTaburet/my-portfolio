@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { CircleDataType } from '../../types/CircleData';
 
 /**
  * Display text with dynamic colors based on the position of characters relative to a circle.
  *
- * @param {string} props.text - The text to display
- * @param {Object} props.circleData - The circle data (x, y, size)
- * @param {Object} props.sectionRef - The reference to the section containing the text
- *
  * @returns {JSX.Element} A JSX element containing the text with dynamic colors
  */
-const DynamicColorText = ({ text, circleData, sectionRef }) => {
-  const containerRef = useRef(null);
-  const [charPositions, setCharPositions] = useState([]);
+type Props = {
+  text: string;
+  circleData: CircleDataType;
+  sectionRef: React.RefObject<HTMLElement | null>;
+}
+
+const DynamicColorText: FC<Props> = ({ text, circleData, sectionRef }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [charPositions, setCharPositions] = useState<{ x: number; y: number }[]>([]);
 
   useEffect(() => {
     const updatePositions = () => {

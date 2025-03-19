@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import './section2.css';
-import AnimatedTitle from './../animated-title/AnimatedTitle';
+import AnimatedTitle from '../animated-title/AnimatedTitle';
 
 import LogoSymfo from '../../assets/images/logos/symfony_black_03.svg';
 import LogoReact from '../../assets/images/logos/react.svg'
@@ -13,18 +13,18 @@ import LogoGithub from '../../assets/images/logos/github_logo.svg'
 import LogoDocker from '../../assets/images/logos/docker-svg.svg'
 import LogoNode from '../../assets/images/logos/nodejs-icon.svg'
 
-const SkillsCards = () =>{
+const SkillsCards: FC = () =>{
     return (
         <div className='cardsContainer'>
-            <AnimatedTitle timeout={"100"} direction="up">
+            <AnimatedTitle timeout={100} direction="up">
               <h3>My skills</h3>
             </AnimatedTitle>
             <div className='cardsWrapper'>
                 <div className='card1Wrapper'>
-                    <AnimatedTitle timeout={"100"} direction="up">
+                    <AnimatedTitle timeout={100} direction="up">
                         <h4>Front-end / Back-end</h4>
                     </AnimatedTitle>
-                    <AnimatedTitle timeout={"100"} direction="up">
+                    <AnimatedTitle timeout={100} direction="up">
                         <div className='card1'>
                             <div className='logoContainer'>
                                 <img src={LogoSymfo} alt="Logo_Symfony" className="logoSymfo"/>
@@ -54,10 +54,10 @@ const SkillsCards = () =>{
                     </AnimatedTitle>
                 </div>
                 <div className='card2Wrapper'>
-                    <AnimatedTitle timeout={"100"} direction="up">
+                    <AnimatedTitle timeout={100} direction="up">
                         <h4>Tools</h4>
                     </AnimatedTitle>
-                    <AnimatedTitle timeout={"100"} direction="up">
+                    <AnimatedTitle timeout={100} direction="up">
                         <div className='card2'>
                             <div className='logoContainer'>
                                 <img src={LogoGithub} alt="Logo_Github" className="LogoGithub"/>

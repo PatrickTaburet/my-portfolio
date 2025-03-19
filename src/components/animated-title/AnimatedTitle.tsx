@@ -16,7 +16,7 @@ type AnimatedTitleProps = {
   children: ReactNode;
   timeout?: number;
   direction: 'up' | 'down' | 'left' | 'right';
-  initiallyVisible: boolean;
+  initiallyVisible?: boolean;
 }
 
 const AnimatedTitle: FC<AnimatedTitleProps> = ({ children, timeout = 0, direction, initiallyVisible = false }) => {
