@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
  * 
  * @returns {boolean} Returns true if the screen width is 768px or less, otherwise false.
  */
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+function useIsMobile(): boolean {
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {

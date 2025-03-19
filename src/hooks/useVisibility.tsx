@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 
 /**
  * Custom hook to detect the visibility of an element in the viewport.
@@ -10,12 +10,15 @@ import { useState, useEffect, useRef } from 'react';
  *   - `elementRef`: A reference to the element to observe.
  *   - `isVisible`: A boolean indicating whether the element is visible in the viewport.
  */
-function useVisibility() {
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef(null);
+function useVisibility<T extends Element = Element>(): [RefObject<T | null>, boolean]
+{
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const elementRef = useRef<T | null>(null);
 
   useEffect(() => {
     const node = elementRef.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -23,14 +26,10 @@ function useVisibility() {
       { threshold: 0.01 }
     );
 
-    if (node) {
-      observer.observe(node);
-    }
+    observer.observe(node);
 
     return () => {
-      if (node) {
-        observer.unobserve(node);
-      }
+      observer.unobserve(node);
     };
   }, []);
 

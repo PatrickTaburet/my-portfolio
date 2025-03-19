@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, PropsWithChildren } from 'react';
 
 /**
  * Context for managing the mobile state of the application.
@@ -6,15 +6,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
  */
 const MobileContext = createContext(false);
 
-/**
- * Provider for the mobile context.
- * 
- * @component
- * @param {Object} props - The component props.
- * @param {React.ReactNode} props.children - The child components.
- * @returns {React.ReactElement} The mobile context provider.
- */
-export const MobileProvider = ({ children }) => {
+export const MobileProvider: React.FC<PropsWithChildren> = ({ children }) => {
     // Initialize the mobile state based on window width
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -35,4 +27,9 @@ export const MobileProvider = ({ children }) => {
     );
 };
 
-export const useMobile = () => useContext(MobileContext);
+/**
+ * Custom hook to access the mobile context.
+ *
+ * @returns {boolean} A value indicating whether the display is in mobile mode.
+ */
+export const useMobile = (): boolean => useContext(MobileContext);
