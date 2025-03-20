@@ -1,11 +1,20 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, FC } from 'react';
 import p5 from 'p5';
-
-const Sketch1 = ({isRunning}) => {
-  const p5InstanceRef = useRef(null);
+type Sketch1Props = {
+  isRunning: boolean;
+}
+type LineDataType = {
+  prevX: number;
+  prevY: number;
+  offsetX: number;
+  offsetY: number;
+  baseAngle: number;
+}
+const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
+  const p5InstanceRef = useRef<p5 | null>(null);
 
   useEffect(() => {
-    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container'));
+    p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container') as HTMLElement);
 
     const handleResize = () => {
       if (p5InstanceRef.current) {
@@ -30,11 +39,11 @@ const Sketch1 = ({isRunning}) => {
     }
   }, [isRunning]);
 
-  const sketch = (p) => {
-    let mainColor;
-    let colors = [];
-    let lines = [];
-    let lineSlider;
+  const sketch = (p: p5) => {
+    let mainColor: p5.Color;
+    let colors: p5.Color[] = [];
+    let lines: LineDataType[] = [];
+    let lineSlider: p5.Element | null;
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -86,7 +95,7 @@ const Sketch1 = ({isRunning}) => {
         mainLine.offsetX += noiseScale;
         mainLine.offsetY += noiseScale;
   
-        if (p.random(1) < 0.05 && lines.length < lineSlider.value()) {
+        if (lineSlider && p.random(1) < 0.05 && lines.length < Number(lineSlider.value())) {
           lines.push({
             prevX: newX,
             prevY: newY,
@@ -102,13 +111,6 @@ const Sketch1 = ({isRunning}) => {
       p.noStroke();
       p.rect(0, 0, p.width, p.height);
     };
-
-    // p.windowResized = () => {
-    //   p.resizeCanvas(p.windowWidth, p.windowHeight);
-    //   p.background(196, 58, 10);
-    //   prevX = p.mouseX;
-    //   prevY = p.mouseY;
-    // };
 
     p.mouseMoved = () => {
       for (let line of lines) {

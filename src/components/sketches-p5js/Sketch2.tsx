@@ -1,10 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, FC } from 'react';
 import p5 from 'p5';
 import ProfilPicture from './../../assets/images/avatar.webp';
+import { CircleDataType } from '../../types/CircleData';
 
-const Sketch2 = ({isRunning, onCircleUpdate }) => {
-  const p5InstanceRef = useRef(null);
-  const sketchContainerRef = useRef(null);
+type Sketch2Props ={
+  isRunning: boolean;
+  onCircleUpdate: ({x, y, size}: CircleDataType) => void;
+}
+
+const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
+  const p5InstanceRef = useRef<p5 | null>(null);
+  const sketchContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sketchContainerRef.current) {
@@ -35,9 +41,9 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     }
   }, [isRunning]);
 
-  const sketch = (p) => {
-    let circle;
-    let pictureMedia;
+  const sketch = (p: p5) => {
+    let circle: Circle;
+    let pictureMedia: p5.Image;
 
     p.preload = () => {
       pictureMedia = p.loadImage(ProfilPicture);
@@ -46,7 +52,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     p.setup = () => {
       const canvasHeight = p.windowWidth < 560 ? 1150 : p.windowHeight + 55;
       const canvas = p.createCanvas(p.windowWidth, canvasHeight);
-      canvas.parent(sketchContainerRef.current);
+      sketchContainerRef.current && canvas.parent(sketchContainerRef.current);
       p.colorMode(p.HSB, 360, 100, 100, 1);
       p.frameRate(50);
       p.background(270, 80, 20);
@@ -61,10 +67,10 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
       circle.update(mouseCircle);
       circle.display();
 
-      onCircleUpdate(circle.x, circle.y, circle.size);
+      onCircleUpdate({x: circle.x, y: circle.y, size: circle.size});
     };
 
-    function drawMouseCircle(circleSize){
+    function drawMouseCircle(circleSize: number){
       const mouseCircleRadius =  circleSize * 0.18;
       const mouseCircle = { x: p.mouseX, y: p.mouseY, radius: mouseCircleRadius };
 
@@ -82,7 +88,20 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
     }
 
     class Circle {
+      p: p5;
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      maskedImage: p5.Image | null;
+      media: p5.Image;
+      collisionDetected: boolean;
+      collisionTimer: number;
       constructor() {
+        this.p = p;
+        this.x = 0;
+        this.y = 0;
         this.calculatePosition(); 
         this.vx = 0;
         this.vy = 0;
@@ -112,7 +131,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         }
       }
     
-      update(mouseCircle) {
+      update(mouseCircle: { x: number; y: number; radius: number }) {
         this.size = this.calculateSize();
         // Check collision with the mouse circle
         const dx = this.x - mouseCircle.x;
@@ -181,12 +200,13 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         const imgSize = this.size;
         
         p.push();
-        p.tint(255, this.opacity); 
+        p.tint(255, 255); 
+        // p.tint(255, this.opacity); 
         p.image(this.maskedImage, imgX, imgY, imgSize, imgSize); 
         p.pop();
       }
       
-      createMaskedImage(img, size) {
+      createMaskedImage(img: p5.Image, size: number): p5.Image {
         // Create a p5.Image for the mask
         const mask = p.createGraphics(size, size);
         mask.ellipseMode(p.CENTER);
@@ -197,7 +217,7 @@ const Sketch2 = ({isRunning, onCircleUpdate }) => {
         // Create a new p5.Image with the media and apply the mask
         const maskedImage = img.get(); 
         maskedImage.resize(size, size); 
-        maskedImage.mask(mask); 
+        maskedImage.mask(mask as unknown as p5.Image); 
     
         return maskedImage;
       }

@@ -1,16 +1,23 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, FC } from 'react';
 import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.webp';
 import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm-original.webm';
 import LifeSimulatorMedia from './../../assets/images/lifeSimulator/molecule.png';
 
-const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
-  const p5InstanceRef = useRef(null);
-  const containerRef = useRef(null);
+type Sketch3Props ={
+  onCircleClick: (projectName: string) => void;
+  launchMode: boolean;
+  closedCircle: string | null;
+  isRunning: boolean;
+}
+
+const Sketch3:FC<Sketch3Props> = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
+  const p5InstanceRef = useRef<p5 | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!p5InstanceRef.current) {
-      p5InstanceRef.current = new p5(sketch, containerRef.current);
+    if (!p5InstanceRef.current && containerRef.current) {
+       p5InstanceRef.current = new p5(sketch, containerRef.current);
     }
     
     const handleResize = () => {
@@ -36,13 +43,13 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     }
   }, [isRunning]);
 
-  const sketch = (p) => {
+  const sketch = (p: p5) => {
     
-    let circles = [];
-    let storedCircles = [];
-    let mediaProject1, mediaProject2, mediaProject3;
-    let maxDistanceX, maxDistanceY;
-    let circleSize;
+    let circles: Circle[] = [];
+    let storedCircles: Circle[] = [];
+    let mediaProject1: p5.Image, mediaProject2: p5.MediaElement, mediaProject3: p5.Image;
+    let maxDistanceX: number, maxDistanceY: number;
+    let circleSize: number;
     const LERP_SPEED = 0.1;
 
     p.preload = () => {
@@ -112,8 +119,8 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     };
 
     p.mouseMoved = () => {
-
-      if (!p._renderer || !p._renderer.elt) return;
+      const renderer = (p as any)._renderer;
+      if (!renderer || !renderer.elt) return;
     
       let isHovering = false;
 
@@ -166,7 +173,21 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
     };
 
     class Circle {
-      constructor(initialAngle, text, media) {
+      size: number; 
+      angle: number;
+      speed: number;
+      media: p5.MediaElement | p5.Image;
+      text: string;
+      hovered: boolean;
+      opacity: number;
+      isExpanded: boolean; 
+      isClosing: boolean; 
+      initialAngle: number; 
+      x: number;
+      y: number;
+      circleState: "orbiting" | "closing" | "locked" | "expanded";
+
+      constructor(initialAngle: number, text: string, media: p5.MediaElement | p5.Image) {
         this.size = circleSize; 
         this.angle = initialAngle;
         this.speed = 0.01;
@@ -179,23 +200,23 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         this.initialAngle = initialAngle; 
         this.x = 0;
         this.y = 0;
-        this.state = "orbiting"; // "expanded", "closing", "locked"
-        this.maskedImage = null; 
+        this.circleState = "orbiting";
+        // this.maskedImage = null; 
       }
 
-      update (isClosingCircle){
+      update (isClosingCircle: boolean){
         // Determine the current state
         if (this.isExpanded) {
-          this.state = "expanded";
+          this.circleState = "expanded";
         } else if (this.isClosing) {
-          this.state = "closing";
+          this.circleState = "closing";
         } else if (isClosingCircle) {
-          this.state = "locked";
+          this.circleState = "locked";
         } else {
-          this.state = "orbiting";
+          this.circleState = "orbiting";
         }
 
-        switch (this.state) {
+        switch (this.circleState) {
           case "expanded":
            this.expendCircle();
             break;
@@ -301,7 +322,7 @@ const Sketch3 = ({ onCircleClick, launchMode, closedCircle, isRunning }) => {
         }
       }
 
-      checkHover(mx, my) {
+      checkHover(mx: number, my: number) {
         let d = p.dist(mx, my, this.x, this.y);
         return d < this.size / 2;
       }
