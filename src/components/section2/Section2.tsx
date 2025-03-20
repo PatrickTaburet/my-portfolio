@@ -109,8 +109,9 @@ const Section2: FC<Section2Props> = ({scrollValue}) => {
               </div>
             </AnimatedTitle>
           </div>
-          <AnimatedTitle timeout={300} direction="up">
+
             <div className='contactContainer'>
+            <AnimatedTitle timeout={300} direction="up">
               <div className='contactCard'>
                 <span>Feel free to contact me</span>
                 <div className='contactContent'>
@@ -155,8 +156,8 @@ const Section2: FC<Section2Props> = ({scrollValue}) => {
                   </div>
                 </div>
               </div>
+              </AnimatedTitle>
             </div>            
-          </AnimatedTitle>
         </div>
         <SkillsCards/>
       </div>

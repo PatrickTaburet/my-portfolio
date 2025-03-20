@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef, ReactNode, FC } from 'react';
 import './animatedTitle.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * AnimatedTitle Component
@@ -20,46 +24,51 @@ type AnimatedTitleProps = {
 }
 
 const AnimatedTitle: FC<AnimatedTitleProps> = ({ children, timeout = 0, direction, initiallyVisible = false }) => {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [isInView, setIsInView] = useState<boolean>(initiallyVisible);
     const titleRef = useRef<HTMLDivElement | null>(null);
-
     useEffect(() => {
-      const node = titleRef.current;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            node && observer.unobserve(node);
-          }
-        },
-        { threshold: 0.2 }
-      );
+      if (!titleRef.current) return;
   
-      node && observer.observe(node);
+      let fromVars: gsap.TweenVars = { opacity: 0 };
+      if (direction === 'up') {
+        fromVars = { opacity: 0, y: 50 };
+      } else if (direction === 'down') {
+        fromVars = { opacity: 0, y: -50 };
+      } else if (direction === 'left') {
+        fromVars = { opacity: 0, x: 50 };
+      } else if (direction === 'right') {
+        fromVars = { opacity: 0, x: -50 };
+      }
   
-      return () => {
-        node && observer.unobserve(node);
+      const toVars: gsap.TweenVars = { 
+        opacity: 1, 
+        x: 0, 
+        y: 0, 
+        duration: 0.5, 
+        delay: timeout / 1000,
+        ease: "none"
       };
-    }, []);
+  
+      if (initiallyVisible) {
+        gsap.fromTo(titleRef.current, fromVars, toVars);
+      } else {
+        gsap.fromTo(titleRef.current, fromVars, {
+          ...toVars,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: 'top 95%',
+            end: 'bottom 5%',
+            toggleActions: 'play reverse play reverse',
 
-    useEffect(() => {
-        if (isInView) {
-          const timer = setTimeout(() => {
-            setIsVisible(true);
-          }, timeout);
-    
-          return () => clearTimeout(timer);
-        }
-      }, [isInView, timeout]);
+            markers: true, 
+          }
+        });
+      }
+    }, [timeout, direction, initiallyVisible]);
 
     return (
-        <div
-            ref={titleRef}
-            className={`titleAnime ${direction} ${isVisible ? 'visible' : ''}`}
-        >        
-            {children}
-        </div>
+      <div ref={titleRef} className="titleAnime"> 
+        {children}
+      </div>
     );
 }
 
