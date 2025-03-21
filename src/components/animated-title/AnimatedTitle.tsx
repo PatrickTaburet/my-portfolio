@@ -21,9 +21,10 @@ type AnimatedTitleProps = {
   timeout?: number;
   direction: 'up' | 'down' | 'left' | 'right';
   initiallyVisible?: boolean;
+  containerAnimation?: gsap.core.Tween; 
 }
 
-const AnimatedTitle: FC<AnimatedTitleProps> = ({ children, timeout = 0, direction, initiallyVisible = false }) => {
+const AnimatedTitle: FC<AnimatedTitleProps> = ({ children, timeout = 0, direction, initiallyVisible = false, containerAnimation }) => {
     const titleRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
       if (!titleRef.current) return;
@@ -55,15 +56,16 @@ const AnimatedTitle: FC<AnimatedTitleProps> = ({ children, timeout = 0, directio
           ...toVars,
           scrollTrigger: {
             trigger: titleRef.current,
-            start: 'top 95%',
-            end: 'bottom 5%',
+            start: '10% 95%',
+            end: '90% 5%',
             toggleActions: 'play reverse play reverse',
+            containerAnimation: containerAnimation,
 
             markers: true, 
           }
         });
       }
-    }, [timeout, direction, initiallyVisible]);
+    }, [timeout, direction, initiallyVisible, containerAnimation]);
 
     return (
       <div ref={titleRef} className="titleAnime"> 

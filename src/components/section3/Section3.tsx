@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, FC } from 'react';
+import React, { useState, useEffect, useCallback, FC, useRef } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import Sketch3 from '../sketches-p5js/Sketch3';
 import './section3.css';
@@ -12,14 +12,15 @@ import {useMobile} from '../../context/MobileContext';
 import { SectionOffsets } from '../../types/sectionOffsets';
 
 type Section3Props = {
-  scrollValue: number;
+  parentRef: React.RefObject<gsap.core.Tween | null>;
   onProjectInfoChange: (visible: boolean) => void;
   isClosedFromHeader: boolean;
   scrollToSection: (offset: number) => void;
   sectionOffsets: SectionOffsets;
+  sessionClassName: string;
 };
 
-const Section3: FC<Section3Props>= ({scrollValue, onProjectInfoChange, isClosedFromHeader, scrollToSection, sectionOffsets}) => {
+const Section3: FC<Section3Props>= ({parentRef, onProjectInfoChange, isClosedFromHeader, scrollToSection, sectionOffsets, sessionClassName}) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [launchMode, setLaunchMode] = useState<boolean>(true); 
@@ -29,6 +30,7 @@ const Section3: FC<Section3Props>= ({scrollValue, onProjectInfoChange, isClosedF
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [fadeBackground, setFadeBackground] = useState<boolean>(false);
   const isMobile = useMobile();
+
 
   const handleCloseProject = useCallback(() => {
     setClosedCircle(activeProject); // Track the last opened circle
@@ -81,8 +83,8 @@ const Section3: FC<Section3Props>= ({scrollValue, onProjectInfoChange, isClosedF
   return (
     <section 
       id="section3" 
-      className='section3' 
-      style={{ transform: isMobile ? 'none' : `translateY(${(Math.max(-scrollValue, -window.innerHeight) / 2.8)}px)` }}
+      className={sessionClassName}
+      // style={{ transform: isMobile ? 'none' : `translateY(${(Math.max(-scrollValue, -window.innerHeight) / 2.8)}px)` }}
       ref={sectionRef}
     >
       {/* Galaxy background */}
@@ -96,7 +98,7 @@ const Section3: FC<Section3Props>= ({scrollValue, onProjectInfoChange, isClosedF
       {/* Section content */}
       <div className='section3Content'>
       {!activeProject &&
-        <AnimatedTitle timeout={200} direction="up">
+        <AnimatedTitle timeout={200} direction="up" containerAnimation={parentRef.current || undefined}>
           <h3>Selected Projects</h3>
         </AnimatedTitle>
       }

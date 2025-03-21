@@ -8,9 +8,10 @@ import {useMobile} from '../../context/MobileContext';
 
 type Section1Props = {
   scrollValue: number;
+  sessionClassName: string;
 }
 
-const Section1: FC<Section1Props>= ({scrollValue}) => {
+const Section1: FC<Section1Props>= ({scrollValue, sessionClassName}) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const [isScrollTriggered, setIsScrollTriggered] = useState(false);
@@ -37,7 +38,7 @@ const Section1: FC<Section1Props>= ({scrollValue}) => {
   }, [isScrollTriggered]);
 
   return (
-    <section className='section1'  ref={sectionRef}>
+    <section className={sessionClassName} ref={sectionRef}>
       <img
         src={BackgroundCyber}
         alt="Background_cyber"

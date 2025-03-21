@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, useEffect, FC, useRef } from 'react';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
@@ -12,16 +12,18 @@ import { TbBrandLinkedin } from "react-icons/tb";
 import { deobfuscText } from "../../utils/obfuscation";
 import {useMobile} from '../../context/MobileContext';
 import { CircleDataType } from '../../types/CircleData';
+import { gsap } from 'gsap';
 
 type Section2Props = {
-  scrollValue: number;
+  parentRef: React.RefObject<gsap.core.Tween | null>;
+  sessionClassName: string;
 }
 type mousePositionType = {
   x: number;
   y: number;
 }
 
-const Section2: FC<Section2Props> = ({scrollValue}) => {
+const Section2: FC<Section2Props> = ({parentRef, sessionClassName}) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
   const [hovered, setHovered] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
@@ -31,23 +33,23 @@ const Section2: FC<Section2Props> = ({scrollValue}) => {
   const phone = deobfuscText('-55"8"33"23"45"92');
   const mail = deobfuscText('vcdwtgv0rcvtkemBiockn0eqo');
   const isMobile = useMobile();
+  
+  // useEffect(() => {  
+  //   const updateTranslateY = () => {
+  //     if (isMobile) {
+  //       setSectionTranslateY(0);
+  //     } else {
+  //       setSectionTranslateY(Math.max(-scrollValue, -window.innerHeight) / 2.8);
+  //     }
+  //   };
 
-  useEffect(() => {  
-    const updateTranslateY = () => {
-      if (isMobile) {
-        setSectionTranslateY(0);
-      } else {
-        setSectionTranslateY(Math.max(-scrollValue, -window.innerHeight) / 2.8);
-      }
-    };
+  //   updateTranslateY();
+  //   window.addEventListener('resize', updateTranslateY);
 
-    updateTranslateY();
-    window.addEventListener('resize', updateTranslateY);
-
-    return () => {
-      window.removeEventListener('resize', updateTranslateY);
-    };
-  }, [scrollValue, isMobile]); 
+  //   return () => {
+  //     window.removeEventListener('resize', updateTranslateY);
+  //   };
+  // }, [scrollValue, isMobile]); 
 
   useEffect(() => {  
     const handleMouseMove = (event: globalThis.MouseEvent) => {
@@ -80,16 +82,15 @@ const Section2: FC<Section2Props> = ({scrollValue}) => {
     <section 
       id="section2" 
       ref={sectionRef}
-      className='section2' 
-      style={{ transform: `translateY(${sectionTranslateY}px)` }}
+      className={sessionClassName} 
     >
       <div className='section2Content'>
         <div className='topSection2'>
           <div className='bioContainer'>
-            <AnimatedTitle timeout={100} direction="up">
+            <AnimatedTitle timeout={100} direction="up" containerAnimation={parentRef.current || undefined}>
               <h3>About me</h3>
             </AnimatedTitle>
-            <AnimatedTitle timeout={200} direction="up">
+            <AnimatedTitle timeout={200} direction="up" containerAnimation={parentRef.current || undefined}>
               <div className='bio'>
               <DynamicColorText 
                 text={"Hello, I'm a french Application Designer and Developer, living in Bordeaux. Passionate about web technologies, algorithmic problem-solving, and creative coding."}
@@ -111,7 +112,7 @@ const Section2: FC<Section2Props> = ({scrollValue}) => {
           </div>
 
             <div className='contactContainer'>
-            <AnimatedTitle timeout={300} direction="up">
+            <AnimatedTitle timeout={300} direction="up" containerAnimation={parentRef.current || undefined}>
               <div className='contactCard'>
                 <span>Feel free to contact me</span>
                 <div className='contactContent'>
