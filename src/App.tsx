@@ -6,6 +6,10 @@ import useIsMobile from './hooks/useIsMobile';
 import { MobileProvider } from './context/MobileContext';
 import { SectionOffsets } from './types/sectionOffsets';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Section1 = lazy(() => import('./components/section1/Section1'));
 const Section2 = lazy(() => import('./components/section2/Section2'));
@@ -18,9 +22,20 @@ const App: FC = () => {
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState<boolean>(false);
   const [isClosedFromHeader, setIsClosedFromHeader] = useState<boolean>(false);
   const isMobile = useIsMobile();
-  const SCROLL_ADJUSTMENT = isMobile ? 0 : -240;
+  // const SCROLL_ADJUSTMENT = isMobile ? 0 : -240;
   const containerTweenRef = useRef<gsap.core.Tween | null>(null);
   const section2and3Ref = useRef<HTMLDivElement>(null);
+
+  // Global scroll trigger
+  useEffect(() => {
+    const st = ScrollTrigger.create({
+      start: 0,
+      end: 'max',
+      onUpdate: self => setScrollY(Math.round(self.scroll())),
+    });
+    return () => st.kill();
+  }, []);
+
 
   useEffect(() => {
     if (!section2and3Ref.current) return;
@@ -34,59 +49,57 @@ const App: FC = () => {
         // markers: true,
       }
     });
-  
+
     return () => {
       containerTweenRef.current?.kill();
     };
   }, []);
-  
- useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
 
+  useEffect(() => {
     const calculateOffsets = () => {
-      const section1 = document.querySelector('.section1');
-      const section2 = document.querySelector('.section2');
-      const section3 = document.querySelector('.section3');
-    
-      const section1Offset = section1 instanceof HTMLElement ? section1.offsetTop : 0;
-      const section2Offset = section2 instanceof HTMLElement ? section2.offsetTop : 0;
-      const section3Offset = section3 instanceof HTMLElement ? section3.offsetTop : 0;
-
-      setSectionOffsets({ section1Offset, section2Offset, section3Offset });
+      const s1 = document.querySelector('.section1');
+      const s2 = document.querySelector('.section2');
+      const s3 = document.querySelector('.section3');
+      setSectionOffsets({
+        section1Offset: s1 instanceof HTMLElement ? s1.offsetTop : 0,
+        section2Offset: s2 instanceof HTMLElement ? s2.offsetTop : 0,
+        section3Offset: s3 instanceof HTMLElement ? s3.offsetTop : 0,
+      });
     };
-
-    setTimeout(() => {
-      calculateOffsets();
-    }, 500); 
-    window.addEventListener('scroll', handleScroll);
+    calculateOffsets();
     window.addEventListener('resize', calculateOffsets);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', calculateOffsets);
-    };
+    return () => window.removeEventListener('resize', calculateOffsets);
   }, []);
-  
-  const scrollToSection = (offset: number) => {
-    window.scrollTo({ top: offset + SCROLL_ADJUSTMENT, behavior: 'smooth' });
+
+  const scrollToSection = (selector: string) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    // position réelle de l'élément (transform inclu)
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    gsap.to(window, {
+      scrollTo: {
+        y: top
+      },
+      duration: 0.8,
+      ease: 'power2.out'
+    });
   };
-  
+
+
   const handleProjectInfoChange = (visibility: boolean) => {
     setIsProjectInfoVisible(visibility);
   };
 
   const handleCloseFromHeader = () => {
-    setIsClosedFromHeader (isProjectInfoVisible ? true : false); 
-    setTimeout(() => {
-      setIsClosedFromHeader (false); 
-    }, 200);
+    setIsClosedFromHeader(isProjectInfoVisible);
+    setTimeout(() => setIsClosedFromHeader(false), 200);
   };
+
 
   return (
     <MobileProvider>
       <div className="App">
-      <Header 
+        <Header
           scrollY={scrollY}
           windowHeight={windowHeight}
           isProjectInfoVisible={isProjectInfoVisible}
@@ -96,25 +109,25 @@ const App: FC = () => {
         />
         <main className='container'>
           <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
-            <Section1 
+            <Section1
               sessionClassName="section1"
-              scrollValue = {scrollY}
+              scrollValue={scrollY}
             />
             <div className='section2and3' ref={section2and3Ref}>
-              <Section2 
-                sessionClassName="section2" 
+              <Section2
+                sessionClassName="section2"
                 parentRef={containerTweenRef}
               />
-              <Section3 
-                sessionClassName="section3" 
+              <Section3
+                sessionClassName="section3"
                 parentRef={containerTweenRef}
-                onProjectInfoChange={handleProjectInfoChange} 
-                isClosedFromHeader = {isClosedFromHeader}
+                onProjectInfoChange={handleProjectInfoChange}
+                isClosedFromHeader={isClosedFromHeader}
                 scrollToSection={scrollToSection}
                 sectionOffsets={sectionOffsets}
               />
             </div>
-         
+
           </Suspense>
         </main>
       </div>

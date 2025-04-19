@@ -3,22 +3,22 @@ import p5 from 'p5';
 import ProfilPicture from './../../assets/images/avatar.webp';
 import { CircleDataType } from '../../types/CircleData';
 
-type Sketch2Props ={
+type Sketch2Props = {
   isRunning: boolean;
-  onCircleUpdate: ({x, y, size}: CircleDataType) => void;
+  onCircleUpdate: ({ x, y, size }: CircleDataType) => void;
 }
 
-const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
+const Sketch2: FC<Sketch2Props> = ({ isRunning, onCircleUpdate }) => {
   const p5InstanceRef = useRef<p5 | null>(null);
   const sketchContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sketchContainerRef.current) {
       p5InstanceRef.current = new p5(sketch, sketchContainerRef.current);
-          
+
       const handleResize = () => {
         if (p5InstanceRef.current) {
-          const canvasHeight = p5InstanceRef.current.windowWidth < 560 ? 1150 : p5InstanceRef.current.windowHeight;     
+          const canvasHeight = p5InstanceRef.current.windowWidth < 560 ? 1150 : p5InstanceRef.current.windowHeight;
           p5InstanceRef.current.resizeCanvas(window.innerWidth, canvasHeight);
           p5InstanceRef.current.background(270, 80, 30);
         }
@@ -61,29 +61,29 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
 
     p.draw = () => {
       p.clear();
-      p.background(270, 80, 20); 
-      
+      p.background(270, 80, 20);
+
       const mouseCircle = drawMouseCircle(circle.size);
       circle.update(mouseCircle);
       circle.display();
 
-      onCircleUpdate({x: circle.x, y: circle.y, size: circle.size});
+      onCircleUpdate({ x: circle.x, y: circle.y, size: circle.size });
     };
 
-    function drawMouseCircle(circleSize: number){
-      const mouseCircleRadius =  circleSize * 0.18;
+    function drawMouseCircle(circleSize: number) {
+      const mouseCircleRadius = circleSize * 0.18;
       const mouseCircle = { x: p.mouseX, y: p.mouseY, radius: mouseCircleRadius };
 
       p.noFill();
-      p.stroke(circle.collisionDetected ? '#2BF7BC' : '#FFFFFF'); 
+      p.stroke(circle.collisionDetected ? '#2BF7BC' : '#FFFFFF');
       p.strokeWeight(2);
-      p.ellipse(p.mouseX, p.mouseY, mouseCircleRadius  * 2, mouseCircleRadius  * 2); 
-      
+      p.ellipse(p.mouseX, p.mouseY, mouseCircleRadius * 2, mouseCircleRadius * 2);
+
       return mouseCircle;
     }
 
     p.windowResized = () => {
-      circle.size = circle.calculateSize();    
+      circle.size = circle.calculateSize();
       // circle.calculatePosition();   
     }
 
@@ -102,17 +102,17 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
         this.p = p;
         this.x = 0;
         this.y = 0;
-        this.calculatePosition(); 
+        this.calculatePosition();
         this.vx = 0;
         this.vy = 0;
         this.size = this.calculateSize();
-        this.maskedImage = null; 
+        this.maskedImage = null;
         this.media = pictureMedia;
         this.collisionDetected = false;
-        this.collisionTimer = 0; 
+        this.collisionTimer = 0;
       }
 
-      calculatePosition(){
+      calculatePosition() {
         if (p.width > 1400) {
           this.x = p.width / 2;
           this.y = p.height;
@@ -122,7 +122,7 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
         } else if (p.width < 768) {
           this.x = p.width / 3.5;
           this.y = p.height / 1.63;
-         } else if (p.width < 1100) {
+        } else if (p.width < 1100) {
           this.x = p.width / 1.39;
           this.y = p.height / 1.2;
         } else {
@@ -130,7 +130,7 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
           this.y = p.height / 1.2;
         }
       }
-    
+
       update(mouseCircle: { x: number; y: number; radius: number }) {
         this.size = this.calculateSize();
         // Check collision with the mouse circle
@@ -146,16 +146,16 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
           const overlap = (minDistance) - distance;
           const forceX = (dx / distance) * overlap;
           const forceY = (dy / distance) * overlap;
-    
+
           // Apply the force to move the circle away
           this.vx += forceX * 0.3; // Intensity
           this.vy += forceY * 0.3;
 
-           // Position the circle at the edge of the mouse circle
+          // Position the circle at the edge of the mouse circle
           const angle = Math.atan2(dy, dx);
           this.x = mouseCircle.x + Math.cos(angle) * minDistance;
           this.y = mouseCircle.y + Math.sin(angle) * minDistance;
-         // Set collision to true and reset timer
+          // Set collision to true and reset timer
           this.collisionDetected = true;
           this.collisionTimer = 2.3;
         }
@@ -171,17 +171,17 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
         // Apply some damping to the velocity to make the motion smoother
         this.vx *= 0.9;
         this.vy *= 0.9;
-        
+
         this.constrainToCanvas();
       }
 
       calculateSize() {
-        const minSize = 150; 
-        const maxSize = p.width * 0.13; 
-      
+        const minSize = 150;
+        const maxSize = p.width * 0.13;
+
         // logarithmic function
         const size = minSize + (maxSize - minSize) * Math.log(p.width) / Math.log(1920);
-        return Math.max(minSize, size); 
+        return Math.max(minSize, size);
       }
 
       display() {
@@ -198,14 +198,14 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
         const imgX = this.x - this.size / 2;
         const imgY = this.y - this.size / 2;
         const imgSize = this.size;
-        
+
         p.push();
-        p.tint(255, 255); 
+        p.tint(255, 255);
         // p.tint(255, this.opacity); 
-        p.image(this.maskedImage, imgX, imgY, imgSize, imgSize); 
+        p.image(this.maskedImage, imgX, imgY, imgSize, imgSize);
         p.pop();
       }
-      
+
       createMaskedImage(img: p5.Image, size: number): p5.Image {
         // Create a p5.Image for the mask
         const mask = p.createGraphics(size, size);
@@ -213,18 +213,18 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
         mask.fill(255);
         mask.noStroke();
         mask.ellipse(size / 2, size / 2, size, size);
-    
+
         // Create a new p5.Image with the media and apply the mask
-        const maskedImage = img.get(); 
-        maskedImage.resize(size, size); 
-        maskedImage.mask(mask as unknown as p5.Image); 
-    
+        const maskedImage = img.get();
+        maskedImage.resize(size, size);
+        maskedImage.mask(mask as unknown as p5.Image);
+
         return maskedImage;
       }
 
       constrainToCanvas() {
         const halfSize = this.size / 2;
-      
+
         // Check collision with left and right edges
         if (this.x - halfSize < 0) {
           const overlap = halfSize - this.x;
@@ -235,7 +235,7 @@ const Sketch2: FC<Sketch2Props> = ({isRunning, onCircleUpdate }) => {
           this.x = p.width - halfSize; // Correct position
           this.vx = -Math.abs(this.vx) - overlap * 0.1; // Bounce back
         }
-      
+
         // Check collision with top and bottom edges
         if (this.y - halfSize < 0) {
           const overlap = halfSize - this.y;
