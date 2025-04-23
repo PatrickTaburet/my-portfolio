@@ -4,7 +4,6 @@ import './css/global.css';
 import Header from './components/header/Header';
 import useIsMobile from './hooks/useIsMobile';
 import { MobileProvider } from './context/MobileContext';
-import { SectionOffsets } from './types/sectionOffsets';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -17,8 +16,6 @@ const Section3 = lazy(() => import('./components/section3/Section3'));
 
 const App: FC = () => {
   const [scrollY, setScrollY] = useState<number>(0);
-  const windowHeight = window.innerHeight - 300;
-  const [sectionOffsets, setSectionOffsets] = useState<SectionOffsets>({ section1Offset: 0, section2Offset: 0, section3Offset: 0 });
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState<boolean>(false);
   const [isClosedFromHeader, setIsClosedFromHeader] = useState<boolean>(false);
   const isMobile = useIsMobile();
@@ -55,22 +52,6 @@ const App: FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const calculateOffsets = () => {
-      const s1 = document.querySelector('.section1');
-      const s2 = document.querySelector('.section2');
-      const s3 = document.querySelector('.section3');
-      setSectionOffsets({
-        section1Offset: s1 instanceof HTMLElement ? s1.offsetTop : 0,
-        section2Offset: s2 instanceof HTMLElement ? s2.offsetTop : 0,
-        section3Offset: s3 instanceof HTMLElement ? s3.offsetTop : 0,
-      });
-    };
-    calculateOffsets();
-    window.addEventListener('resize', calculateOffsets);
-    return () => window.removeEventListener('resize', calculateOffsets);
-  }, []);
-
   const scrollToSection = (selector: string) => {
     const el = document.querySelector(selector);
     if (!el) return;
@@ -100,10 +81,9 @@ const App: FC = () => {
     <MobileProvider>
       <div className="App">
         <Header
-          scrollY={scrollY}
-          windowHeight={windowHeight}
-          isProjectInfoVisible={isProjectInfoVisible}
-          sectionOffsets={sectionOffsets}
+          // scrollY={scrollY}
+          // windowHeight={windowHeight}
+          // isProjectInfoVisible={isProjectInfoVisible}
           scrollToSection={scrollToSection}
           handleCloseFromHeader={handleCloseFromHeader}
         />
@@ -124,7 +104,6 @@ const App: FC = () => {
                 onProjectInfoChange={handleProjectInfoChange}
                 isClosedFromHeader={isClosedFromHeader}
                 scrollToSection={scrollToSection}
-                sectionOffsets={sectionOffsets}
               />
             </div>
 

@@ -1,39 +1,44 @@
-.header{
+.header {
     font-size: var(--text-size-small);
     position: fixed;
     top: 1vw;
     right: 2vw;
     z-index: 1000;
 }
-nav{
+
+nav {
     color: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .link {
     margin: 0 5px 0 5px;
     cursor: pointer;
     transition: color 0.1s ease;
 }
 
-.link.modeA {
+.header.inverted .separator {
     color: var(--color-primary);
 }
-.link.modeA:hover {
-    color: var(--color-text);
-}
-.link.modeB {
-    color: var(--color-text);
-}
-.link.modeB:hover {
+
+/* Default button colors (modeA) */
+.link.header-color {
     color: var(--color-primary);
 }
-.link.modeC {
-    color: var(--color-primary);
-}
-.link.modeC:hover {
+
+.link.header-color:hover {
     color: var(--color-text);
+}
+
+/* Inverted colors when inside section2 */
+.header.inverted .link.header-color {
+    color: var(--color-text);
+}
+
+.header.inverted .link.header-color:hover {
+    color: var(--color-primary);
 }
 
 /* 
@@ -44,9 +49,8 @@ Media queries
 
 /* -----------------------------  < 768px ------------------------------ */
 
-@media screen and (max-width: 768px)
-{
-  .header{
-    font-size: var(--text-size-mobile);
-  }
+@media screen and (max-width: 768px) {
+    .header {
+        font-size: var(--text-size-mobile);
+    }
 }

@@ -1,43 +1,27 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useRef } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import './header.css';
 import { useMobile } from '../../context/MobileContext';
-import { SectionOffsets } from '../../types/sectionOffsets';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
-  scrollY: number;
-  windowHeight: number;
-  isProjectInfoVisible: boolean;
-  sectionOffsets: SectionOffsets;
   scrollToSection: (selector: string) => void;
   handleCloseFromHeader: () => void;
 }
 
-const Header: FunctionComponent<Props> = ({ scrollY, windowHeight, isProjectInfoVisible, sectionOffsets, scrollToSection, handleCloseFromHeader }) => {
+const Header: FunctionComponent<Props> = ({ scrollToSection, handleCloseFromHeader }) => {
   const isMobile = useMobile();
-
-  const headerColor = isMobile
-    ? ''
-    : (scrollY > windowHeight && scrollY <= window.innerHeight * 1.6 ? "#2BF7BC" : '');
+  const headerRef = useRef<HTMLElement>(null);
 
   return (
-    <header
-      className="header"
-      style={{
-        color: headerColor
-      }}
-    >
+    <header ref={headerRef} className="header" id="main-header">
       <AnimatedTitle timeout={900} direction="down" initiallyVisible={true}>
         <nav>
           <button
-            className={`link ${isMobile
-              ? 'modeA' // Forcer modeA en mode mobile
-              : (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6
-                ? 'modeC'
-                : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6)
-                  || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6)
-                  ? 'modeB' : 'modeA'))
-              }`}
+            className="link header-color"
             onClick={() => {
               scrollToSection(".section3");
               handleCloseFromHeader();
@@ -45,24 +29,12 @@ const Header: FunctionComponent<Props> = ({ scrollY, windowHeight, isProjectInfo
           >
             Projects
           </button>
-          /
-          <button
-            className={`link ${isMobile
-              ? 'modeA'
-              : (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6
-                ? 'modeC'
-                : ((scrollY > windowHeight && scrollY <= window.innerHeight * 1.6)
-                  || (isProjectInfoVisible && scrollY >= window.innerHeight * 1.6)
-                  ? 'modeB' : 'modeA'))
-              }`}
-            onClick={() => scrollToSection(".section2")}
-          >
-            Contact
-          </button>
+          <span className="separator"> / </span>
+          <button className="link header-color" onClick={() => scrollToSection('.section2')}>Contact</button>
         </nav>
       </AnimatedTitle>
     </header>
   );
 }
 
-export default Header;
+export default React.memo(Header);

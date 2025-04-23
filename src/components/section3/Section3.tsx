@@ -9,18 +9,16 @@ import ProjectsMapping from './ProjectsMapping';
 import { TbBrandGithub } from "react-icons/tb";
 import Rocket from '../../assets/images/rocket.png';
 import { useMobile } from '../../context/MobileContext';
-import { SectionOffsets } from '../../types/sectionOffsets';
 
 type Section3Props = {
   parentRef: React.RefObject<gsap.core.Tween | null>;
   onProjectInfoChange: (visible: boolean) => void;
   isClosedFromHeader: boolean;
   scrollToSection: (selector: string) => void;
-  sectionOffsets: SectionOffsets;
   sessionClassName: string;
 };
 
-const Section3: FC<Section3Props> = ({ parentRef, onProjectInfoChange, isClosedFromHeader, scrollToSection, sectionOffsets, sessionClassName }) => {
+const Section3: FC<Section3Props> = ({ parentRef, onProjectInfoChange, isClosedFromHeader, scrollToSection, sessionClassName }) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [launchMode, setLaunchMode] = useState<boolean>(true);
