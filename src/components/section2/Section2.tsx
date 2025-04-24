@@ -44,8 +44,8 @@ const Section2: FC<Section2Props> = ({ parentRef, sessionClassName }) => {
 
     const trigger = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: 'top top',
-      end: 'bottom top',
+      start: 'top 3%',
+      end: 'bottom 3%',
       toggleClass: {
         targets: headerEl,
         className: 'inverted'

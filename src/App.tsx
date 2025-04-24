@@ -91,7 +91,6 @@ const App: FC = () => {
           <Suspense fallback={<div className='loading'><span className="loader"></span></div>}>
             <Section1
               sessionClassName="section1"
-              scrollValue={scrollY}
             />
             <div className='section2and3' ref={section2and3Ref}>
               <Section2

@@ -1,41 +1,58 @@
-import React, { FC, useEffect, useState,} from 'react';
+import React, { FC, useLayoutEffect, useState, } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 import BackgroundCyber from '../../assets/images/blue-background.webp';
 import useVisibility from '../../hooks/useVisibility';
-import {useMobile} from '../../context/MobileContext';
+import { useMobile } from '../../context/MobileContext';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Section1Props = {
-  scrollValue: number;
   sessionClassName: string;
 }
 
-const Section1: FC<Section1Props>= ({scrollValue, sessionClassName}) => {
+const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
-  const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
-  const [isScrollTriggered, setIsScrollTriggered] = useState(false);
-  const textSlowDownFactor = 3;
   const isMobile = useMobile();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrollTriggered(true); 
-    };
+  useLayoutEffect(() => {
+    if (!sectionRef.current) return;
 
-    window.addEventListener('scroll', handleScroll);
+    // Scoped GSAP animations for section1
+    const ctx = gsap.context(() => {
+      // Background animation: blur, opacity, scale
+      gsap.to('.backgroundCyber', {
+        filter: 'blur(15px)',
+        opacity: 0,
+        scale: 1.15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
 
-    const timer = setTimeout(() => {
-      if (!isScrollTriggered) {
-        setInitialAnimationComplete(true); // Initial animation complete if no scroll
-      }
-    }, 2000); // 2 sec for inital animation
+      // Text content animation: parallax translateY and fade-out
+      gsap.to('.section1Content', {
+        y: window.innerHeight * 0.65,
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    }, sectionRef);
 
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isScrollTriggered]);
+    return () => ctx.revert();
+  }, [isMobile, sectionRef]);
 
   return (
     <section className={sessionClassName} ref={sectionRef}>
@@ -43,30 +60,9 @@ const Section1: FC<Section1Props>= ({scrollValue, sessionClassName}) => {
         src={BackgroundCyber}
         alt="Background_cyber"
         fetchPriority="high"
-        className={
-          isMobile
-            ? 'backgroundScrolled'
-            : !initialAnimationComplete && !isScrollTriggered
-            ? 'backgroundInitial'
-            : 'backgroundScrolled'
-        }
-        style={
-          !isMobile
-            ? {
-                filter: `blur(${Math.min(15, scrollValue / 70)}px)`,
-                opacity: Math.max(0, 1 - scrollValue / 500),
-                transform: `scale(${1 + scrollValue / 1000})`,
-              }
-            : {}
-        }
+        className="backgroundCyber"
       />
-      <div 
-        className='section1Content' 
-        style={{ 
-          transform: isMobile ? 'none' : `translateY(${scrollValue / textSlowDownFactor}px)`,  // Parallax effect
-          opacity: scrollValue > 200 ? (1- scrollValue/700) : 1 // Text disapear when scroll down
-        }}
-      >
+      <div className='section1Content' >
         <AnimatedTitle timeout={200} direction="up">
           <h1>
             <span>Taburet</span>
@@ -82,15 +78,15 @@ const Section1: FC<Section1Props>= ({scrollValue, sessionClassName}) => {
           </AnimatedTitle>
         </div>
       </div>
-      <Sketch1 isRunning={isVisible}/>
+      <Sketch1 isRunning={isVisible} />
 
-          <div className='sliderContainer' style={{ display: isMobile ? 'none' : 'block'}}>
-            <AnimatedTitle timeout={900} direction="down">
-              <p>+</p>
-              <input type="range"  min="1" max="60" defaultValue="13" step="1"  className="rangeSlider" id="lineSlider"/>
-              <p className='negativePole'>-</p>
-            </AnimatedTitle>
-          </div>
+      <div className='sliderContainer' style={{ display: isMobile ? 'none' : 'block' }}>
+        <AnimatedTitle timeout={900} direction="down">
+          <p>+</p>
+          <input type="range" min="1" max="60" defaultValue="13" step="1" className="rangeSlider" id="lineSlider" />
+          <p className='negativePole'>-</p>
+        </AnimatedTitle>
+      </div>
 
     </section>
   );
