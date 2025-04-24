@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useState, } from 'react';
+import React, { FC, useLayoutEffect, useRef, useState, } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
@@ -17,24 +17,58 @@ type Section1Props = {
 const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
   const isMobile = useMobile();
+  const topLeftRef = useRef<HTMLDivElement>(null);
+  const bottomRightRef = useRef<HTMLDivElement>(null);
+
+  const RECT_HEIGHTS = isMobile ? [200, 160, 120, 80, 40] : [200, 160, 120, 80, 40];
+  const RECT_WIDTH = isMobile ? 20 : 40;
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
+    const topRects = topLeftRef.current!.querySelectorAll<HTMLDivElement>('.rect');
+    const botRects = bottomRightRef.current!.querySelectorAll<HTMLDivElement>('.rect');
+    const reversedHeights = [...RECT_HEIGHTS].reverse();
+    const allRects = [...topRects, ...botRects];
 
     // Scoped GSAP animations for section1
     const ctx = gsap.context(() => {
-      // Background animation: blur, opacity, scale
-      gsap.to('.backgroundCyber', {
-        filter: 'blur(15px)',
-        opacity: 0,
-        scale: 1.15,
-        ease: 'none',
+
+      // timeline paused
+      const revealTl = gsap.timeline();
+
+      revealTl.to(topRects, {
+        height: (i) => RECT_HEIGHTS[i],
+        width: RECT_WIDTH,
+        opacity: 1,
+        ease: 'power1.out',
+        duration: 0.3,
+        stagger: 0.1,
+      });
+
+      revealTl.to(botRects, {
+        height: (i) => reversedHeights[i],
+        width: RECT_WIDTH,
+        opacity: 1,
+        ease: 'power1.out',
+        duration: 0.3,
+        stagger: 0.1,
+      }, '>');
+
+      const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom top',
           scrub: true,
-        },
+          markers: true,
+
+        }
+      });
+      scrollTl.to([...topRects, ...botRects], {
+        height: 0,
+        opacity: 0,
+        ease: 'power1.inOut',
+        stagger: 0.1,
       });
 
       // Text content animation: parallax translateY and fade-out
@@ -49,6 +83,7 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
           scrub: true,
         },
       });
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -56,12 +91,15 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
 
   return (
     <section className={sessionClassName} ref={sectionRef}>
-      <img
-        src={BackgroundCyber}
-        alt="Background_cyber"
-        fetchPriority="high"
-        className="backgroundCyber"
-      />
+
+      <div className="rect-container top-left" ref={topLeftRef}>
+        {RECT_HEIGHTS.map((_, i) => <div className="rect" key={`t${i}`} />)}
+      </div>
+      <div className="rect-container bottom-right" ref={bottomRightRef}>
+        {RECT_HEIGHTS.map((_, i) => <div className="rect" key={`b${i}`} />)}
+      </div>
+
+
       <div className='section1Content' >
         <AnimatedTitle timeout={200} direction="up">
           <h1>
