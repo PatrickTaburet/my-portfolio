@@ -1,50 +1,52 @@
 @font-face {
     font-family: 'Poppins';
     src: url('../assets/fonts/poppins-light-webfont.woff2') format('woff2'),
-         url('../assets/fonts/poppins-light-webfont.woff') format('woff');
+        url('../assets/fonts/poppins-light-webfont.woff') format('woff');
     font-weight: 300;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
 }
-  
+
 @font-face {
     font-family: 'Poppins';
     src: url('../assets/fonts/poppins-regular-webfont.woff2') format('woff2'),
-         url('../assets/fonts/poppins-regular-webfont.woff') format('woff');
+        url('../assets/fonts/poppins-regular-webfont.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
 }
-  
+
 @font-face {
     font-family: 'Poppins';
     src: url('../assets/fonts/poppins-medium-webfont.woff2') format('woff2'),
-         url('../assets/fonts/poppins-medium-webfont.woff') format('woff');
+        url('../assets/fonts/poppins-medium-webfont.woff') format('woff');
     font-weight: 500;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
 }
+
 @font-face {
     font-family: 'Georama';
     src: url('../assets/fonts/Georama-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
-    font-display: swap; 
-  }
-  
+    font-display: swap;
+}
+
 @font-face {
     font-family: 'Georama';
     src: url('../assets/fonts/Georama-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
 }
+
 @font-face {
     font-family: 'Georama';
     src: url('../assets/fonts/Georama-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
 }
 
 :root {
@@ -55,16 +57,17 @@
     --color-light: #e0f2f8;
     --color-text-transp: #b6ecf7af;
     --color-purple: #1F0A33;
-        
+
     /* Fonts */
     --font-main: "Georama", sans-serif;
-    --font-title:  "Poppins", sans-serif;
+    --font-title: "Poppins", sans-serif;
     --text-size-mini: 14px;
     --text-size-mobile: 16px;
     --text-size-small: 20px;
     --text-size-main: 24px;
     --text-size-title: 30px;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -74,21 +77,28 @@
 
 a {
     text-decoration: none;
-    color: var(--color-primary); 
+    color: var(--color-primary);
     font-size: var(--text-size-small);
 }
+
 body {
     height: fit-content;
 }
+
 main {
     background-color: var(--color-secondary);
-    font-family:  var(--font-main);
+    font-family: var(--font-main);
     font-size: var(--text-size-main);
 }
-h1, h2, h3, h4 {
+
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-title);
     font-weight: 300;
 }
+
 button {
     border: none;
     margin: 0;
@@ -102,11 +112,13 @@ button {
     line-height: inherit;
     cursor: pointer;
 }
-.bioLetters{
+
+.bioLetters {
     line-height: 1.3em;
     white-space: 'pre-wrap';
     font-weight: 300;
 }
+
 /* 
 ========================
 Media queries
@@ -115,8 +127,7 @@ Media queries
 
 /* ----------------------------- < 1000px ------------------------------ */
 
-@media screen and (max-width: 1000px)
-{
+@media screen and (max-width: 1000px) {
     main {
         font-size: var(--text-size-mobile);
     }

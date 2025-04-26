@@ -19,21 +19,29 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const topLeftRef = useRef<HTMLDivElement>(null);
   const bottomRightRef = useRef<HTMLDivElement>(null);
 
-  const RECT_HEIGHTS = isMobile ? [140, 120, 100, 80, 60, 40, 20] : [240, 200, 160, 120, 80, 40];
+  const RECT_HEIGHTS = isMobile ? [140, 120, 100, 80, 60, 40, 20] : [360, 280, 320, 200, 240, 160, 80, 120, 40];
   const RECT_WIDTH = isMobile ? 20 : 40;
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+
     const topRects = topLeftRef.current!.querySelectorAll<HTMLDivElement>('.rect');
     const botRects = bottomRightRef.current!.querySelectorAll<HTMLDivElement>('.rect');
     const reversedHeights = [...RECT_HEIGHTS].reverse();
-    const allRects = [...topRects, ...botRects];
 
     // Scoped GSAP animations for section1
     const ctx = gsap.context(() => {
 
       // timeline paused
-      const revealTl = gsap.timeline();
+      const revealTl = gsap.timeline({
+        onComplete: () => {
+          document.body.style.overflow = '';
+          document.body.style.paddingRight = '';
+        }
+      });
 
       revealTl.to(topRects, {
         height: (i) => RECT_HEIGHTS[i],
@@ -50,7 +58,10 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
         opacity: 1,
         ease: 'power1.out',
         duration: 0.3,
-        stagger: 0.1,
+        stagger: {
+          each: 0.1,
+          from: 'end'
+        }
       }, '>');
 
       const scrollTl = gsap.timeline({
@@ -60,15 +71,30 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
           end: 'bottom top',
           scrub: true,
           // markers: true,
-
         }
       });
-      scrollTl.to([...topRects, ...botRects], {
+
+      // scrollTl.to([...topRects, ...botRects], {
+      //   height: 0,
+      //   // opacity: 0,
+      //   ease: 'power1.inOut',
+      //   stagger: 0.1,
+      // });
+
+      scrollTl.to(topRects, {
         height: 0,
-        opacity: 0,
         ease: 'power1.inOut',
-        stagger: 0.1,
-      });
+        stagger: 0.1
+      }, 0);
+
+      scrollTl.to(botRects, {
+        height: 0,
+        ease: 'power1.inOut',
+        stagger: {
+          each: 0.1,
+          from: 'end'
+        }
+      }, 0);
 
       // Text content animation: parallax translateY and fade-out
       gsap.to('.section1Content', {

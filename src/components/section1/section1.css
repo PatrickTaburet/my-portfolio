@@ -64,21 +64,21 @@
 .rect-container {
   position: absolute;
   display: flex;
-  gap: 5px;
+  gap: 7px;
   /* pointer-events: none; */
 }
 
 /* coin haut-gauche */
 .top-left {
   position: fixed;
-  top: 0;
+  top: -7px;
   left: 0;
   z-index: 10;
 }
 
 /* coin bas-droit, on inverse l’ordre pour que le plus petit soit en bas */
 .bottom-right {
-  bottom: 0;
+  bottom: -7px;
   right: 0;
   display: flex;
   z-index: 10;
@@ -90,7 +90,11 @@
 .rect {
   width: 0;
   height: 0;
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  background-color: black;
+  /* background-color: #1F0A33; */
+  border: solid var(--color-primary);
+  /* border-radius: 15px; */
   opacity: 0;
   will-change: width, height, opacity;
 }
@@ -103,8 +107,9 @@
 
   50% {
     transform: scale(1.2);
-    background-color: #2bf7bd77;
-    filter: blur(1px);
+    background-color: #2bf7bd;
+    /* filter: blur(0px); */
+    border: none;
   }
 
   100% {
@@ -128,7 +133,7 @@
   justify-content: flex-start;
   width: 5vw;
   height: 5vw;
-  top: 17vw;
+  top: 8vw;
   right: 1.5vw;
   z-index: 10;
 }
