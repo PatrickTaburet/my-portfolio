@@ -130,6 +130,7 @@
   height: 5vw;
   top: 17vw;
   right: 1.5vw;
+  z-index: 10;
 }
 
 .sliderContainer p {

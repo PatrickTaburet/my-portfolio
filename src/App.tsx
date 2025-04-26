@@ -3,6 +3,7 @@ import './css/App.css';
 import './css/global.css';
 import Header from './components/header/Header';
 import useIsMobile from './hooks/useIsMobile';
+import useResetScroll from './hooks/useResetScroll';
 import { MobileProvider } from './context/MobileContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,32 +16,12 @@ const Section2 = lazy(() => import('./components/section2/Section2'));
 const Section3 = lazy(() => import('./components/section3/Section3'));
 
 const App: FC = () => {
-  // const [scrollY, setScrollY] = useState<number>(0);
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState<boolean>(false);
   const [isClosedFromHeader, setIsClosedFromHeader] = useState<boolean>(false);
   const isMobile = useIsMobile();
-  // const SCROLL_ADJUSTMENT = isMobile ? 0 : -240;
   const containerTweenRef = useRef<gsap.core.Tween | null>(null);
   const section2and3Ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Empêcher le navigateur de restaurer le scroll (après F5, navigation, etc.)
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-  }, []);
-
-
-  // Global scroll trigger
-  // useEffect(() => {
-  //   const st = ScrollTrigger.create({
-  //     start: 0,
-  //     end: 'max',
-  //     onUpdate: self => setScrollY(Math.round(self.scroll())),
-  //   });
-  //   return () => st.kill();
-  // }, []);
-
+  useResetScroll();
 
   useEffect(() => {
     if (!section2and3Ref.current) return;

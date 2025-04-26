@@ -1,8 +1,7 @@
-import React, { FC, useLayoutEffect, useRef, useState, } from 'react';
+import React, { FC, useLayoutEffect, useRef } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
-import BackgroundCyber from '../../assets/images/blue-background.webp';
 import useVisibility from '../../hooks/useVisibility';
 import { useMobile } from '../../context/MobileContext';
 import { gsap } from 'gsap';
@@ -20,7 +19,7 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const topLeftRef = useRef<HTMLDivElement>(null);
   const bottomRightRef = useRef<HTMLDivElement>(null);
 
-  const RECT_HEIGHTS = isMobile ? [200, 160, 120, 80, 40] : [200, 160, 120, 80, 40];
+  const RECT_HEIGHTS = isMobile ? [140, 120, 100, 80, 60, 40, 20] : [240, 200, 160, 120, 80, 40];
   const RECT_WIDTH = isMobile ? 20 : 40;
 
   useLayoutEffect(() => {
@@ -60,7 +59,7 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
           start: 'top top',
           end: 'bottom top',
           scrub: true,
-          markers: true,
+          // markers: true,
 
         }
       });
@@ -74,7 +73,7 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
       // Text content animation: parallax translateY and fade-out
       gsap.to('.section1Content', {
         y: window.innerHeight * 0.65,
-        opacity: 0,
+        opacity: -0.5,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
