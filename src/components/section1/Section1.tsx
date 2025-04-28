@@ -6,6 +6,7 @@ import useVisibility from '../../hooks/useVisibility';
 import { useMobile } from '../../context/MobileContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useDeviceConfig from '../../hooks/useDeviceConfig';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,14 +20,14 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const topLeftRef = useRef<HTMLDivElement>(null);
   const bottomRightRef = useRef<HTMLDivElement>(null);
 
-  const RECT_HEIGHTS = isMobile ? [140, 120, 100, 80, 60, 40, 20] : [360, 280, 320, 200, 240, 160, 80, 120, 40];
-  const RECT_WIDTH = isMobile ? 20 : 40;
+  const { rectHeights: RECT_HEIGHTS, rectWidth: RECT_WIDTH } = useDeviceConfig();
+
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.documentElement.style.overflow = 'hidden';
+    document.documentElement.style.setProperty('--gutter-offset', `${scrollbarWidth}px`);
 
     const topRects = topLeftRef.current!.querySelectorAll<HTMLDivElement>('.rect');
     const botRects = bottomRightRef.current!.querySelectorAll<HTMLDivElement>('.rect');
@@ -38,8 +39,8 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
       // timeline paused
       const revealTl = gsap.timeline({
         onComplete: () => {
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
+          document.documentElement.style.overflow = '';
+          document.documentElement.style.setProperty('--gutter-offset', '0px');
         }
       });
 
@@ -112,7 +113,7 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile, sectionRef]);
+  }, [sectionRef, RECT_HEIGHTS, RECT_WIDTH]);
 
   return (
     <section className={sessionClassName} ref={sectionRef}>
@@ -123,7 +124,6 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
       <div className="rect-container bottom-right" ref={bottomRightRef}>
         {RECT_HEIGHTS.map((_, i) => <div className="rect" key={`b${i}`} />)}
       </div>
-
 
       <div className='section1Content' >
         <AnimatedTitle timeout={200} direction="up">

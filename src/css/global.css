@@ -66,6 +66,9 @@
     --text-size-small: 20px;
     --text-size-main: 24px;
     --text-size-title: 30px;
+
+    /* Others */
+    --gutter-offset: 0px;
 }
 
 * {
@@ -79,6 +82,11 @@ a {
     text-decoration: none;
     color: var(--color-primary);
     font-size: var(--text-size-small);
+}
+
+html {
+    overflow-y: auto;
+    padding-right: var(--gutter-offset);
 }
 
 body {

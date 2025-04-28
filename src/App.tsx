@@ -2,7 +2,6 @@ import React, { FC, Suspense, lazy, useEffect, useRef, useState } from 'react';
 import './css/App.css';
 import './css/global.css';
 import Header from './components/header/Header';
-import useIsMobile from './hooks/useIsMobile';
 import useResetScroll from './hooks/useResetScroll';
 import { MobileProvider } from './context/MobileContext';
 import { gsap } from 'gsap';
@@ -18,7 +17,6 @@ const Section3 = lazy(() => import('./components/section3/Section3'));
 const App: FC = () => {
   const [isProjectInfoVisible, setIsProjectInfoVisible] = useState<boolean>(false);
   const [isClosedFromHeader, setIsClosedFromHeader] = useState<boolean>(false);
-  const isMobile = useIsMobile();
   const containerTweenRef = useRef<gsap.core.Tween | null>(null);
   const section2and3Ref = useRef<HTMLDivElement>(null);
   useResetScroll();
@@ -50,8 +48,8 @@ const App: FC = () => {
       scrollTo: {
         y: top
       },
-      duration: 0.8,
-      ease: 'power2.out'
+      duration: 0.2,
+      ease: 'power1.out'
     });
   };
 

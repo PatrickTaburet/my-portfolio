@@ -116,7 +116,6 @@ const Section3: FC<Section3Props> = ({ parentRef, onProjectInfoChange, isClosedF
         className={`projectInfosContainer ${isProjectInfoVisible ? '' : 'hidden'}`}
         style={isProjectInfoVisible ? { transition: 'none' } : {}}
       >
-
         {activeProject && ProjectsMapping[activeProject] ? (
           <div className={`projectInfos ${fadeBackground ? 'fade-background' : ''}`}>
             <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>

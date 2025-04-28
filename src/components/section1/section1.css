@@ -46,19 +46,6 @@
 
 }
 
-/* .backgroundCyber {
-  position: absolute;
-  top: 0;
-  left: -15vw;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(0);
-  opacity: 1;
-  transform: scale(1);
-  will-change: filter, opacity, transform;
-} */
-
 /* GSAP background animation */
 
 .rect-container {
@@ -68,7 +55,6 @@
   /* pointer-events: none; */
 }
 
-/* coin haut-gauche */
 .top-left {
   position: fixed;
   top: -7px;
@@ -76,13 +62,11 @@
   z-index: 10;
 }
 
-/* coin bas-droit, on inverse l’ordre pour que le plus petit soit en bas */
 .bottom-right {
   bottom: -7px;
   right: 0;
   display: flex;
   z-index: 10;
-  /* flex-direction: row-reverse; */
   align-items: flex-end;
 }
 
@@ -91,7 +75,7 @@
   width: 0;
   height: 0;
   /* background-color: var(--color-primary); */
-  background-color: black;
+  /* background-color: black; */
   /* background-color: #1F0A33; */
   border: solid var(--color-primary);
   /* border-radius: 15px; */

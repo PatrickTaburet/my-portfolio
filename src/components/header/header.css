@@ -2,7 +2,7 @@
     font-size: var(--text-size-small);
     position: fixed;
     top: 1vw;
-    right: 2vw;
+    right: calc(2rem + var(--gutter-offset));
     z-index: 1000;
 }
 
