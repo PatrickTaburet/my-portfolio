@@ -118,7 +118,9 @@ const Section3: FC<Section3Props> = ({ parentRef, onProjectInfoChange, isClosedF
       >
         {activeProject && ProjectsMapping[activeProject] ? (
           <div className={`projectInfos ${fadeBackground ? 'fade-background' : ''}`}>
-            <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
+            <AnimatedTitle timeout={0} direction="up">
+              <span className='projectTitle'>{ProjectsMapping[activeProject].title}</span>
+            </AnimatedTitle>
             <div className='projectContent'>
               <AnimatedTitle timeout={200} direction="up">
                 <Slider images={ProjectsMapping[activeProject].slides} />

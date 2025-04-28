@@ -1,11 +1,11 @@
 /* Section 2  */
 
-.section2{
+.section2 {
     /* overflow-y: auto;
     overflow-x:hidden */
 }
 
-.section2Content{
+.section2Content {
     position: absolute;
     display: flex;
     width: 100%;
@@ -13,7 +13,8 @@
     height: 100%;
     padding-top: 3vw;
 }
-.topSection2{
+
+.topSection2 {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -21,13 +22,14 @@
     width: 50%;
     margin-left: 5vw;
 }
-.topSection2 h3{
+
+.topSection2 h3 {
     color: var(--color-primary);
     font-size: 75px;
     margin-top: 1vw;
 }
 
-.profilePicture{
+.profilePicture {
     position: relative;
     border-radius: 50%;
     height: 15vw;
@@ -37,7 +39,8 @@
     border-color: var(--color-primary);
     margin-left: 5vw;
 }
-.bio{
+
+.bio {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -48,14 +51,14 @@
 
 /* ----- ContactCard ----- */
 
-.contactContainer{
+.contactContainer {
     position: relative;
     display: flex;
     align-items: center;
     margin: 4vw 0 0 0vw;
 }
 
-.contactCard{
+.contactCard {
     display: flex;
     flex-direction: column;
     background-color: var(--color-secondary);
@@ -66,9 +69,10 @@
     border-color: var(--color-primary);
     padding: 2vw;
     gap: 1vw;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
-.contactCard span{
+
+.contactCard span {
     color: var(--color-primary);
     text-align: center;
     width: 100%;
@@ -76,34 +80,44 @@
     font-size: var(--text-size-title);
     font-weight: 500;
 }
-.contactCard p, .contactCard a{
+
+.contactCard p,
+.contactCard a {
     color: var(--color-text-transp);
     width: 100%;
     cursor: pointer;
 
 }
-.contactCard p{
+
+.contactCard p {
     font-size: var(--text-size-small);
 }
-.githubLink{
+
+.githubLink {
     font-size: var(--text-size-small);
 }
-.linkedinLink{
+
+.linkedinLink {
     font-size: var(--text-size-small);
 }
-.contactLine{
+
+.contactLine {
     display: flex;
     align-items: center;
     gap: 1.5vw;
 }
-.contactLine p, .contactLine a{
+
+.contactLine p,
+.contactLine a {
     color: var(--color-text);
 }
 
-.contactCard p:hover, .contactCard a:hover{
+.contactCard p:hover,
+.contactCard a:hover {
     color: var(--color-primary)
 }
-.copyMessage{
+
+.copyMessage {
     font-size: var(--text-size-small);
     background-color: rgba(255, 255, 255, 0);
     color: var(--color-primary);
@@ -116,13 +130,15 @@
 /* ----- SkillsCards ----- */
 
 
-.cardsWrapper{
+.cardsWrapper {
     display: flex;
     flex-direction: column;
     gap: 2vw;
 
 }
-.card1Wrapper, .card2Wrapper{
+
+.card1Wrapper,
+.card2Wrapper {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -130,7 +146,8 @@
     gap: 1vw;
 
 }
-.cardsContainer{
+
+.cardsContainer {
     margin-right: 4vw;
     display: flex;
     position: relative;
@@ -138,13 +155,15 @@
     align-items: center;
     gap: 20px;
 }
-.cardsContainer h3{
+
+.cardsContainer h3 {
     color: var(--color-primary);
     font-size: 75px;
     margin-top: 1vw;
     margin-bottom: 1vw;
 }
-.cardsWrapper h4{
+
+.cardsWrapper h4 {
     color: var(--color-light);
     font-size: 28px;
     margin: 0;
@@ -153,55 +172,64 @@
 
 /* Logos techno : */
 
-.logoSymfo{
+.logoSymfo {
     width: 3.5vw;
     min-width: 33px;
 }
-.logoReact{
+
+.logoReact {
     width: 3.6vw;
     min-width: 35px;
     margin-bottom: 0px;
 }
-.LogoCSharp{
+
+.LogoCSharp {
     width: 3.3vw;
     min-width: 30px;
     margin-top: 3px;
 }
-.LogoP5js{
+
+.LogoP5js {
     width: 3.5vw;
     min-width: 35px;
 }
-.LogoMySql{
+
+.LogoMySql {
     width: 2.7vw;
     min-width: 25px;
     margin-top: 7px;
 }
-.LogoPsd{
+
+.LogoPsd {
     width: 3vw;
     min-width: 35px;
     margin-top: 2px;
 }
-.LogoFigma{
+
+.LogoFigma {
     width: 2.05vw;
     min-width: 23px;
 }
-.LogoGithub{
+
+.LogoGithub {
     width: 3.7vw;
     min-width: 35px;
     margin-top: 0.5vw;
 
 }
-.LogoDocker{
+
+.LogoDocker {
     width: 5vw;
     min-width: 35px;
 }
-.LogoNode{
+
+.LogoNode {
     width: 3.5vw;
     min-width: 35px;
 }
 
 
-.logoContainer{
+.logoContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,13 +240,15 @@
     gap: 0.3vw;
     margin: 3px;
 }
-.logoContainer p{
+
+.logoContainer p {
     font-size: var(--text-size-small);
     color: var(--color-text);
     font-weight: 400;
 }
 
-.card1, .card2{
+.card1,
+.card2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -231,12 +261,14 @@
     background-color: var(--color-secondary);
     opacity: 0.9;
 }
-.card1{
+
+.card1 {
     max-width: 60%;
     min-width: 300px;
     min-height: 150px;
 }
-.card2{
+
+.card2 {
     width: 60%;
     height: 100%;
     min-width: 236px;
@@ -251,37 +283,42 @@ Media queries
 
 /* ----------------------------- Tablet < 1024px ------------------------------ */
 
-@media screen and (max-width: 1024px)
-{
-    .topSection2{
+@media screen and (max-width: 1024px) {
+    .topSection2 {
         width: 45%;
     }
-    .topSection2 h3{
+
+    .topSection2 h3 {
         font-size: 4rem;
         margin: 15px 10px 15px 10px;
     }
-    .bio{
+
+    .bio {
         font-size: var(--text-size-small);
         width: 80%;
     }
-        
-    .cardsContainer h3{
+
+    .cardsContainer h3 {
         font-size: 4rem;
         margin: 15px;
     }
-    .cardsWrapper h4{
+
+    .cardsWrapper h4 {
         font-size: 2rem;
         margin: 10px;
     }
-    .card1{
-       min-width: 243px;
-       min-height: 200px;
+
+    .card1 {
+        min-width: 243px;
+        min-height: 200px;
     }
-    .card2{
+
+    .card2 {
         min-width: 180px;
         min-height: 180px;
     }
-    .logoContainer p{
+
+    .logoContainer p {
         font-size: var(--text-size-mobile);
         font-weight: 300;
     }
@@ -291,117 +328,136 @@ Media queries
     .contactCard {
         margin-top: 3vw;
     }
-    .contactCard span{
+
+    .contactCard span {
         width: 100%;
         padding: 1vw;
         font-size: 1.5rem;
     }
-    .contactCard p{
+
+    .contactCard p {
         font-size: var(--text-size-mobile);
     }
-    .githubLink{
+
+    .githubLink {
         font-size: 1rem;
     }
-    .linkedinLink{
+
+    .linkedinLink {
         font-size: 1rem;
     }
-    .logoContact{
+
+    .logoContact {
         width: 4vw;
     }
 }
+
 /* ----------------------------- Tablet < 768px ------------------------------ */
 
-@media screen and (max-width: 768px)
-{
-    .topSection2{
+@media screen and (max-width: 768px) {
+    .topSection2 {
         height: 100%;
         width: 35%;
         margin-left: 5vw;
         margin-right: 5vw;
     }
 
-    .topSection2 h3{
+    .topSection2 h3 {
         font-size: 2.5rem;
         min-width: 200px;
     }
-    .bio{
+
+    .bio {
         width: 100%;
         gap: 1vw;
         margin: 3vw 0 0 0;
         font-size: var(--text-size-mobile);
     }
-    .cardsWrapper{
+
+    .cardsWrapper {
         gap: 1vw;
         margin: 0 0 0 7vw;
         width: 40%;
         height: 80%;
     }
-    .cardsContainer h3{
+
+    .cardsContainer h3 {
         font-size: 2.5rem;
     }
-    .cardsWrapper h4{
+
+    .cardsWrapper h4 {
         font-size: 1.5rem;
         margin: 10px;
     }
 
     /*  Contact Card */
 
-    .contactContainer{
+    .contactContainer {
         position: relative;
         display: flex;
         align-items: center;
         /* gap: 5vw; */
-        margin: 10vw 0 0 0vw;
+        margin: 5vw 0 0 0;
     }
-    .contactContent{
+
+    .contactContent {
         flex-wrap: wrap;
         display: flex;
         justify-content: space-around;
         gap: 2vw;
-        width:  100%;
+        width: 100%;
     }
-    .contactCard{
+
+    .contactCard {
         position: absolute;
         gap: 3vw;
         top: 23vw;
         width: 90vw;
     }
-    .contactCard span{
+
+    .contactCard span {
         width: 100%;
         padding: 1vw;
         font-size: 1.2rem;
         margin-bottom: 0vw;
     }
-    .contactCard p{
+
+    .contactCard p {
         font-size: 0.8em;
     }
-    .githubLink,.linkedinLink{
+
+    .githubLink,
+    .linkedinLink {
         font-size: 0.8em;
         z-index: 50;
     }
-    .logoContact{
+
+    .logoContact {
         width: 5vw;
     }
 
-    .copyMessage{
+    .copyMessage {
         font-size: 1rem;
     }
+
     /* Skill Cards */
 
-    .card1, .card2{
+    .card1,
+    .card2 {
         padding: 30px;
         gap: 10px;
     }
-    .card2{
+
+    .card2 {
         padding: 25px;
     }
-    
+
 }
+
 /* ----------------------------- Mobile < 560px ------------------------------ */
 
-@media screen and (max-width: 560px)
-{
-    .section2Content{
+@media screen and (max-width: 560px) {
+    .section2Content {
         flex-direction: column;
         justify-content: start;
         width: 100%;
@@ -409,23 +465,26 @@ Media queries
         height: 100%;
         margin-top: 2vh;
     }
-    .topSection2{
+
+    .topSection2 {
         width: 90%;
         margin: 0 auto;
         height: 31vh;
     }
-    .bio{
+
+    .bio {
         font-size: var(--text-size-mini);
     }
-    
-    .topSection2 h3{
-        font-size: 3rem ;
+
+    .topSection2 h3 {
+        font-size: 3rem;
         width: 100%;
         text-align: center;
         margin: 0;
         margin-top: 4vw;
     }
-    .cardsWrapper{
+
+    .cardsWrapper {
         width: none;
         margin: 0;
         gap: 2vw;
@@ -435,176 +494,208 @@ Media queries
         flex-direction: row;
     }
 
-    .cardsContainer{
+    .cardsContainer {
         gap: 0;
         margin-right: 2vw;
         margin-top: 220px;
     }
-    .cardsContainer h3{
-        font-size: 3rem ;
+
+    .cardsContainer h3 {
+        font-size: 3rem;
         margin: 0;
         text-align: center;
         margin-bottom: 20px;
         text-align: start;
         width: 100%;
     }
-    .cardsWrapper h4{
+
+    .cardsWrapper h4 {
         font-size: 1rem;
         font-weight: normal;
         margin: 10px;
 
     }
 
-    .card1, .card2{
+    .card1,
+    .card2 {
         padding: 12px;
         gap: 0;
     }
-    .card1{
+
+    .card1 {
         min-width: 180px;
         min-height: 170px;
     }
-    .card2{
+
+    .card2 {
         min-width: 150px;
         min-height: 170px;
     }
-    .logoContainer{
+
+    .logoContainer {
         width: 10vw;
         height: 6vw;
         gap: 1.3vw;
         margin: 3px;
     }
-    .logoContainer p{
+
+    .logoContainer p {
         font-size: var(--text-size-mini);
         font-weight: 300;
     }
-    .LogoDocker{
+
+    .LogoDocker {
         margin-top: 10px;
     }
 
     /*  Contact Card */
 
-    .contactContainer{
+    .contactContainer {
         position: absolute;
         display: block;
         align-items: center;
-        bottom: -54vh;
+        bottom: -450px;
         margin: 0;
     }
-    .contactContent{
+
+    .contactContent {
         flex-wrap: wrap;
         display: flex;
         justify-content: space-between;
         gap: 0;
-        width:  100%;
+        width: 100%;
     }
-    .contactCard{
+
+    .contactCard {
         min-width: 280px;
         /* top: 8vh; */
     }
-    .contactCard span{
+
+    .contactCard span {
         margin-top: 10px;
     }
-    .contactLine{
+
+    .contactLine {
         height: 35px;
     }
 }
+
 /* -----------------------------  Desktop h < 900px ------------------------------ */
 
-@media screen and (max-height: 900px) and (min-width: 561px) 
-{
-    .section2Content{
+@media screen and (max-height: 900px) and (min-width: 561px) {
+    .section2Content {
         justify-content: space-between;
     }
-    .bio{
+
+    .bio {
         font-size: var(--text-size-small);
     }
-    
-    .contactCard{
+
+    .contactCard {
         gap: 0vw;
     }
-    .contactCard span{
+
+    .contactCard span {
         font-size: var(--text-size-text);
     }
-    .contactLine{
+
+    .contactLine {
         margin-bottom: 5px;
     }
-    .contactLine p,  .contactLine a{
+
+    .contactLine p,
+    .contactLine a {
         font-size: var(--text-size-mobile);
     }
-    .contactLine svg{
+
+    .contactLine svg {
         width: 30px;
         height: 30px;
     }
+
     /* Logos techno : */
 
-    .logoSymfo{
+    .logoSymfo {
         width: 2.5vw;
         min-width: 33px;
     }
-    .logoReact{
+
+    .logoReact {
         width: 2.6vw;
         min-width: 35px;
         margin-bottom: 0px;
     }
-    .LogoCSharp{
+
+    .LogoCSharp {
         width: 2.3vw;
         min-width: 30px;
         margin-top: 3px;
     }
-    .LogoP5js{
+
+    .LogoP5js {
         width: 2.5vw;
         min-width: 35px;
     }
-    .LogoMySql{
+
+    .LogoMySql {
         width: 1.7vw;
         min-width: 25px;
         margin-top: 7px;
     }
-    .LogoPsd{
+
+    .LogoPsd {
         width: 2vw;
         min-width: 35px;
         margin-top: 2px;
     }
-    .LogoFigma{
+
+    .LogoFigma {
         width: 1.05vw;
         min-width: 23px;
     }
-    .LogoGithub{
+
+    .LogoGithub {
         width: 2.7vw;
         min-width: 35px;
         margin-top: 0.5vw;
 
     }
-    .LogoDocker{
+
+    .LogoDocker {
         width: 4vw;
         min-width: 35px;
     }
-    .LogoNode{
+
+    .LogoNode {
         width: 2.5vw;
         min-width: 35px;
     }
 
 
-    .logoContainer{
+    .logoContainer {
         width: 5vw;
         height: 4.5vw;
         margin: 0px;
     }
-    .logoContainer p{
+
+    .logoContainer p {
         font-size: var(--text-size-mobile);
         color: var(--color-text);
         font-weight: 300;
     }
 
-    .card1, .card2{
+    .card1,
+    .card2 {
         padding: 10px;
     }
-    .card1{
+
+    .card1 {
         max-width: 60%;
         min-width: 180px;
         min-height: 180px;
     }
-    .card2{
+
+    .card2 {
         width: 60%;
         height: 100%;
         min-width: 140px;
@@ -613,28 +704,28 @@ Media queries
 }
 
 @media screen and (max-height: 700px) and (max-width: 561px) {
-    .cardsContainer{
+    .cardsContainer {
         gap: 0;
         margin-right: 2vw;
         margin-top: 280px;
     }
-    .contactContainer{
+
+    .contactContainer {
         position: absolute;
         display: block;
         align-items: center;
         bottom: -80vh;
         margin: 0;
     }
-    
+
 }
+
 /* ----------------------------- Desktop h < 760px ------------------------------ */
 
-@media screen and (max-height: 760px) and (min-width: 561px) 
-{
-    .bio{
+@media screen and (max-height: 760px) and (min-width: 561px) {
+    .bio {
 
         font-size: var(--text-size-mobile);
     }
- 
-}
 
+}

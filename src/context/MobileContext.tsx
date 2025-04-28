@@ -7,10 +7,10 @@ import React, { createContext, useContext, useState, useEffect, ReactNode, Props
 const MobileContext = createContext(false);
 
 export const MobileProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 560);
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        const handleResize = () => setIsMobile(window.innerWidth <= 560);
 
         window.addEventListener('resize', handleResize);
 

@@ -194,7 +194,7 @@
   color: var(--color-text);
   font-size: 0.7em;
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   width: 100%;
   text-align: center;
 }
@@ -432,8 +432,8 @@ Media queries
 
   .projectDescription {
     max-width: 100%;
-    margin: 0 20px;
-    gap: 0;
+    margin: 15px 20px 0 20px;
+    gap: 15px;
     align-items: center;
   }
 
@@ -474,13 +474,20 @@ Media queries
   }
 
   .section3Content h3 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     margin-top: 7vw;
 
   }
 
   .projectTitle {
     margin-top: 8vw;
+    margin-bottom: 5vw;
+  }
+
+  .projectDescription {
+    max-width: 100%;
+    margin: 20px 20px 0 20px;
+    align-items: center;
   }
 
   .projectDescription p {
@@ -493,7 +500,7 @@ Media queries
   }
 
   .linksContainer {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 7vw;
     width: 90vw;
     justify-content: center;
@@ -516,15 +523,6 @@ Media queries
 
   .link {
     text-align: start;
-  }
-
-  .copyright {
-    color: var(--color-text);
-    font-size: 0.7em;
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
   }
 }
 
