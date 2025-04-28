@@ -11,7 +11,7 @@
   align-items: center;
   flex-direction: column;
   color: var(--color-text-transp);
-  padding-top: 13vw;
+  padding-top: 34vh;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -181,12 +181,30 @@ Media queries
 ========================
 */
 
+/* ----------------------------- Mobile < 1226px ------------------------------ */
+
+@media screen and (max-width: 1226px) {
+  .section1Content h1 {
+    font-size: 105px;
+    margin-top: 0;
+  }
+
+  .section1Content h2 {
+    font-size: 45px;
+  }
+
+  .bottomLine {
+    font-size: 19px;
+    margin: 0;
+
+  }
+}
+
 /* ----------------------------- Tablet < 1024px ------------------------------ */
 
 @media screen and (max-width: 1024px) {
   .section1Content h1 {
     font-size: 105px;
-    margin-top: 12vw;
   }
 
   .section1Content h2 {
@@ -195,6 +213,9 @@ Media queries
 
   .bottomLine {
     font-size: 18px;
+    padding: 100px 250px 100px 0px;
+    width: 80vw;
+    text-align: start;
   }
 
   .sliderContainer {
@@ -216,7 +237,7 @@ Media queries
 @media screen and (max-width: 768px) {
   .section1Content h1 {
     font-size: 95px;
-    margin-top: 23vw;
+    margin-top: 5vh;
   }
 
   .section1Content h2 {
@@ -224,9 +245,7 @@ Media queries
   }
 
   .bottomLine {
-    text-align: center;
     font-size: 18px;
-    padding: 100px 50px 100px 50px;
   }
 
   .sliderContainer {
@@ -239,20 +258,20 @@ Media queries
 
 @media screen and (max-width: 560px) {
   .section1Content h1 {
-    font-size: 75px;
-    margin-top: 43vw;
+    font-size: 65px;
+    margin-top: 0;
     margin-left: 5vw;
   }
 
   .section1Content h2 {
-    font-size: 30px;
+    font-size: 23px;
     margin-top: 5vw;
   }
 
   .bottomLine {
-    text-align: start;
-    font-size: 18px;
-    padding: 100px 30px 100px 30px;
+    width: 80vw;
+    font-size: 16px;
+    padding: 100px 50px 100px 0px;
   }
 
   .sliderContainer {

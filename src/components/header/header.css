@@ -54,3 +54,12 @@ Media queries
         font-size: var(--text-size-mobile);
     }
 }
+
+/* -----------------------------  mobile < 560px ------------------------------ */
+
+@media screen and (max-width: 560px) {
+    .header {
+        top: 1vh;
+        right: 3vw;
+    }
+}
