@@ -2,7 +2,7 @@ import React, { useState, useEffect, FC, useRef } from 'react';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
-import SkillsCards from './SkillsCards';
+import { SkillsCards } from './SkillsCards';
 import useVisibility from '../../hooks/useVisibility';
 import DynamicColorText from './DynamicColorText';
 
@@ -19,9 +19,7 @@ type Section2Props = {
 
 const Section2: FC<Section2Props> = ({ parentRef, sessionClassName }) => {
   const [sectionRef, isVisible] = useVisibility<HTMLElement>();
-  // const [copied, setCopied] = useState<boolean>(false);
   const [circleData, setCircleData] = useState<CircleDataType>({ x: 0, y: 0, size: 0 });
-
 
   // Manage Header color
   useEffect(() => {
@@ -43,13 +41,6 @@ const Section2: FC<Section2Props> = ({ parentRef, sessionClassName }) => {
 
     return () => trigger.kill();
   }, [sectionRef]);
-
-
-  // const handleCopy = (message: string) => {
-  //   navigator.clipboard.writeText(message);
-  //   setCopied(true);
-  //   setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-  // };
 
   const handleCircleUpdate = ({ x, y, size }: CircleDataType) => {
     setCircleData({ x: x, y: y, size: size });
@@ -90,8 +81,7 @@ const Section2: FC<Section2Props> = ({ parentRef, sessionClassName }) => {
 
           <div className='contactContainer'>
             <AnimatedTitle timeout={300} direction="up" containerAnimation={parentRef.current || undefined}>
-              <ContactCard containerRef={sectionRef}
-              />
+              <ContactCard />
             </AnimatedTitle>
           </div>
         </div>
