@@ -95,7 +95,7 @@ function useSection1Animation(
         }, sectionRef);
 
         return () => ctx.revert();
-    }, [sectionRef, RECT_HEIGHTS, RECT_WIDTH]);
+    }, [sectionRef, RECT_HEIGHTS, RECT_WIDTH, bottomRightRef, topLeftRef]);
 
 }
 

@@ -68,7 +68,6 @@ const ProjectInfos: FC<ProjectInfoProps> = ({
                 <TbCircleArrowLeftFilled
                     className="backArrow"
                     onClick={handleCloseProject}
-                    // color='white' 
                     size={55}
                     style={{ transform: isHovered ? 'scale(1.1)' : 'scale(1)', transition: 'transform 0.2s', color: isHovered ? "#FFFFFF" : "#2BF7BC" }}
                 />

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+
 type AnimatedRectanglesProps = {
     rectHeight: number[];
     containerRef: React.RefObject<HTMLDivElement | null>;

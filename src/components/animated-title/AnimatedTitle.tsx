@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ReactNode, FC } from 'react';
+import React, { useEffect, useRef, ReactNode, FC } from 'react';
 import './animatedTitle.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

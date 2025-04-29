@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react';
+import React, { FunctionComponent, useRef } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import './header.css';
-import { useMobile } from '../../context/MobileContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,7 +12,6 @@ type Props = {
 }
 
 const Header: FunctionComponent<Props> = ({ scrollToSection, handleCloseFromHeader }) => {
-  const isMobile = useMobile();
   const headerRef = useRef<HTMLElement>(null);
 
   return (

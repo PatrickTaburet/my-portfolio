@@ -5,7 +5,7 @@ import { TbBrandGithub } from "react-icons/tb";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { useClipboardCopy } from '../../hooks/useClipboardCopy';
 import { deobfuscText } from "../../utils/obfuscation";
-import CopyToolTipPortal from './CopyToolTip';
+import CopyToolTipPortal from './CopyToolTipPortal';
 
 
 const ContactCardComponent: FC = () => {

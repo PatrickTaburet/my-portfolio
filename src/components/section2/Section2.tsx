@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, useRef } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import Sketch2 from '../sketches-p5js/Sketch2';
 import './section2.css';
 import AnimatedTitle from '../animated-title/AnimatedTitle';

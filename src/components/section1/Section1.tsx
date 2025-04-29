@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import AnimatedTitle from '../animated-title/AnimatedTitle';
 import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';

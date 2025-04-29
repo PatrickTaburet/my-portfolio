@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, PropsWithChildren } from 'react';
+import React, { createContext, useContext, useState, useEffect, PropsWithChildren } from 'react';
 
 /**
  * Context for managing the mobile state of the application.
