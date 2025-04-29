@@ -4,11 +4,9 @@ import Sketch1 from '../sketches-p5js/Sketch1';
 import './section1.css';
 import useVisibility from '../../hooks/useVisibility';
 import { useMobile } from '../../context/MobileContext';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import useDeviceConfig from '../../hooks/useDeviceConfig';
-
-gsap.registerPlugin(ScrollTrigger);
+import useSection1Animation from '../../hooks/useSection1Animation';
+import AnimatedRectangles from './AnimatedRectangles';
 
 type Section1Props = {
   sessionClassName: string;
@@ -22,108 +20,18 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
 
   const { rectHeights: RECT_HEIGHTS, rectWidth: RECT_WIDTH } = useDeviceConfig();
 
-
-  useLayoutEffect(() => {
-    if (!sectionRef.current) return;
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.documentElement.style.overflow = 'hidden';
-    document.documentElement.style.setProperty('--gutter-offset', `${scrollbarWidth}px`);
-
-    const topRects = topLeftRef.current!.querySelectorAll<HTMLDivElement>('.rect');
-    const botRects = bottomRightRef.current!.querySelectorAll<HTMLDivElement>('.rect');
-    const reversedHeights = [...RECT_HEIGHTS].reverse();
-
-    // Scoped GSAP animations for section1
-    const ctx = gsap.context(() => {
-
-      // timeline paused
-      const revealTl = gsap.timeline({
-        onComplete: () => {
-          document.documentElement.style.overflow = '';
-          document.documentElement.style.setProperty('--gutter-offset', '0px');
-        }
-      });
-
-      revealTl.to(topRects, {
-        height: (i) => RECT_HEIGHTS[i],
-        width: RECT_WIDTH,
-        opacity: 1,
-        ease: 'power1.out',
-        duration: 0.3,
-        stagger: 0.1,
-      });
-
-      revealTl.to(botRects, {
-        height: (i) => reversedHeights[i],
-        width: RECT_WIDTH,
-        opacity: 1,
-        ease: 'power1.out',
-        duration: 0.3,
-        stagger: {
-          each: 0.1,
-          from: 'end'
-        }
-      }, '>');
-
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          // markers: true,
-        }
-      });
-
-      // scrollTl.to([...topRects, ...botRects], {
-      //   height: 0,
-      //   // opacity: 0,
-      //   ease: 'power1.inOut',
-      //   stagger: 0.1,
-      // });
-
-      scrollTl.to(topRects, {
-        height: 0,
-        ease: 'power1.inOut',
-        stagger: 0.1
-      }, 0);
-
-      scrollTl.to(botRects, {
-        height: 0,
-        ease: 'power1.inOut',
-        stagger: {
-          each: 0.1,
-          from: 'end'
-        }
-      }, 0);
-
-      // Text content animation: parallax translateY and fade-out
-      gsap.to('.section1Content', {
-        y: window.innerHeight * 0.65,
-        opacity: -0.5,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [sectionRef, RECT_HEIGHTS, RECT_WIDTH]);
+  useSection1Animation(
+    sectionRef,
+    topLeftRef,
+    bottomRightRef,
+    RECT_HEIGHTS,
+    RECT_WIDTH
+  );
 
   return (
     <section className={sessionClassName} ref={sectionRef}>
-
-      <div className="rect-container top-left" ref={topLeftRef}>
-        {RECT_HEIGHTS.map((_, i) => <div className="rect" key={`t${i}`} />)}
-      </div>
-      <div className="rect-container bottom-right" ref={bottomRightRef}>
-        {RECT_HEIGHTS.map((_, i) => <div className="rect" key={`b${i}`} />)}
-      </div>
+      <AnimatedRectangles rectHeight={RECT_HEIGHTS} containerRef={topLeftRef} />
+      <AnimatedRectangles rectHeight={RECT_HEIGHTS} containerRef={bottomRightRef} isBottom={true} />
 
       <div className='section1Content' >
         <AnimatedTitle timeout={200} direction="up">

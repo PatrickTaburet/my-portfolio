@@ -70,6 +70,7 @@
     padding: 2vw;
     gap: 1vw;
     white-space: nowrap;
+    position: relative;
 }
 
 .contactCard span {
