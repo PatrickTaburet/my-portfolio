@@ -1,4 +1,3 @@
-import React from 'react'
 import NexusLab1 from './../../assets/images/nexusLab/NexusLab-full-purple.webp';
 import NexusLab2 from './../../assets/images/nexusLab/gallery-desktop.webp';
 import NexusLab3 from './../../assets/images/nexusLab/generative-desktop.webp';
@@ -110,7 +109,7 @@ const ProjectsMapping: Record<string, ProjectMappingItem> = {
           <p>Click below to view the project documentation :</p>
           <a 
             className='link'
-            href="/documents/Cahier des charges - projet NexusLab.pdf" 
+            href="/documents/Cahier-des-charges_projet-NexusLab.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
           >

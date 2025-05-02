@@ -52,13 +52,11 @@ const Sketch3:FC<Sketch3Props> = ({ onCircleClick, launchMode, closedCircle, isR
     let circleSize: number;
     const LERP_SPEED = 0.1;
 
-    p.preload = () => {
-      mediaProject1 = p.loadImage(NexusLabMedia);
+    p.setup = async () => {
+      mediaProject1 = await p.loadImage(NexusLabMedia);
       mediaProject2 = p.createVideo(CreativeCodingMedia);
-      mediaProject3 = p.loadImage(LifeSimulatorMedia);
-    };
-
-    p.setup = () => {
+      mediaProject2.hide(); 
+      mediaProject3 = await p.loadImage(LifeSimulatorMedia);
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight );
       canvas.parent('sketch-container3');
       canvas.elt.getContext('2d', { willReadFrequently: true }); 

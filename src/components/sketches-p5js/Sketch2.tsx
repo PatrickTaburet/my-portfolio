@@ -45,11 +45,8 @@ const Sketch2: FC<Sketch2Props> = ({ isRunning, onCircleUpdate }) => {
     let circle: Circle;
     let pictureMedia: p5.Image;
 
-    p.preload = () => {
-      pictureMedia = p.loadImage(ProfilPicture);
-    };
-
-    p.setup = () => {
+    p.setup = async () => {
+      pictureMedia = await p.loadImage(ProfilPicture);
       const canvasHeight = p.windowWidth < 560 ? 1150 : p.windowHeight;
       const canvas = p.createCanvas(p.windowWidth, canvasHeight);
       sketchContainerRef.current && canvas.parent(sketchContainerRef.current);
