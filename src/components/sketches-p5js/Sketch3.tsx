@@ -3,6 +3,7 @@ import p5 from 'p5';
 import NexusLabMedia from './../../assets/images/nexusLab/logo-purple.webp';
 import CreativeCodingMedia from './../../assets/images/creativeCoding/circle-flowfield-webm-original.webm';
 import LifeSimulatorMedia from './../../assets/images/lifeSimulator/molecule.png';
+import { loadP5Image, loadP5Video } from './helper/p5-promise';
 
 type Sketch3Props ={
   onCircleClick: (projectName: string) => void;
@@ -53,10 +54,10 @@ const Sketch3:FC<Sketch3Props> = ({ onCircleClick, launchMode, closedCircle, isR
     const LERP_SPEED = 0.1;
 
     p.setup = async () => {
-      mediaProject1 = await p.loadImage(NexusLabMedia);
-      mediaProject2 = p.createVideo(CreativeCodingMedia);
-      mediaProject2.hide(); 
-      mediaProject3 = await p.loadImage(LifeSimulatorMedia);
+      mediaProject1 = await loadP5Image(p, NexusLabMedia);
+      mediaProject2 = await loadP5Video(p, CreativeCodingMedia);
+      mediaProject3 = await loadP5Image(p, LifeSimulatorMedia);
+
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight );
       canvas.parent('sketch-container3');
       canvas.elt.getContext('2d', { willReadFrequently: true }); 
@@ -117,8 +118,11 @@ const Sketch3:FC<Sketch3Props> = ({ onCircleClick, launchMode, closedCircle, isR
     };
 
     p.mouseMoved = () => {
-      const renderer = (p as any)._renderer;
-      if (!renderer || !renderer.elt) return;
+      const canvas = (p as any).canvas;
+      if (!canvas) return;
+      if (!mediaProject2 || !mediaProject2.elt) {
+        return;
+      }
     
       let isHovering = false;
 
