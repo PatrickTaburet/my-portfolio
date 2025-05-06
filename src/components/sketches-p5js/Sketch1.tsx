@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, FC } from 'react';
 import p5 from 'p5';
-
+import { useMobile } from '../../context/MobileContext';
 type Sketch1Props = {
   isRunning: boolean;
 }
@@ -11,8 +11,9 @@ type LineDataType = {
   offsetY: number;
   baseAngle: number;
 }
-const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
+const Sketch1: FC<Sketch1Props> = ({ isRunning }) => {
   const p5InstanceRef = useRef<p5 | null>(null);
+  const isMobile = useMobile();
 
   useEffect(() => {
     p5InstanceRef.current = new p5(sketch, document.getElementById('sketch-container') as HTMLElement);
@@ -36,6 +37,8 @@ const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
 
   useEffect(() => {
     if (p5InstanceRef.current) {
+      (p5InstanceRef.current as any).isRunning = isRunning;
+
       isRunning ? p5InstanceRef.current.loop() : p5InstanceRef.current.noLoop();
     }
   }, [isRunning]);
@@ -75,27 +78,27 @@ const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
       if (!mainColor) {
         mainColor = p.color(180, 100, 50, 1);
       }
-  
+
       for (let i = 0; i < lines.length; i++) {
         let mainLine = lines[i];
         p.stroke(mainColor);
-  
+
         let noiseScale = 0.01;
         let stepSize = 5;
         let noiseAngle = p.noise(mainLine.offsetX, mainLine.offsetY) * p.TWO_PI;
         let angle = mainLine.baseAngle + noiseAngle;
-  
+
         let newX = mainLine.prevX + p.cos(angle) * stepSize;
         let newY = mainLine.prevY + p.sin(angle) * stepSize;
-  
+
         p.line(mainLine.prevX, mainLine.prevY, newX, newY);
-  
+
         mainLine.prevX = newX;
         mainLine.prevY = newY;
-  
+
         mainLine.offsetX += noiseScale;
         mainLine.offsetY += noiseScale;
-  
+
         if (lineSlider && p.random(1) < 0.05 && lines.length < Number(lineSlider.value())) {
           lines.push({
             prevX: newX,
@@ -107,13 +110,24 @@ const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
         }
         p.strokeWeight(3 + i / 3);
       }
-  
+
       p.fill(196, 58, 5, 0.03);
       p.noStroke();
       p.rect(0, 0, p.width, p.height);
     };
 
     p.mouseMoved = () => {
+      if (!(p as any).isRunning) return;
+      linesCreation();
+    };
+
+    p.mouseClicked = () => {
+      if (!(p as any).isRunning) return;
+      isMobile && linesCreation();
+      mainColor = p.random(colors);
+    };
+
+    function linesCreation() {
       for (let line of lines) {
         line.prevX = p.mouseX;
         line.prevY = p.mouseY;
@@ -126,11 +140,7 @@ const Sketch1: FC<Sketch1Props> = ({isRunning}) => {
         offsetY: p.random(1000),
         baseAngle: p.random(p.TWO_PI)
       });
-    };
-
-    p.mouseClicked = () => {
-      mainColor = p.random(colors);
-    };
+    }
   };
 
   return <div id="sketch-container"></div>;

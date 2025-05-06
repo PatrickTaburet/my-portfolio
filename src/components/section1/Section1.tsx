@@ -17,7 +17,6 @@ const Section1: FC<Section1Props> = ({ sessionClassName }) => {
   const isMobile = useMobile();
   const topLeftRef = useRef<HTMLDivElement>(null);
   const bottomRightRef = useRef<HTMLDivElement>(null);
-
   const { rectHeights: RECT_HEIGHTS, rectWidth: RECT_WIDTH } = useDeviceConfig();
 
   useSection1Animation(

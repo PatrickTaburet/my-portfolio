@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+#defaultCanvas0 {
+  touch-action: auto !important;
+}
+
 .section3Content {
   position: absolute;
   display: flex;
