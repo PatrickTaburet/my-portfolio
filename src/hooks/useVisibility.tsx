@@ -10,8 +10,7 @@ import { useState, useEffect, useRef, RefObject } from 'react';
  *   - `elementRef`: A reference to the element to observe.
  *   - `isVisible`: A boolean indicating whether the element is visible in the viewport.
  */
-function useVisibility<T extends Element = Element>(): [RefObject<T | null>, boolean]
-{
+function useVisibility<T extends Element = Element>(): [RefObject<T | null>, boolean] {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const elementRef = useRef<T | null>(null);
 

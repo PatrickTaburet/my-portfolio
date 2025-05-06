@@ -1,0 +1,1 @@
+import{r as s}from"./react-D-7IGec-.js";function c(){const[n,i]=s.useState(!1),t=s.useRef(null);return s.useEffect(()=>{const e=t.current;if(!e)return;const r=new IntersectionObserver(([o])=>{i(o.isIntersecting)},{threshold:.01});return r.observe(e),()=>{r.unobserve(e)}},[]),[t,n]}export{c as u};
